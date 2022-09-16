@@ -2,3 +2,17 @@
 // BASICS
 @import 'basics/base';
 @import 'basics/variables';
+@import 'basics/layout';
+@import 'basics/functions';
+@import 'basics/mixins';
+@import 'basics/helpers';
+//views
+@import 'views/stay-details';
+
+
+// COMPONENTS
+@import 'cmps/stay-list';
+@import 'cmps/stay-preview';
+@import 'cmps/header';
+@import 'cmps/footer';
+@import 'cmps/stay-reservation';

@@ -1,0 +1,255 @@
+.stay-details {
+
+    .top-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 20px;
+
+        .sub-con {
+            display: flex;
+            justify-content: space-between;
+
+            .address-info {
+                display: flex;
+                gap: 10px;
+            }
+
+            .links-con {
+                display: flex;
+                gap: 10px;
+            }
+        }
+
+    }
+
+    .gallery-wrapper {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: 200px 200px;
+        gap: 10px;
+        margin-bottom: 40px;
+        border-radius: 10px;
+        overflow: hidden;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-img-1 {
+            grid-row: 1/3;
+        }
+
+
+    }
+
+    .generall-info-wrapper {
+        .info-con-left {
+            // display: flex;
+            // flex-direction: column;
+
+            // .info-one {
+            .info-header {
+                display: flex;
+                // flex-direction: column;
+                justify-content: space-between;
+                border-bottom: 1px solid $clr6 ;
+
+                .sub-info-con {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    margin-bottom: 25px;
+
+                    // justify-content: space-between;
+                    .proprietary-info-con {
+                        display: flex;
+                        gap: 10px;
+                    }
+                }
+
+                .small-img-con {
+
+                    img {
+                        height: 60px;
+                        width: 60px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                }
+            }
+
+            .highlights {
+                border-bottom: 1px solid $clr6 ;
+                padding: 20px 0px 20px 0px;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+
+                .highlight {
+                    display: flex;
+                    gap: 10px;
+
+                    div {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 9px;
+
+                        h4 {
+                            font-size: rem(16px);
+                            color: $clr3;
+                        }
+
+                        span {
+                            font-size: rem(14px);
+                            // color: $clr5;
+                            color: $clr4;
+
+                        }
+                    }
+                }
+            }
+
+
+            .info-cover {
+                border-bottom: 1px solid $clr6 ;
+                padding: 20px 0px 20px 0px;
+
+                h1 {
+                    font-size: rem(30px);
+                    padding-bottom: 15px;
+
+                    span {
+                        color: $clr1;
+                    }
+                }
+
+                a {
+                    text-decoration: underline;
+                }
+            }
+
+            .info-place-desc {
+                border-bottom: 1px solid $clr6 ;
+                padding: 20px 0px 20px 0px;
+            }
+
+            .amenities {
+                border-bottom: 1px solid $clr6 ;
+                padding: 40px 0px 40px 0px;
+                h3{
+                    padding-bottom: 20px;
+                }
+                .amenities-wrapper{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 14px;
+                    span{
+                        font-size: rem(18px);
+                    }
+                }
+            }
+        }
+
+
+        .reviwes {
+            margin: 46px 0px 46px 0px;
+            border-bottom: 1px solid $clr6 ;
+            padding-bottom: 46px;
+
+            .reviews-header {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                padding-bottom: 31px;
+            }
+
+            .reviews-score-board {
+                display: grid;
+                // grid-template-columns: 1fr 1fr;
+                grid-template-columns: 50% 50%;
+                // gap: 10px;
+                column-gap: 30px;
+                row-gap: 20px;
+                padding-bottom: 40px;
+                font-size: rem(17px);
+
+                .rate-prm {
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+
+            .reviwes-list-wrapper {
+                display: grid;
+                // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-template-columns: 1fr 1fr;
+                gap: 50px;
+
+                .reviews-list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    span{
+                        font-size: rem(18px);
+                        font-weight: bold;
+                    }
+                    .user-img-con {
+                        display: flex;
+                        align-items: center;
+
+                        img {
+                            height: 60px;
+                            width: 60px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+
+        .about-host {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            border-bottom: 1px solid $clr6 ;
+            padding-bottom: 40px;
+
+            .about-host-header {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                padding-bottom: 15px;
+
+                img {
+                    height: 70px;
+                    width: 70px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                .host-title-con {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+
+                    span {
+                        color: $clr4;
+                    }
+
+                }
+            }
+
+            .quick-host-info {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+
+
+            }
+        }
+    }
+}

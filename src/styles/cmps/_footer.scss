@@ -1,0 +1,39 @@
+.app-footer {
+    // display: flex;
+    position: sticky;
+    bottom: 0;
+    border-top: 1px solid $clr6;
+    // height: 50px; //temp
+    padding-block: 10px;
+    background-color: $clr2;
+    .footer-terms {
+        display: flex;
+        gap: 10px;
+        color: $clr4;
+        small{
+            font-size: rem(16px);
+            color: $clr4;
+        }
+        a{
+            &:hover{
+                text-decoration:0.5px $clr4 underline;
+            }
+
+        }
+    }
+
+    .footer-menu {
+        display: flex;
+        align-items: center;
+
+        svg{
+            cursor: pointer;
+        }
+    }
+
+    .footer-inner-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

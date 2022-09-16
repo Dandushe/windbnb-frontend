@@ -1,0 +1,110 @@
+.stay-preview {
+   
+    position: relative;
+
+    .next {
+        display: none;
+        position: absolute;
+        z-index: 10;
+        top: 178px;
+        right: 0;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        svg {
+            color: $clr1;
+            font-size: rem(45px);
+        }
+    }
+
+    .prev {
+        display: none;
+        position: absolute;
+        z-index: 10;
+        top: 178px;
+        left: 0;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        svg {
+            color: $clr1;
+            font-size: rem(45px);
+        }
+    }
+
+    // .btn{
+    &:hover {
+        .next {
+            display: block;
+            position: absolute;
+            z-index: 10;
+            // top: 178px;
+            top: 120px;
+            right: 0;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+
+            svg {
+                color: $clr1;
+                font-size: rem(45px);
+            }
+        }
+
+        .prev {
+            display: block;
+            position: absolute;
+            z-index: 10;
+            // top: 178px;
+            top: 120px;
+            left: 0;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+
+            svg {
+                color: $clr1;
+                font-size: rem(45px);
+            }
+        }
+    }
+
+    .img-container {
+        border-radius: 20px;
+
+        img {
+            // border-radius: 20px;
+        }
+    }
+
+    .info-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 8px 0px 10px 0px;
+
+        div {
+            span {
+                font-weight: bold;
+                font-size: rem(15px);
+            }
+
+            padding-bottom: 4px;
+        }
+
+        .property-type {
+            color: $clr5;
+            font-size: rem(14px);
+            letter-spacing: rem(0.5px);
+
+        }
+
+        .price {
+            display: flex;
+            gap: 2px;
+            padding-top: 4px;
+        }
+    }
+}
