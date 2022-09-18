@@ -1,0 +1,271 @@
+.stay-filter-main-warapper {
+
+    .filter-preview-pill-wrapper {
+        display: flex;
+        align-items: center;
+        border: 1px solid $clr6;
+        border-radius: 60px;
+        padding: 8px 0px 8px 0px;
+        // padding: 6px 0px 6px 0px;
+        // padding: 5px;
+        font-size: rem(14px);
+        gap: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .anywhere {
+            // padding: 7px;
+            padding: 0px 15px 0px 30px;
+            border-right: 1px solid $clr6;
+            font-weight: bold;
+        }
+
+        .anyweek {
+            // padding: 7px;
+            padding: 0px 15px 0px 15px;
+            border-right: 1px solid $clr6;
+            font-weight: bold;
+        }
+
+        .addguests {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 0px 10px 0px 15px;
+            // font-weight: light;
+
+            .search-icon-con {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: $clr1;
+                color: $clr2;
+                border-radius: 50%;
+                width: 35px;
+                height: 35px;
+                text-align: center;
+                // vertical-align: ;
+
+            }
+
+            svg {
+                font-size: 20px;
+            }
+
+            // svg{
+
+            //     background-color: $clr1;
+            //     color: $clr2;
+            //     border-radius: 50%;
+            //     width: 30px;
+            //     height: 30px;
+
+            // }
+        }
+    }
+
+    .filter-expended-pill-wrapper {
+        display: flex;
+        align-items: center;
+        background-color: $clr8;
+        border: 1px solid $clr6;
+        background-clip: padding-box;
+        // background-clip: content-box;
+        border-radius: 32px;
+        // padding: 8px 10px 8px 10px;
+        // width: 750px;
+        // width:fit-content;
+        // overflow: hidden;
+        // gap: 25px;
+
+        .location-wrapper {
+            cursor: pointer;
+            // width: 100%;
+            border-radius: 32px;
+            padding: 14px 24px;
+            outline: none;
+
+            .location-con {
+                display: flex;
+                flex-direction: column;
+                // border-right: 1px solid $clr6;
+                padding-inline-end: 40px;
+                padding-inline-start: 20px;
+
+                input[type="text"] {
+                    border: none;
+                    background-color: inherit;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+
+            &:hover {
+                background-color: $clr9;
+                // border: 1px transparent;
+                background-clip: padding-box;
+
+            }
+
+            &.active {
+                background-color: $clr2;
+                background-clip: padding-box;
+                z-index: 3;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+                // border: 1px solid transparent;
+            }
+        }
+
+        .dates-wrapper {
+            display: flex;
+            // gap: 50px;
+            // border-radius:32px ;
+            // padding: 14px 24px ;
+            cursor: pointer;
+
+            .checkIn-dates-con {
+                display: flex;
+                flex-direction: column;
+                // border-right: 1px solid $clr6;
+                // padding-inline-end: 40px;
+                border-radius: 32px;
+                padding: 14px 24px;
+                position: relative;
+                .title {
+                    font-size: rem(16px);
+                }
+
+                .sub-title {
+                    font-size: rem(16px);
+                    color: $clr4;
+                }
+
+                &:hover {
+                    background-color: $clr9;
+
+                }
+
+                &.active {
+                    background-color: $clr2;
+                    background-clip: padding-box;
+                    z-index: 3;
+                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+                    // border: 1px solid transparent;
+                }
+                .checkin-datepicker-con {
+                    position: absolute;
+                    top: 75px;
+                    right: 0px;
+                }
+            }
+
+            .checkOut-dates-con {
+                display: flex;
+                flex-direction: column;
+                // border-right: 1px solid $clr6;
+                // padding-inline-end: 40px;
+                border-radius: 32px;
+                padding: 14px 24px;
+                position: relative;
+                .title {
+                    font-size: rem(16px);
+                }
+
+                .sub-title {
+                    font-size: rem(16px);
+                    color: $clr4;
+                }
+
+                &:hover {
+                    background-color: $clr9;
+
+                }
+
+                &.active {
+                    background-color: $clr2;
+                    background-clip: padding-box;
+                    z-index: 3;
+                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+                    // border: 1px solid transparent;
+                }
+                .checkOut-datepicker-con {
+                    position: absolute;
+                    top: 75px;
+                    right: 0px;
+                }
+            }
+        }
+
+        .guests-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-radius: 32px;
+            padding: 0px 9px;
+            cursor: pointer;
+
+            .guests-con {
+                display: flex;
+                flex-direction: column;
+                border-radius: 32px;
+                padding: 14px 24px;
+                position: relative;
+                .title {
+                    font-size: rem(16px);
+                }
+
+                .sub-title {
+                    font-size: rem(16px);
+                    color: $clr4;
+                }
+                .num-of-guests-con{
+                    position: absolute;
+                    top: 75px;
+                    left :20px;
+                }
+            }
+
+            .search-con {
+
+                //     border-radius:32px ;
+                // padding: 14px 24px ;
+                .search-btn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: $clr1;
+                    color: $clr2;
+                    border: none;
+                    border-radius: 24px;
+                    font-size: rem(18px);
+                    height: 48px;
+                    width: 130px;
+                    // width: 130px;
+                    // padding: 12px 0px 12px 0px;
+                    cursor: pointer;
+
+                }
+            }
+
+            &:hover {
+                background-color: $clr9;
+
+            }
+
+            &.active {
+                background-color: $clr2;
+                background-clip: padding-box;
+                z-index: 3;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+                // border: 1px solid transparent;
+            }
+        }
+    }
+}

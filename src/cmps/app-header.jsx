@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { StayFilter } from "./app-filter";
+import React, { useRef } from "react"
+import { useClickOutside } from "../hooks/useClickOutside";
 
 export function AppHeader() {
     const [isShowen, setIsShowen] = useState(false)
-    
-
+    const ref = useRef()
+   
+    useClickOutside(ref, () => {
+        setIsShowen(false)
+      })
 
     const toggleIsShowen = () => {
         setIsShowen(prevIsShowen => !prevIsShowen)
@@ -16,17 +21,12 @@ export function AppHeader() {
                 <nav>
                     <NavLink to='/'>windbnb</NavLink>
                 </nav>
-                <div className="user-menu" onClick={toggleIsShowen}>
-                    {/* <div className="user-pill-con"> */}
+                <StayFilter/>
+                {/* <div className="user-menu"  onClick={toggleIsShowen}> */}
+                <div className="user-menu" onClick={toggleIsShowen} ref={ref}>
                     <span>&#9776;</span>
                     <img src="https://a0.muscache.com/defaults/user_pic-225x225.png?v=3" />
-                    {/* </div> */}
-                    {/* <svg viewBox="0 0 100 80" width="15" height="20">
-                        <rect width="100" height="20"></rect>
-                        <rect y="30" width="100" height="20"></rect>
-                        <rect y="60" width="100" height="20"></rect>
-                    </svg> */}
-
+            
                    {isShowen && <div className="dropdown-content">
                         <span>Notifications</span>
                         {/* <a href="">Notifications</a> */}

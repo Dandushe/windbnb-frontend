@@ -1,7 +1,6 @@
+import { Place } from "@mui/icons-material";
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { addReservation } from '../store/reservation.action';
+
 
 
 export const StayReservation = ({ stay }) => {
@@ -22,16 +21,23 @@ export const StayReservation = ({ stay }) => {
 
     const fiveDays = (5 * 24 * 60 * 60 * 1000)
 
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const filterBy = useSelector(state => state.stayModule.filterBy)
-    // const [reservation, setReservation] = useState({
-    //     checkIn: formatDate(Date.now()),
-    //     checkOut: formatDate(Date.now() + fiveDays),
-    //     guestsNum: 1
-    // })
-    const [reservation, setReservation] = useState({ ...filterBy })
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const [reservation, setReservation] = useState({
+        checkIn: formatDate(Date.now()),
+        checkOut: formatDate(Date.now() + fiveDays),
+        guestsNum: 1
+    })
+    const [isModalDisplay, setIsModalDisplay] = useState(false)
+// const filterBy = useSelector(state => state.stayModule.filterBy)
+    useEffect(() => {
+        // console.log('isModalDisplay',isModalDisplay);
+        // let daysDiffMILL = new Date(reservation.checkOut) - new Date(reservation.checkIn)
+        // let DAYS = daysDiffMILL / (1000 * 60 * 60 * 24)
+        // console.log("daysDiff", DAYS)
+        return () => {
+
+        }
+    }, [])
+
     const getDaysCount = () => {
         let daysDiffInMill = new Date(reservation.checkOut) - new Date(reservation.checkIn)
         let daysCount = daysDiffInMill / (1000 * 60 * 60 * 24)
@@ -46,35 +52,14 @@ export const StayReservation = ({ stay }) => {
 
     const onReserve = (ev) => {
         ev.preventDefault()
-        let rservToSave = {
-            hostId: stay.host._id,
-            checkIn: reservation.checkIn,
-            checkOut: reservation.checkOut,
-            guestsNum: reservation.guestsNum,
-            totalPrice: (stay.price * getDaysCount()),
-            createdAt: Date.now(),
-            stay: {
-                _id: stay._id,
-                name: stay.name,
-                price: stay.price
-            }
-        }
-        dispatch(addReservation(rservToSave))
-        toggleModal()
-    }
-
-    const toggleModal =() => {
-         setIsModalOpen(prevIsModalDisplay => !prevIsModalDisplay)
-
-    }
-
-    const onBack = () => {
-        navigate('/')
+        // setIsModalDisplay(prevIsModalDisplay => !prevIsModalDisplay)
+        console.log('jojojoj');
+        setIsModalDisplay(isModalDisplay => !isModalDisplay)
     }
 
     return (
         <section className="stay-reservation">
-            <div className="reservation-wrapper">
+            {!isModalDisplay && <div className="reservation-wrapper">
                 <div className="reservation-heder">
                     <span className="price"><h2>{stay.price}</h2>night</span>
                     <span className="reviews-length">{stay.reviews.length} reviews</span>
@@ -131,9 +116,9 @@ export const StayReservation = ({ stay }) => {
                     </div>
                 </div>
 
-            </div>
+            </div>}
 
-            {isModalOpen && <div className="confirmation-modal-wrapper">
+            {isModalDisplay && <div className="confirmation-modal-wrapper">
                 <div className="confirmation-modal-header">
                     <div className="img-container ratio-square">
                         <img src={stay.imgUrls[0]} alt="property" />
@@ -178,7 +163,7 @@ export const StayReservation = ({ stay }) => {
                         <span>Total</span>
                         <span className="total-price">{stay.price * getDaysCount()}</span>
                     </div>
-                    <button className="btn" onClick={toggleModal}>confirm</button>
+                    <button className="btn" onClick={onReserve}>confirm</button>
                 </div>
             </div>}
 

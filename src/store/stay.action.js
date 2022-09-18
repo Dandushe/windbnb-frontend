@@ -3,6 +3,7 @@ import { stayService } from "../services/stay.service"
 export function loadStays() {
     return async (dispatch, getState) => {
         const { filterBy } = getState().stayModule
+        console.log('filterBy from loadStays',filterBy);
         try {
             let stays = await stayService.query(filterBy)
             dispatch({ type: 'SET_STAYS', stays })
@@ -15,6 +16,7 @@ export function loadStays() {
 export function setFilter(filterBy) {
     return async (dispatch) => {
         try {
+            console.log('fdfd');
             dispatch({ type: 'SET_FILTER', filterBy })
         } catch (err) {
             console.log('filter catch', err)

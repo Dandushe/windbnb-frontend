@@ -15,14 +15,14 @@ const gDefaultStays = [
         "interaction": "There are activities programs and concierge activities booking services at this resort.",
         "houseRules": "No smoking; No Pets; This resort's rules apply. Please call the resort directly to verify details.",
         "propertyType": "Serviced apartment",
-        "roomType": "Entire home/apt",
+        "roomType": "Entire place",
         "bedType": "Real Bed",
         "cancellationPolicy": "strict_14_with_grace_period",
         "capacity": 8,
         "bedrooms": 2,
         "beds": 4,
         "numOfReviews": 9,
-        "highlights":{
+        "highlights": {
             "selfCheckIn": false,
             "greatLocation": true,
             "pets": true,
@@ -236,7 +236,7 @@ const gDefaultStays = [
         "bedrooms": 1,
         "beds": 1,
         "numOfReviews": 4,
-        "highlights":{
+        "highlights": {
             "selfCheckIn": false,
             "greatLocation": true,
             "pets": true,
@@ -648,6 +648,15 @@ function query(filterBy) {
         if (!stays || !stays.length) {
             storageService.postMany(STORAGE_KEY, gDefaultStays)
             stays = gDefaultStays
+        }
+        if (filterBy) {
+            var { txt, roomTypes, minPrice, maxPrice } = filterBy
+            console.log(filterBy);
+            // robots = robots.filter(stay => stay.name.toLowerCase().includes(name.toLowerCase()) && robot.model.toLowerCase().includes(model.toLowerCase())
+            stays = stays.filter(stay => (stay.address.country.toLowerCase().includes(txt.toLowerCase())
+                || stay.address.street.toLowerCase().includes(txt.toLowerCase())) &&
+                (!roomTypes.length || roomTypes.includes(stay.roomType)) &&
+                (maxPrice === 1000 || (stay.price <= maxPrice && stay.price >= minPrice)))
         }
         // if (filterBy) {
         //     var { name, maxPrice, minPrice } = filterBy

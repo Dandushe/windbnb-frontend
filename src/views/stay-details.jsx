@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from 'react-router-dom'
 import { stayService } from "../services/stay.service"
 
-import DeleteIcon from '@mui/icons-material/Delete';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
 import StarIcon from '@mui/icons-material/Star';
@@ -55,76 +54,76 @@ export const StayDetails = () => {
 
             <section className="gallery-wrapper">
 
-                {stay.imgUrls.map((url, i) => <div className={`gallery-img-${i + 1}`}>
+                {stay.imgUrls.map((url, i) => <div key={i} className={`gallery-img-${i + 1}`}>
                     <img src={url} />
                 </div>)}
             </section>
             <section className="generall-info-wrapper">
-                <div className="info-con-left">
+                <div className="main-info">
+                    <div className="info-con-left">
 
-                    <div className="info-header">
+                        <div className="info-header">
 
-                        <div className="sub-info-con">
-                            <h2>{stay.propertyType} <span> hosted by</span> {stay.host.fullname}</h2>
+                            <div className="sub-info-con">
+                                <h2>{stay.propertyType} <span> hosted by</span> {stay.host.fullname}</h2>
 
-                            <div className="proprietary-info-con">
-                                <span>{stay.capacity} guests</span>
-                                <span>{stay.bedrooms} bedrooms</span>
-                                <span>{stay.beds}{stay.beds > 1 ? 'beds' : 'bed'}</span>
-                                <span>{stay.bathrooms} bath</span>
+                                <div className="proprietary-info-con">
+                                    <span>{stay.capacity} guests</span>
+                                    <span>{stay.bedrooms} bedrooms</span>
+                                    <span>{stay.beds}{stay.beds > 1 ? 'beds' : 'bed'}</span>
+                                    <span>{stay.bathrooms} bath</span>
+                                </div>
+                            </div>
+
+                            <div className="small-img-con">
+                                <img src={stay.imgUrls[0]} alt="" />
                             </div>
                         </div>
 
-                        <div className="small-img-con">
-                            <img src={stay.imgUrls[0]} alt="" />
-                        </div>
-                    </div>
+                        <div className="highlights">
+                            {<div className="highlight super-host-bage">
+                                <WorkspacePremiumOutlinedIcon />
+                                <div>
+                                    {/* <h4>{stay.host.fullname} <span>is a Superhost</span></h4> */}
+                                    <h4>{stay.host.fullname} is a Superhost</h4>
+                                    <span>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</span>
+                                </div>
+                            </div>}
 
-                    <div className="highlights">
-                        {<div className="highlight super-host-bage">
-                            <WorkspacePremiumOutlinedIcon />
-                            <div>
-                                {/* <h4>{stay.host.fullname} <span>is a Superhost</span></h4> */}
-                                <h4>{stay.host.fullname} is a Superhost</h4>
-                                <span>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</span>
+                            <div className="highlight pets">
+                                <PetsOutlinedIcon />
+                                <div>
+                                    <h4>Furry friends welcome</h4>
+                                    <span>Bring your pets along for the stay.</span>
+                                </div>
                             </div>
-                        </div>}
 
-                        <div className="highlight pets">
-                            <PetsOutlinedIcon />
-                            <div>
-                                <h4>Furry friends welcome</h4>
-                                <span>Bring your pets along for the stay.</span>
+                        </div>
+
+                        <div className="info-cover">
+                            <h1><span>wind</span>cover</h1>
+                            <span>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</span>
+                            <a href="">Learn more</a>
+                        </div>
+
+                        <div className="info-place-desc">
+                            <p>The luxurious spacious suite is furnished with a cozy seating area, flat-screen TV, minibar, double box spring, double sink, jacuzzi, hairdryer, bathroom with spacious rain shower and toilet.
+                                A luxury breakfast is served every morning.
+                                From the suite you have a unique view of the largest tidal area in the world: the Unesco</p>
+                        </div>
+
+                        <div className="amenities">
+                            <h3>What this place offers</h3>
+                            <div className="amenities-wrapper">
+                                {stay.amenities.splice(0, 10).map((item, i) => <span key={i}>{item}</span>)}
                             </div>
                         </div>
 
                     </div>
-
-                    <div className="info-cover">
-                        <h1><span>wind</span>cover</h1>
-                        <span>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</span>
-                        <a href="">Learn more</a>
-                    </div>
-
-                    <div className="info-place-desc">
-                        <p>The luxurious spacious suite is furnished with a cozy seating area, flat-screen TV, minibar, double box spring, double sink, jacuzzi, hairdryer, bathroom with spacious rain shower and toilet.
-                            A luxury breakfast is served every morning.
-                            From the suite you have a unique view of the largest tidal area in the world: the Unesco</p>
-                    </div>
-
-                    <div className="amenities">
-                        <h3>What this place offers</h3>
-                        <div className="amenities-wrapper">
-                        {stay.amenities.splice(0, 10).map((item, i) => <span>{item}</span>)}
-                        </div>
-                    </div>
-
+                <StayReservation stay={stay} />
                 </div>
 
-                <StayReservation stay={stay}/>
-                {/* <section className="">
-                
-                </section> */}
+          
 
                 <section className="reviwes">
                     <div className="reviews-header">
@@ -146,9 +145,9 @@ export const StayDetails = () => {
                     </div>
                     <div className="reviwes-list-wrapper">
                         {/* <div className="reviews-list"> */}
-                        {stay.reviews.map((review) =>
+                        {stay.reviews.map((review, i) =>
 
-                            <div className="reviews-list">
+                            <div className="reviews-list" key={i}>
                                 <div className="user-img-con"><img src={review.by.imgUrl} alt="" />
                                     <span>{review.by.fullname}</span>
                                     {/* <span>{review.at}</span> */}

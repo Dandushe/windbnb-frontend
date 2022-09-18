@@ -1,0 +1,52 @@
+.main-filter {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    .btn-filter-modal{
+        background-color: $clr2;
+        border: 1px solid $clr3;
+        border-radius: 10px;
+        font-size: rem(17px);
+        padding: 13px 20px 13px 20px;
+        cursor: pointer;
+        display: flex;
+        // align-self: flex-end;
+        // justify-content: flex-end;
+    }
+
+
+    .filter-options-modal-wrapper {
+        position: absolute;
+        z-index: 1;
+        width: 40vw;
+        height: 60vh;
+        background-color: $clr2;
+        border: 1px solid $clr4;
+        border-radius: 15px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        // top: 0;
+        // right: 300px;
+        // right: 25%;
+        left: 25%;
+        // bottom: -1000px;
+        .modal-header {
+            border-bottom: 1px solid $clr6;
+        }
+
+        .price-range-wrapper {
+            border-bottom: 1px solid $clr6;
+            padding-bottom: 20px;
+        }
+
+        .check-boxs-wrappeer {
+            border-bottom: 1px solid $clr6;
+            padding-bottom: 20px;
+        }
+
+    }
+ 
+}

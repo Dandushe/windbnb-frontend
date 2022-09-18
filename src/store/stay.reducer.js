@@ -1,6 +1,14 @@
 const INITIAL_STATE = {
     stays: [],
-    filterBy: {name:''},
+    filterBy: {
+        txt: '',
+        checkIn: '',
+        checkOut: '',
+        guestsNum: 1,
+        minPrice: 0,
+        maxPrice: Infinity,
+        roomTypes: []
+    },
 }
 
 export function stayReducer(state = INITIAL_STATE, action) {
@@ -11,7 +19,8 @@ export function stayReducer(state = INITIAL_STATE, action) {
         // case 'SET_LOADING':
         //     return { ...state, isLoading: action.isLoading }
         case 'SET_FILTER':
-            return { ...state, filterBy: action.filterBy }
+            console.log('filterBy from reducer', { ...state.filterBy, ...action.filterBy });
+            return { ...state, filterBy: { ...state.filterBy, ...action.filterBy } }
         case 'REMOVE_STAY':
             stays = state.stays.filter(stay => stay._id !== action.stayId)
             return { ...state, stays: stays }

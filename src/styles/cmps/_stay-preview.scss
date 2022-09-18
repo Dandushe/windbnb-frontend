@@ -1,5 +1,5 @@
 .stay-preview {
-   
+
     position: relative;
 
     .next {
@@ -41,15 +41,20 @@
             position: absolute;
             z-index: 10;
             // top: 178px;
-            top: 120px;
-            right: 0;
-            background-color: transparent;
+            top: 33%;
+            right: 2%;
+            background-color: rgba(255, 255, 255, 0.9);
             border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 32px;
             cursor: pointer;
 
             svg {
-                color: $clr1;
-                font-size: rem(45px);
+                display: block;
+                overflow: visible;
+                color: $clr3;
+                font-size: rem(23px);
             }
         }
 
@@ -58,25 +63,71 @@
             position: absolute;
             z-index: 10;
             // top: 178px;
-            top: 120px;
-            left: 0;
-            background-color: transparent;
+            top: 33%;
+            left: 2%;
+            background-color: rgba(255, 255, 255, 0.9);
             border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 32px;
             cursor: pointer;
+            background-clip: padding-box;
+            box-shadow: transparent 0px 0px 0px 1px,
+                transparent 0px 0px 0px 4px, rgba(0, 0, 0, 0.18) 0px 2px 4px;
+            transition: 0.25s ease 0s, 0.25s ease 0s, transform 0.25s ease 0s;
 
             svg {
-                color: $clr1;
-                font-size: rem(45px);
+                display: block;
+                overflow: visible;
+                color: $clr3;
+                font-size: rem(23px);
             }
         }
     }
 
+
+    // &:hover {
+    //     .next {
+    //         display: block;
+    //         position: absolute;
+    //         z-index: 10;
+    //         // top: 178px;
+    //         top: 120px;
+    //         right: 0;
+    //         background-color: transparent;
+    //         border: none;
+    //         cursor: pointer;
+
+    //         svg {
+    //             color: $clr1;
+    //             font-size: rem(45px);
+    //         }
+    //     }
+
+    //     .prev {
+    //         display: block;
+    //         position: absolute;
+    //         z-index: 10;
+    //         // top: 178px;
+    //         top: 120px;
+    //         left: 0;
+    //         background-color: transparent;
+    //         border: none;
+    //         cursor: pointer;
+
+    //         svg {
+    //             color: $clr1;
+    //             font-size: rem(45px);
+    //         }
+    //     }
+    // }
+
     .img-container {
         border-radius: 20px;
 
-        img {
-            // border-radius: 20px;
-        }
+        // img {
+        //     // border-radius: 20px;
+        // }
     }
 
     .info-container {
@@ -85,14 +136,40 @@
         gap: 8px;
         padding: 8px 0px 10px 0px;
 
-        div {
-            span {
-                font-weight: bold;
-                font-size: rem(15px);
+        .info-header-con {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 4px;
+            .address-info-con {
+                span {
+                    font-weight: bold;
+                    font-size: rem(15px);
+                }
+
+                
             }
 
-            padding-bottom: 4px;
+            .rate-con {
+                display: flex;
+                align-items: center;
+                gap: 2px;
+                svg{
+                    font-size: rem(16px);
+                    align-self: flex-start;
+                }
+            }
+
         }
+
+        // div {
+        //     span {
+        //         font-weight: bold;
+        //         font-size: rem(15px);
+        //     }
+
+        //     padding-bottom: 4px;
+        // }
 
         .property-type {
             color: $clr5;

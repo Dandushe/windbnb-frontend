@@ -1,19 +1,271 @@
 .stay-reservation {
+    display: flex;
+    position: sticky;
+    top: 130px;
 
-    .reservation-wrapper{
+    .reservation-wrapper {
         display: flex;
         flex-direction: column;
-        max-width: 400px;
+        padding: 20px;
+        border: 1px solid $clr6 ;
+        border-radius: 10px;
+        width: 372px;
+        gap: 20px;
+
         .reservation-heder {
             display: flex;
             justify-content: space-between;
-        }
-        .form-wrapper{
+            align-items: baseline;
 
-            form{
+            .price {
+                display: flex;
+                gap: 2px;
+                padding-top: 4px;
+                align-items: baseline;
+
+                h2 {
+                    &::before {
+                        content: '\0024';
+
+                    }
+                }
+            }
+
+            .reviews-length {
+                color: $clr4;
+                font-size: rem(16px);
+                text-decoration: 1px solid $clr4 underline;
+            }
+        }
+
+        .form-wrapper {
+
+
+            form {
                 display: flex;
                 flex-direction: column;
+                gap: 20px;
 
+                .inputs-con {
+                    border: 1px solid $clr5 ;
+                    border-radius: 10px;
+                    overflow: hidden;
+
+                    .input-date-con {
+                        input[type="date"] {
+                            width: 50%;
+                            padding: 15px;
+                            border-bottom: 1px solid $clr5;
+
+                            &[name="checkIn"] {
+                                border-right: 1px solid $clr5;
+                            }
+                        }
+
+                    }
+
+                    input {
+                        border: none;
+
+
+                        &:focus {
+                            border-radius: 10px;
+                            overflow: visible;
+                        }
+
+                    }
+
+                    input[name="guestsNum"] {
+                        width: 100%;
+                        padding: 15px;
+
+                    }
+                }
+
+                .btn-reserve {
+                    font-size: rem(18px);
+                    font-weight: bold;
+                    background-color: $clr1;
+                    color: $clr2;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 15px;
+                }
+
+                span {
+                    align-self: center;
+                    padding-bottom: 10px;
+                    color: $clr4;
+                }
+            }
+        }
+
+        .reservation-breakdown-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .price-breakdown-con {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid $clr6 ;
+                padding-bottom: 20px;
+
+                .price {
+
+                    &::before {
+                        content: '\0024';
+
+                    }
+                }
+
+
+            }
+
+            .total-con {
+                display: flex;
+                justify-content: space-between;
+                font-weight: bold;
+
+                .total-price {
+                    &::before {
+                        content: '\0024';
+
+                    }
+                }
+            }
+        }
+    }
+
+    .confirmation-modal-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        border: 1px solid $clr6 ;
+        border-radius: 10px;
+        width: 430px;
+        gap: 20px;
+        position: fixed;
+        right: 39%;
+        top: 16%;
+        background-color: $clr2;
+        overflow: auto;
+
+        .confirmation-modal-header {
+            display: flex;
+            gap: 10px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid $clr6 ;
+
+            .img-container {
+                width: 130px;
+                height: 115px;
+                border-radius: 7px;
+            }
+
+            .modal-title {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                .property-type {
+                    color: $clr5;
+                    font-size: rem(14px);
+                    font-weight: lighter;
+                }
+
+                .stay-name {
+                    color: $clr4;
+                    font-size: rem(14px);
+                    font-weight: lighter;
+                }
+            }
+
+
+        }
+
+        .your-trip-details-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-bottom: 1px solid $clr6 ;
+            padding-bottom: 22px;
+
+            .trip-dates-wrapper {
+                display: flex;
+                justify-content: space-between;
+
+                .dates-con {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                }
+            }
+
+            .trip-guest-wrapper {
+                display: flex;
+                justify-content: space-between;
+
+                .guest-con {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                }
+
+            }
+
+            .edit-dates {
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+
+        .wind-cover-con {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid $clr6 ;
+            font-size: rem(17px);
+
+            .wind-cover {
+                color: $clr1;
+                font-weight: bold;
+            }
+        }
+
+        .price-breakdown-wrapper {
+            display: flex;
+            flex-direction: column;
+
+            .price-breakdown-con {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid $clr6 ;
+                padding-bottom: 20px;
+
+                .price {
+                    font-size: rem(18px);
+
+                    &::before {
+                        content: '\0024';
+                    }
+                }
+
+            }
+
+            .total-con {
+                display: flex;
+                justify-content: space-between;
+                font-weight: bold;
+                font-size: rem(18px);
+                padding-top: 20px;
+
+                .total-price {
+                    &::before {
+                        content: '\0024';
+                    }
+                }
             }
         }
     }

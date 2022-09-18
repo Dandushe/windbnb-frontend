@@ -1,9 +1,11 @@
 import { applyMiddleware, combineReducers, compose, legacy_createStore as createStore } from 'redux'
 import thunk from 'redux-thunk'
+import { reservationReducer } from './reservation.reducer';
 import { stayReducer } from "./stay.reducer";
 
 const rootReducer = combineReducers({
     stayModule: stayReducer,
+    reservationModule: reservationReducer,
    
 })
 
