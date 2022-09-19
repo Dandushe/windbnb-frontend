@@ -120,11 +120,8 @@ export const StayDetails = () => {
                         </div>
 
                     </div>
-                <StayReservation stay={stay} />
+                    <StayReservation stay={stay} />
                 </div>
-
-          
-
                 <section className="reviwes">
                     <div className="reviews-header">
                         <StarIcon />

@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
     reservations: [],
-    reservation:null
+    reservation:null,
+    filterBy:''
 }
 
 export function reservationReducer(state = INITIAL_STATE, action) {
@@ -8,6 +9,9 @@ export function reservationReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'SET_RESERVATIONS':
             return { ...state, reservations: action.reservations }
+            case 'SET_FILTER':
+                console.log('filterBy from reducer$', { ...state.filterBy, ...action.filterBy });
+                return { ...state, filterBy: { ...state.filterBy, ...action.filterBy } }
         case 'REMOVE_RESERVATION':
             reservations = state.reservations.filter(reservation => reservation._id !== action.reservationId)
             return { ...state, reservations: reservations }

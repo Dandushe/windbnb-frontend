@@ -2,11 +2,11 @@ import { reservationService } from "../services/reservation.service"
 
 
 
-export function loadReservations() {
-    return async (dispatch) => {
+export function loadReservations(buyerId) {
+    return async (dispatch,getState) => {
         // const { filterBy } = getState().reservationModule
         try {
-            let reservations = await reservationService.query()
+            let reservations = await reservationService.query(buyerId)
             dispatch({ type: 'SET_RESERVATIONS', reservations })
         } catch (err) {
             console.error('RESERVATIONS ACTION faild load:', err)

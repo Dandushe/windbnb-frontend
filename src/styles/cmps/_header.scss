@@ -7,10 +7,12 @@
     top: 0;
     z-index: 1;
     background-color: $clr2;
+
     .main-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         nav {
 
             a {
@@ -28,46 +30,68 @@
             padding: 4px 4px 4px 10px;
             gap: 13px;
             position: relative;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.08),0 4px 12px rgba(0,0,0,0.05);
-            span{
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+
+            span {
                 font-size: rem(16px);
                 // padding-inline-end:10px;
                 // padding-inline-start:6px;
                 // padding: 0px 10px 0px 10px;
             }
-            img {
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-            }
-            &:hover{
-                cursor: pointer;
-              box-shadow: 0 2px 4px rgba(0,0,0,0.18);
-                transition: box-shadow 0.2s ease;
-               
+
+            .user-avater-con {
+                position: relative;
+                display: flex;
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                }
+
+                span {
+                    position: absolute;
+                    bottom: 6px;
+                    left: 19px;
+                    // color: rgba(137, 225, 5, 0.966);
+                    color: $clr1;
+                    font-size: rem(35px);
+                    z-index: 1;
+                    // border: 1px solid $clr2;
+                  
+                }
+
             }
 
-            .dropdown-content{
+            &:hover {
+                cursor: pointer;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+                transition: box-shadow 0.2s ease;
+
+            }
+
+            .dropdown-content {
                 position: absolute;
                 z-index: 1;
                 display: flex;
                 flex-direction: column;
                 top: 50px;
-                right:1px;
+                right: 1px;
                 background-color: $clr2;
                 // gap: 10px;
                 border-radius: 10px;
                 width: 200px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
                 transition: box-shadow 0.2s ease;
-                span{
+
+                span {
                     padding: 10px 10px 10px 10px;
-                    &:hover{
+
+                    &:hover {
                         cursor: pointer;
-                    //   box-shadow: 0 2px 4px rgba(0,0,0,0.18);
-                    //     transition: box-shadow 0.2s ease;
-                    background-color: $clr7 ;
-                    border-radius: 10px;
+                        //   box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+                        //     transition: box-shadow 0.2s ease;
+                        background-color: $clr7 ;
+                        border-radius: 10px;
                     }
                 }
             }

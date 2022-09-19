@@ -7,14 +7,15 @@ import Box from '@mui/material/Box';
 
 
 const AirbnbSlider = styled(Slider)(({ theme }) => ({
-    color: '#3a8589',
+    // color: '#3a8589',
+    color: '#b0b0b0',
     height: 3,
     padding: '13px 0',
     '& .MuiSlider-thumb': {
-        height: 37,
-        width: 37,
-        // height: 27,
-        // width: 27,
+        // height: 37,
+        // width: 37,
+        height: 27,
+        width: 27,
         backgroundColor: '#fff',
         border: '1px solid currentColor',
         '&:hover': {
@@ -29,13 +30,14 @@ const AirbnbSlider = styled(Slider)(({ theme }) => ({
         },
     },
     '& .MuiSlider-track': {
-        height: 8,
-        // height: 3,
+        // height: 8,
+        height: 4,
+
     },
     '& .MuiSlider-rail': {
         color: theme.palette.mode === 'dark' ? '#bfbfbf' : '#d8d8d8',
         opacity: theme.palette.mode === 'dark' ? undefined : 1,
-        height: 3,
+        height: 4,
     },
 }));
 
@@ -59,9 +61,9 @@ AirbnbThumbComponent.propTypes = {
 export default function CustomizedSlider({minPrice,maxPrice,handleChange}) {
 
     return (
-        <Box sx={{ width: 320 }}>
+        <Box sx={{ width: 520 }}>
             <Box sx={{ m: 3 }} />
-            <Typography gutterBottom>Airbnb</Typography>
+            <Typography gutterBottom></Typography>
             <AirbnbSlider
                 components={{ Thumb: AirbnbThumbComponent }}
                 // getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
@@ -71,11 +73,11 @@ export default function CustomizedSlider({minPrice,maxPrice,handleChange}) {
                 defaultValue={[minPrice, maxPrice]}
                 value={[minPrice,maxPrice]}
                 // defaultValue={min, max}
-                // valueLabelDisplay="auto"
+                valueLabelDisplay="auto"
                 min={40}
                 max={1000}
                 onChange={handleChange}
-                valueLabelDisplay="on"
+                // valueLabelDisplay="on"
             />
         </Box>
     );

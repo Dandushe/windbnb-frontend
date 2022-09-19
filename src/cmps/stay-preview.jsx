@@ -7,59 +7,35 @@ import StarIcon from '@mui/icons-material/Star';
 
 export function StayPreview({ stay }) {
     const [imgIdx, setImgIdx] = useState(0)
-    // const [preview, setPreview] = useState({
-    //     imgIdx:0
-    // })
 
-    const increment = (ev) => {
-        ev.stopPropagation();
-        if (imgIdx === 4) {
-            setImgIdx(0)
+    const changeImgIdx = (ev, diff) => {
+        ev.preventDefault();
+
+        const lastImgIdx = stay.imgUrls.length - 1
+        let newImgIdx = imgIdx + diff
+
+        if (newImgIdx < 0) {
+            return setImgIdx(lastImgIdx)
+        } else if (newImgIdx === stay.imgUrls.length) {
+            return setImgIdx(0)
         }
-        setImgIdx(prevCount => prevCount + 1)
 
+        setImgIdx(newImgIdx)
     }
-    const decrement = (ev) => {
-        ev.stopPropagation();
-        if (imgIdx === 0) {
-            setImgIdx(4)
-        }
-        setImgIdx(prevCount => prevCount - 1)
-
-    }
-    // const changeImgIdx = (ev,diff) => {
-    //     ev.stopPropagation();
-    //     console.log('diff#',diff,'imgIdx#',imgIdx);
-    //     if (imgIdx === 0) {
-    //         setImgIdx(4)
-    //     }
-    //     if (imgIdx === 4) {
-    //         setImgIdx(0)
-    //     }
-
-    //     setImgIdx(prevCount => prevCount += diff)
-
-    // }
 
 
     if (!stay) return <div>Loading...</div>
     return (
         <section className="stay-preview">
-            {/* <button className="btn prev" onClick={(ev)=>changeImgIdx(ev,+1)}>
-                <NavigateBeforeIcon />
-            </button>
-            <button className="btn next" onClick={(ev)=>changeImgIdx(ev,-1)}>
-                <NavigateNextIcon />
-            </button> */}
-            <button className="btn prev" onClick={decrement}>
-                <NavigateBeforeIcon />
-            </button>
-            <button className="btn next" onClick={increment}>
-                <NavigateNextIcon />
-            </button>
-
+         
             <Link to={`/stay/${stay._id}`} >
                 <div className="img-container ratio-square">
+                    <button className="btn prev" onClick={(ev) => changeImgIdx(ev, 1)}>
+                        <NavigateBeforeIcon />
+                    </button>
+                    <button className="btn next" onClick={(ev) => changeImgIdx(ev, -1)}>
+                        <NavigateNextIcon />
+                    </button>
                     <img src={stay.imgUrls[imgIdx]} alt="property" />
                     {/* <img src={stay.imgUrls[0]} alt="property" /> */}
                 </div>

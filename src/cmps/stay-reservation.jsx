@@ -21,7 +21,7 @@ export const StayReservation = ({ stay }) => {
     }
 
     const fiveDays = (5 * 24 * 60 * 60 * 1000)
-
+    const user = useSelector(state => state.userModule.user)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const filterBy = useSelector(state => state.stayModule.filterBy)
     // const [reservation, setReservation] = useState({
@@ -56,15 +56,21 @@ export const StayReservation = ({ stay }) => {
             stay: {
                 _id: stay._id,
                 name: stay.name,
-                price: stay.price
+                price: stay.price,
+                stayImg: stay.imgUrls[0],
+                address: stay.address
+            },
+            buyer: {
+                _id: user._id,
+                fullname: user.fullname
             }
         }
         dispatch(addReservation(rservToSave))
         toggleModal()
     }
 
-    const toggleModal =() => {
-         setIsModalOpen(prevIsModalDisplay => !prevIsModalDisplay)
+    const toggleModal = () => {
+        setIsModalOpen(prevIsModalDisplay => !prevIsModalDisplay)
 
     }
 

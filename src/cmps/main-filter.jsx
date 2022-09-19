@@ -69,6 +69,7 @@ export const MainFilter = () => {
                             name="Entire place"
                             value={filterBy.roomTypes.includes('Entire place')}
                             onChange={toggleRoomType}
+                            color="default"
                         />}
                         label="Entire place" />
                     <FormControlLabel
@@ -76,16 +77,18 @@ export const MainFilter = () => {
                             name="Shared room"
                             value={filterBy.roomTypes.includes('Shared room')}
                             onChange={toggleRoomType}
+                            color="default"
                         />} label="Shared room" />
                     <FormControlLabel
                         control={<Checkbox
                             name="Private room"
                             value={filterBy.roomTypes.includes('Private room')}
                             onChange={toggleRoomType}
+                            color="default"
                         />} label="Private room" />
                 </div>
                 <div className="submit-search-con">
-                    <button >Filterrr</button>
+                    <button className="btn btn-submit-filter">Filterrr</button>
                 </div>
             </form>}
             {/* </FormGroup> */}

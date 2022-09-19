@@ -8,10 +8,21 @@ export const reservationService = {
     getById,
 }
 
-function query() {
+function query(buyerId) {
+    console.log("query , buyerId", buyerId)
+    
     return storageService.query(STORAGE_KEY)
-
-}
+        .then(reservations =>{
+            console.log('reservations&&',reservations);
+            if(buyerId){
+                // let {userId} =filterBy
+                reservations = reservations.filter(reservation => reservation.buyer._id === buyerId)
+                console.log('reservations ###', reservations);
+            }
+            return reservations
+        })
+        // return reservations
+    }
 
 function getById(reservationId) {
     return storageService.get(STORAGE_KEY, reservationId)

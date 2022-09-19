@@ -2,7 +2,9 @@
     position: relative;
     display: flex;
     justify-content: flex-end;
-    .btn-filter-modal{
+    margin-bottom: 30px;
+
+    .btn-filter-modal {
         background-color: $clr2;
         border: 1px solid $clr3;
         border-radius: 10px;
@@ -16,10 +18,13 @@
 
 
     .filter-options-modal-wrapper {
-        position: absolute;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         z-index: 1;
-        width: 40vw;
-        height: 60vh;
+        // width: 40vw;
+        // height: 60vh;
         background-color: $clr2;
         border: 1px solid $clr4;
         border-radius: 15px;
@@ -28,25 +33,56 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        // top: 0;
-        // right: 300px;
-        // right: 25%;
-        left: 25%;
+
         // bottom: -1000px;
         .modal-header {
+            // width: 100%;
             border-bottom: 1px solid $clr6;
+
         }
 
         .price-range-wrapper {
             border-bottom: 1px solid $clr6;
-            padding-bottom: 20px;
+            padding: 20px 0px 30px 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+
+            h2 {
+                align-self: flex-start;
+            }
         }
 
         .check-boxs-wrappeer {
-            border-bottom: 1px solid $clr6;
-            padding-bottom: 20px;
+            // border-bottom: 1px solid $clr6 ;
+            padding-bottom: 40px;
+            // width: 100%;
+        }
+
+        .submit-search-con {
+            background-color: $clr2;
+            position: sticky;
+            bottom: 0;
+            border-top: 1px solid $clr6;
+            // height: 50px; //temp
+            padding-block: 10px;
+            background-color: $clr2;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 1;
+
+            .btn-submit-filter {
+                background-color: $clr3;
+                color: $clr2;
+                font-size: rem(17px);
+                padding: 13px 20px 13px 20px;
+                cursor: pointer;
+                border-radius: 10px;
+            }
         }
 
     }
- 
+
 }

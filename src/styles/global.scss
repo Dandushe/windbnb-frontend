@@ -17,4 +17,11 @@
 @import 'cmps/footer';
 @import 'cmps/stay-reservation';
 @import 'cmps/filter';
-@import 'cmps/_main-filter';
+@import 'cmps/main-filter';
+@import 'cmps/login-signup';
+
+
+///USER CMPS
+@import 'cmps/user-trip';
+@import 'cmps/trip-list';
+@import 'cmps/trip-preview';

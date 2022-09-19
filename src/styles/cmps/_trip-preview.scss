@@ -1,0 +1,17 @@
+.trip-preview {
+    display: flex;
+    gap: 10px;
+    .img-container {
+        width: 130px;
+        height: 115px;
+        border-radius: 7px;
+    }
+
+    .trip-info-container {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        
+
+    }
+}
