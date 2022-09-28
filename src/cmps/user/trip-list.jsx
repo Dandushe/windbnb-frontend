@@ -1,7 +1,6 @@
 import { TripPreview } from "./trip-preview";
 
 export function TripsList({ trips }) {
-    console.log(trips);
     return (
         <section className="trip-list">
             

@@ -8,6 +8,7 @@ import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOu
 import StarIcon from '@mui/icons-material/Star';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { StayReservation } from "../cmps/stay-reservation";
+import { BasicDatePicker } from "../cmps/date-picker";
 
 
 export const StayDetails = () => {
@@ -118,6 +119,10 @@ export const StayDetails = () => {
                                 {stay.amenities.splice(0, 10).map((item, i) => <span key={i}>{item}</span>)}
                             </div>
                         </div>
+                        {/* <div className="dates">
+                        <BasicDatePicker />
+                        <BasicDatePicker />
+                        </div> */}
 
                     </div>
                     <StayReservation stay={stay} />

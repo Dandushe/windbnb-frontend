@@ -1,9 +1,30 @@
 .main-filter {
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-bottom: 30px;
 
+    .category-filterbar-wrapper{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+       
+        >*{
+            border-bottom: 1px solid rgba(255, 255, 255, 0);
+            cursor: pointer;
+            padding: 10px;
+        }
+        .active {
+            border-bottom: 1px solid $clr3;
+            
+        }
+
+        >*:hover {
+            border-bottom: 1px solid $clr6;
+            
+        }
+
+    }
     .btn-filter-modal {
         background-color: $clr2;
         border: 1px solid $clr3;
@@ -33,7 +54,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-
+        
         // bottom: -1000px;
         .modal-header {
             // width: 100%;

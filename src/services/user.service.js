@@ -1,6 +1,6 @@
-import { storageService } from "./async-storage.service"
+import { httpService } from './http.service.js'
 
-const STORAGE_KEY = 'userDB'
+// const STORAGE_KEY = 'userDB'
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
 export const userService = {
     login,
@@ -10,32 +10,24 @@ export const userService = {
     
 }
 
-function login(credentials) {
-    return storageService.query(STORAGE_KEY).then(users => {
-        const user = users.find(user =>
-            user.username === credentials.username &&
-            user.password === credentials.password)
-        if (user) sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-        return user
-    })
+async function login(credentials) {
+    const user = await httpService.post('auth/login', credentials)
+    if (user) sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
+    return user
 }
 
-function signup(userInfo) {
-    return storageService.post(STORAGE_KEY, userInfo)
-        .then((user) => {
-            sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-            return user
-        })
+async function signup(userInfo) {
+    const user = await httpService.post('auth/signup', userInfo)
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
+    return user
+
 }
 
-function logout() {
+async function logout() {
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, null)
-    return Promise.resolve()
+    return await httpService.post('auth/logout')
 }
 
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
 }
-// Test Data
-// userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Ja', balance: 10000})
-// userService.login({username: 'muki', password: 'muki1'})

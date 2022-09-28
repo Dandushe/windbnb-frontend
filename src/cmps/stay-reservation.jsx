@@ -1,7 +1,12 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { addReservation } from '../store/reservation.action';
+import { BasicDatePicker } from "./date-picker";
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
+import { utilService } from "../services/util.service";
+import { iconService } from "../services/icon.service"
+
 
 
 export const StayReservation = ({ stay }) => {
@@ -20,37 +25,42 @@ export const StayReservation = ({ stay }) => {
         return [year, month, day].join('-');
     }
 
-    const fiveDays = (5 * 24 * 60 * 60 * 1000)
     const user = useSelector(state => state.userModule.user)
-    const [isModalOpen, setIsModalOpen] = useState(false)
     const filterBy = useSelector(state => state.stayModule.filterBy)
-    // const [reservation, setReservation] = useState({
-    //     checkIn: formatDate(Date.now()),
-    //     checkOut: formatDate(Date.now() + fiveDays),
-    //     guestsNum: 1
-    // })
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [reservation, setReservation] = useState({ ...filterBy })
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const ArrowDown = KeyboardArrowDownOutlinedIcon
+    const ArrowUp = KeyboardArrowUpOutlinedIcon
+
     const getDaysCount = () => {
         let daysDiffInMill = new Date(reservation.checkOut) - new Date(reservation.checkIn)
+        // console.log('reservation.checkOut', typeof (daysDiffInMill), daysDiffInMill);
+        // console.log('reservation.checkcheckIn', reservation.checkIn);
+
         let daysCount = daysDiffInMill / (1000 * 60 * 60 * 24)
+        // console.log("getDaysCount , daysCount", daysCount)
+
         return daysCount
     }
 
-    const handleChange = ({ target }) => {
-        const field = target.name
-        const value = target.type === 'number' ? +target.value : target.value
+    const handleDateChange = (ev, field) => {
+        const date = new Date(ev.$d)
+        const value = utilService.formatDate(date)
         setReservation(prevReservation => ({ ...prevReservation, [field]: value }))
+
     }
 
     const onReserve = (ev) => {
         ev.preventDefault()
         let rservToSave = {
             hostId: stay.host._id,
+            hostName: stay.host.fullname,
             checkIn: reservation.checkIn,
             checkOut: reservation.checkOut,
-            guestsNum: reservation.guestsNum,
+            // guestsNum: reservation.guestsNum,
+            guestsNum: totalGuests,
             totalPrice: (stay.price * getDaysCount()),
             createdAt: Date.now(),
             stay: {
@@ -74,9 +84,30 @@ export const StayReservation = ({ stay }) => {
 
     }
 
-    const onBack = () => {
-        navigate('/')
+    const onToggleMenu = () => {
+        setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen)
     }
+
+    const onSelectValue = (field, value) => {
+        console.log("onSelectValue , field", field, value)
+
+        setReservation(prevReservation => ({
+            ...prevReservation,
+            guestsNum: {
+                ...prevReservation.guestsNum,
+                [field]: value,
+            }
+        }))
+    }
+
+    const totalGuests =
+        reservation.guestsNum.adults +
+        reservation.guestsNum.infants +
+        reservation.guestsNum.children +
+        reservation.guestsNum.pets
+
+
+    const { adults, infants, children, pets } = reservation.guestsNum
 
     return (
         <section className="stay-reservation">
@@ -90,30 +121,81 @@ export const StayReservation = ({ stay }) => {
                     <form >
                         <div className="inputs-con">
                             <div className="input-date-con">
-                                <label >
-                                    <input
-                                        type="date"
-                                        name="checkIn"
-                                        value={reservation.checkIn}
-                                        onChange={handleChange} />
-                                </label>
-                                <label >
-                                    <input
-                                        type="date"
-                                        name="checkOut"
-                                        value={reservation.checkOut}
-                                        onChange={handleChange} />
-                                </label>
+                                <BasicDatePicker
+                                    lable={'check in'}
+                                    field={'checkIn'}
+                                    handleDateChange={handleDateChange}
+                                />
+
+                                <BasicDatePicker
+                                    lable={'check out'}
+                                    field={'checkOut'}
+                                    handleDateChange={handleDateChange}
+                                />
+
                             </div>
-                            <label >
-                                <input
-                                    type="number"
-                                    name="guestsNum"
-                                    value={reservation.guestsNum}
-                                    onChange={handleChange} />
-                            </label>
+
+                            <div className="guests-main-wrapper">
+                                <div className="text-con">
+                                    <p className="lable">Guests</p>
+                                    <p>{totalGuests} guest</p>
+                                </div>
+                                {/* {!isMenuOpen && <ArrowDown className="arrow-down-icn" onClick={onToggleMenu} />} */}
+                                {/* {iconService.ArrowDown} */}
+                              
+                                {!isMenuOpen && <ArrowDown className="arrow-down-icn" onClick={onToggleMenu} />}
+                                {isMenuOpen && <ArrowUp className="arrow-down-icn" onClick={onToggleMenu} />}
+                                {isMenuOpen && <div className='grop-consists-wrapper'>
+                                    <div className='grop-main-con adults'>
+                                        <div className='text-con'>
+                                            <div className='title'>Adults</div>
+                                            <div className="sub">Ages 13 or above</div>
+                                        </div>
+                                        <div className="controls-con">
+                                            <button className="btn btn-dec" disabled={adults === 1} onClick={() => onSelectValue('adults', adults - 1)}>-</button>
+                                            <span className="val-display">{adults}</span>
+                                            <button className="btn btn-inc" onClick={() => onSelectValue('adults', adults + 1)}>+</button>
+                                        </div>
+                                    </div>
+
+                                    <div className='grop-main-con children'>
+                                        <div className='text-con'>
+                                            <div className='title'>Children</div>
+                                            <div className="sub">Ages 2-12</div>
+                                        </div>
+                                        <div className="controls-con">
+                                            <button className="btn btn-dec" disabled={children === 0} onClick={() => onSelectValue('children', children - 1)}>-</button>
+                                            <span className="val-display">{children}</span>
+                                            <button className="btn btn-inc" onClick={() => onSelectValue('children', children + 1)}>+</button>
+                                        </div>
+                                    </div>
+                                    <div className='grop-main-con infants'>
+                                        <div className='text-con'>
+                                            <div className='title'>Infants</div>
+                                            <div className="sub">Under 2</div>
+                                        </div>
+                                        <div className="controls-con">
+                                            <button className="btn btn-dec" disabled={infants === 0} onClick={() => onSelectValue('infants', infants - 1)}>-</button>
+                                            <span className="val-display">{infants}</span>
+                                            <button className="btn btn-inc" onClick={() => onSelectValue('infants', infants + 1)}>+</button>
+                                        </div>
+                                    </div>
+                                    <div className='grop-main-con pets'>
+                                        <div className='text-con'>
+                                            <div className='title'>Pets</div>
+                                            <div className="sub">Bringing a service animal?</div>
+                                        </div>
+                                        <div className="controls-con">
+                                            <button className="btn btn-dec" disabled={pets === 0} onClick={() => onSelectValue('pets', pets - 1)}>-</button>
+                                            <span className="val-display">{pets}</span>
+                                            <button className="btn btn-inc" onClick={() => onSelectValue('pets', pets + 1)}>+</button>
+                                        </div>
+                                    </div>
+                                </div>}
+                            </div>
+
+
                         </div>
-                        {/* <button className="btn btn-reserve" >Reserve</button> */}
                         <button className="btn btn-reserve" onClick={onReserve}>Reserve</button>
 
                         <span>You won't be charged yet</span>
@@ -168,7 +250,7 @@ export const StayReservation = ({ stay }) => {
                     <div className="trip-guest-wrapper">
                         <div className="guest-con">
                             <h4>Guests</h4>
-                            <span>{reservation.guestsNum} guest</span>
+                            <span>{totalGuests} guest</span>
                         </div>
                         <span className="edit-dates">Edit</span>
                     </div>

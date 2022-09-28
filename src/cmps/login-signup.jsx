@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { login, modalType, signup } from "../store/user.action"
@@ -12,12 +13,26 @@ export const LoginSignup = () => {
         username: '',
         password: '',
     })
-
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        // dispatch(loadStays())
-    }, [])
+    const inputRef = useRef()
+
+    // useEffect(() => {
+    //     clearState()
+    //     // dispatch(loadStays())
+    //     return () => {
+    //         clearState()
+    //     }
+    // }, [])
+
+    const clearState = () => {
+        const credentials1 = {
+            fullname: '',
+            username: '',
+            password: '',
+        }
+        setCredentials(prevCredentials => ({ ...credentials1 }))
+    }
 
     const onLogin = async (ev) => {
         ev.preventDefault()
@@ -26,7 +41,7 @@ export const LoginSignup = () => {
             // await login(credentials)
             dispatch(login(credentials))
             dispatch(modalType(''))
-
+            clearState()
         } catch (err) {
             console.log('faild to login', err);
 
@@ -41,6 +56,7 @@ export const LoginSignup = () => {
             // await signup(credentials)
             dispatch(signup(credentials))
             dispatch(modalType(''))
+            clearState()
         } catch (err) {
             console.log('faild to sign-up', err);
 
@@ -58,60 +74,68 @@ export const LoginSignup = () => {
         setCredentials(prevCredentials => ({ ...prevCredentials, [field]: value }))
     }
 
-
-    return (
+    if (currModalType === 'login' || currModalType === 'signup') return (
 
         <section className="login-signup-main-wrapper">
-       {(currModalType === 'login') &&<div className="login-wrapper">
+            {(currModalType === 'login') && <div className="login-wrapper">
+                <div className="title">Log-in</div>
                 <form onSubmit={onLogin}>
-                <label >
-                <input
-                    type="text"
-                    name='username'
-                    value={credentials.username}
-                    onChange={handleChange}
-                    placeholder='user-name' />
-                </label>
-                <label >
-                <input
-                    type="text"
-                    name='password'
-                    value={credentials.password}
-                    onChange={handleChange}
-                    placeholder="Enter password" />
-                </label>
-                <button>Log-in</button>
-                {/* <button type='button' onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button> */}
+                    <label >
+                        <input
+                            ref={inputRef}
+                            type="text"
+                            name='username'
+                            value={credentials.username}
+                            onChange={handleChange}
+                            placeholder='User-name'
+                            autoComplete="off" />
+                    </label>
+                    <label >
+                        <input
+                            type="password"
+                            name='password'
+                            value={credentials.password}
+                            onChange={handleChange}
+                            placeholder="Enter password"
+                            autoComplete="off" />
+                    </label>
+                    <button>Log-in</button>
+                    {/* <button type='button' onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button> */}
                 </form>
             </div>}
-            {(currModalType === 'signup') &&<div className="signup-wrapper">
+            {(currModalType === 'signup') && <div className="signup-wrapper">
+                <div className="title">Signup</div>
                 <form onSubmit={onSignup}>
-                <label >
-                <input
-                    type="text"
-                    name='fullname'
-                    value={credentials.fullname}
-                    onChange={handleChange}
-                    placeholder='full-name' />
-                </label>
-                <label >
-                <input
-                    type="text"
-                    name='username'
-                    value={credentials.username}
-                    onChange={handleChange}
-                    placeholder='user-name' />
-                </label>
-                <label >
-                <input
-                    type="text"
-                    name='password'
-                    value={credentials.password}
-                    onChange={handleChange}
-                    placeholder="Enter password" />
-                <button>Sign-up</button>
-                </label>
-                {/* <button type='button' onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button> */}
+                    <label >
+                        <input
+                            type="text"
+                            name='fullname'
+                            value={credentials.fullname}
+                            onChange={handleChange}
+                            placeholder='Full-name'
+                            autoComplete="off" />
+                    </label>
+                    <label >
+                        <input
+                            type="text"
+                            name='username'
+                            value={credentials.username}
+                            onChange={handleChange}
+                            placeholder='User-name'
+                            autoComplete="off"
+                        />
+                    </label>
+                    <label >
+                        <input
+                            type="password"
+                            name='password'
+                            value={credentials.password}
+                            onChange={handleChange}
+                            placeholder="Enter password"
+                            autoComplete="off" />
+                    </label>
+                    <button>Sign-up</button>
+                    {/* <button type='button' onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button> */}
                 </form>
             </div>}
         </section>

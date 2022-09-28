@@ -4,7 +4,8 @@ import { userService } from "../services/user.service";
 const INITIAL_STATE = {
     user: userService.getLoggedinUser(),
     currModalType:'',
-    trips:[]
+    trips:[],
+    
 }
 
 
@@ -16,7 +17,6 @@ export function userReducer(state = INITIAL_STATE, action) {
         case 'SET_MODAL_TYPE':
             return { ...state, currModalType: action.currModalType }
             case 'SET_TRIPS':
-                console.log('???');
                 return { ...state, trips: action.trips }
         default:
             console.log('DEFAULT!!!');

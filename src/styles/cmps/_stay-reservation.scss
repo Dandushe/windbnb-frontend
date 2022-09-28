@@ -2,6 +2,7 @@
     display: flex;
     position: sticky;
     top: 130px;
+    margin-bottom: 20px;
 
     .reservation-wrapper {
         display: flex;
@@ -47,39 +48,161 @@
                 gap: 20px;
 
                 .inputs-con {
-                    border: 1px solid $clr5 ;
+                    // border: 1px solid $clr5 ;
                     border-radius: 10px;
-                    overflow: hidden;
+                    // overflow: hidden;
 
                     .input-date-con {
-                        input[type="date"] {
-                            width: 50%;
-                            padding: 15px;
-                            border-bottom: 1px solid $clr5;
+                        // input[type="date"] {
+                        //     width: 50%;
+                        //     padding: 15px;
+                        //     border-bottom: 1px solid $clr5;
 
-                            &[name="checkIn"] {
-                                border-right: 1px solid $clr5;
+                        //     &[name="checkIn"] {
+                        //         border-right: 1px solid $clr5;
+                        //     }
+                        // }
+                        .checkIn {
+                            .MuiInputBase-root {
+                                width: 164px;
+                                border-top-left-radius: 10px;
+                                border-top-right-radius: 0px;
+                                border-bottom-right-radius: 0px;
+                                border-bottom-left-radius: 0px;
                             }
                         }
 
-                    }
-
-                    input {
-                        border: none;
-
-
-                        &:focus {
-                            border-radius: 10px;
-                            overflow: visible;
+                        .checkOut {
+                            .MuiInputBase-root {
+                                width: 164px;
+                                border-top-right-radius: 10px;
+                                border-top-left-radius: 0px;
+                                border-bottom-left-radius: 0px;
+                                border-bottom-right-radius: 0px;
+                            }
                         }
 
-                    }
 
-                    input[name="guestsNum"] {
-                        width: 100%;
-                        padding: 15px;
 
                     }
+
+                    .guests-main-wrapper {
+                        position: relative;
+                        width: 99.5%;
+                        height: 55px;
+                        border: 1px solid #c4c4c4;
+                        border-top: none;
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                        margin: 0;
+                        padding: 10px 10px 10px 15px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .text-con {
+                            display: flex;
+                            flex-direction: column;
+                            row-gap: 3px;
+
+                            p {
+                                margin: 0;
+                                color: $clr4;
+                                font-size: rem(15px);
+                            }
+
+                            .lable {
+                                font-size: rem(13px);
+
+                            }
+                        }
+
+                        .arrow-down-icn {
+                            color: $clr4;
+                            align-self: flex-end;
+                            font-size: rem(28px);
+                            cursor: pointer;
+                        }
+
+                        .grop-consists-wrapper {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            position: absolute;
+                            top: 55px;
+                            right: 0px;
+                            width: 326px;
+                            border: 1px solid $clr6;
+                            border-radius: 10px;
+                            background-color: $clr2;
+
+                            .grop-main-con {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                border-bottom: 1px solid $clr6;
+                                padding: 20px 20px 20px 20px;
+                                gap: 5px;
+                                &.pets {
+                                    border-bottom: none;
+                                }
+
+                                .controls-con {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 15px;
+                                    
+                                    .btn {
+                                        display: grid;
+                                        align-items: center;
+                                        width: 28px;
+                                        height: 28px;
+                                        border: 1px solid $clr5;
+                                        border-radius: 50%;
+                                        font-size: rem(16px);
+                                        color: $clr4;
+                                        background-color: $clr2;
+                                        cursor: pointer;
+
+                                        &:hover {
+                                            border: 1px solid $clr3;
+                                            color: $clr3;
+                                        }
+
+                                        &:disabled {
+                                            border: 1px solid $clr6;
+                                            color: $clr6;
+                                        }
+                                    }
+                                    .val-display{
+                                        padding-bottom: 0;
+                                        font-size: rem(18px);
+                                    }
+                                }
+                            }
+
+
+                        }
+                    }
+
+                    // input {
+                    //     border: none;
+
+
+                    //     &:focus {
+                    //         border-radius: 10px;
+                    //         overflow: visible;
+                    //     }
+
+                    // }
+
+                    // input[name="guestsNum"] {
+                    //     width: 100%;
+                    //     padding: 15px;
+
+                    // }
+
+
                 }
 
                 .btn-reserve {
@@ -90,6 +213,7 @@
                     border: none;
                     border-radius: 5px;
                     padding: 15px;
+                    cursor: pointer;
                 }
 
                 span {

@@ -136,7 +136,7 @@
                 }
 
                 .amenities {
-                    border-bottom: 1px solid $clr6 ;
+                    // border-bottom: 1px solid $clr6 ;
                     padding: 40px 0px 40px 0px;
 
                     h3 {
@@ -153,7 +153,23 @@
                         }
                     }
                 }
+
+                .dates{
+                    display: flex;
+                    justify-content: center;
+                    .MuiCalendarPicker-root {
+                    //   background-color: $clr1;
+                        margin: 0;
+                        // font-size: 20px;
+                        
+                    }
+                    .MuiButtonBase-root{
+                        // color: $clr3;
+                    }
+                   
+                }
             }
+            border-bottom: 1px solid $clr6 ;
 
         }
 
@@ -218,7 +234,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            border-bottom: 1px solid $clr6 ;
+            // border-bottom: 1px solid $clr6 ;
             padding-bottom: 40px;
 
             .about-host-header {

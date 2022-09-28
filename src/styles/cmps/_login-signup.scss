@@ -3,35 +3,87 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: 10;
     background-color: $clr2;
-    border: 1px solid $clr4;
+    border: 1px solid $clr5;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    width: 290px;
+    height: 300px;
+
     // padding: 40px 20px 40px 20px;
-    form{
+    .login-wrapper {
         display: flex;
         flex-direction: column;
-        // justify-content: space-around;
-        
-        // align-items: center;
-        gap: 20px;
-        input{
-           width: 200px;
-           height: 40px;
-           border-radius: 7px;
-           border: 1px solid $clr4; 
-           &::placeholder{
-            color: $clr3;
-           }
-        }
-        button{
-            // display: flex;
-            // justify-content: flex-end;
-            // align-self: flex-end;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+
+        .title {
+            align-self: center;
+            font-size: rem(20px);
         }
     }
+    .signup-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        .title {
+            align-self: center;
+            font-size: rem(20px);
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        label {
+            color: $clr1;
+        }
+
+        input {
+            width: 200px;
+            height: 50px;
+            border-radius: 7px;
+            border: 1px solid #6b6b6b3d;
+            position: relative;
+            outline: none;
+            font-size: rem(17px);
+            color: $clr4;
+            
+            &::placeholder {
+                color: $clr4;
+                font-size: rem(17px);
+                // text-align: center;
+                // padding-inline-start:5px;
+                top: 0px;
+                position: absolute;
+
+
+            }
+
+            
+        }
+
+
+        button {
+            font-size: rem(18px);
+            font-weight: bold;
+            background-color: $clr1;
+            color: $clr2;
+            border: none;
+            border-radius: 5px;
+            padding: 12px;
+            cursor: pointer;
+        }
+    }
+ 
 }

@@ -1,14 +1,25 @@
+import { utilService } from "../services/util.service";
+
+const fiveDays = 5 * 24 * 60 * 60 * 1000
+
 const INITIAL_STATE = {
     stays: [],
     filterBy: {
         txt: '',
-        checkIn: '',
-        checkOut: '',
-        guestsNum: 1,
+        checkIn: utilService.formatDate(Date.now()),
+        checkOut: utilService.formatDate(Date.now() + fiveDays),
+        guestsNum: {
+            adults:1,
+            children:0,
+            infants:0,
+            pets:0
+        },
         minPrice: 0,
         maxPrice: Infinity,
-        roomTypes: []
+        roomTypes: [],
+        category:''
     },
+    currModalType:'',
 }
 
 export function stayReducer(state = INITIAL_STATE, action) {
@@ -18,6 +29,8 @@ export function stayReducer(state = INITIAL_STATE, action) {
             return { ...state, stays: action.stays }
         // case 'SET_LOADING':
         //     return { ...state, isLoading: action.isLoading }
+        case 'SET_MODAL_TYPE':
+            return { ...state, currModalType: action.currModalType }
         case 'SET_FILTER':
             console.log('filterBy from reducer', { ...state.filterBy, ...action.filterBy });
             return { ...state, filterBy: { ...state.filterBy, ...action.filterBy } }

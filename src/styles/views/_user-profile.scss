@@ -1,0 +1,46 @@
+.user-profile-main-wrapper{
+    display: flex;
+    gap: 20px;
+    .side-card{
+       display: flex;
+       flex-direction: column;
+       border: 1px solid $clr5;
+       width: 300px;
+        border-radius: 15px;
+        padding: 20px;
+        .img-container{
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            align-self: center;
+        }
+        .drop-warapper{
+            align-self: center;
+            p{
+                text-decoration: underline;
+                cursor: pointer;
+                color: $clr3;
+                
+            }
+        }
+        .confirmation{
+            
+        }
+    }
+    .profile-main-content{
+        width: 100%;
+        h1{
+            font-size: rem(30px);
+            color: $clr3;
+        }
+        .sub{
+            color: $clr4;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            
+        }
+
+    }
+}

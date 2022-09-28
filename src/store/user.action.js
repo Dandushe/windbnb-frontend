@@ -54,10 +54,10 @@ export function modalType(type) {
     }
 }
 
-export function saveUserTrips(userId) {
+export function saveUserTrips(filterBy) {
     return async (dispatch) => {
         try {
-          const trips = await reservationService.query(userId)
+          const trips = await reservationService.query(filterBy)
           console.log('trips:!!!',trips)
          dispatch({ type: 'SET_TRIPS', trips })
             

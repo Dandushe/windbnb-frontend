@@ -1,42 +1,48 @@
-import { storageService } from './async-storage.service.js'
 
-const STORAGE_KEY = 'reservationDB'
+import { httpService } from './http.service.js'
+
+
 export const reservationService = {
     query,
     save,
     remove,
     getById,
 }
+const BASE_URL = `reservation/`
+// function query(buyerId) {
 
-function query(buyerId) {
-    console.log("query , buyerId", buyerId)
-    
-    return storageService.query(STORAGE_KEY)
-        .then(reservations =>{
-            console.log('reservations&&',reservations);
-            if(buyerId){
-                // let {userId} =filterBy
-                reservations = reservations.filter(reservation => reservation.buyer._id === buyerId)
-                console.log('reservations ###', reservations);
-            }
-            return reservations
-        })
-        // return reservations
-    }
+//     return storageService.query(STORAGE_KEY)
+//         .then(reservations =>{
+//             if(buyerId){
+//                 // let {userId} =filterBy
+//                 reservations = reservations.filter(reservation => reservation.buyer._id === buyerId)
+//             }
+//             return reservations
+//         })
+//         // return reservations
+//     }
+
+function query(filterBy) {
+    console.log("queryrese , filterBy", filterBy)
+        
+    return httpService.get(BASE_URL, filterBy)
+}
+
+
+
 
 function getById(reservationId) {
-    return storageService.get(STORAGE_KEY, reservationId)
+    return httpService.get(BASE_URL + reservationId).then((res) => res)
 }
 
 function remove(reservationId) {
-    return storageService.remove(STORAGE_KEY, reservationId)
+    return httpService.delete(BASE_URL + reservationId).then((res) => res)
 }
 
 function save(reservation) {
     if (reservation._id) {
-        return storageService.put(STORAGE_KEY, reservation)
+        return httpService.put(BASE_URL, reservation).then((res) => res)
     } else {
-        console.log('HERERHEE??');
-        return storageService.post(STORAGE_KEY, reservation)
+        return httpService.post(BASE_URL, reservation).then((res) => res)
     }
 }

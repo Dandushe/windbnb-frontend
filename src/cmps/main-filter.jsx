@@ -1,24 +1,35 @@
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { loadStays, setFilter } from "../store/stay.action"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import Slider from "react-slick"
+import { loadStays, modalType, setFilter } from "../store/stay.action"
+import { Carousel } from "./carousel"
 import CustomizedSlider from "./slider"
 
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 export const MainFilter = () => {
     const [filterBy, setFilterBy] = useState({
         minPrice: 40,
         maxPrice: 1000,
-        roomTypes: []
+        roomTypes: [],
+        category: ''
     })
+    const currModalType = useSelector(state => state.stayModule.currModalType)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const dispatch = useDispatch()
 
-    const handleChange = ({ target }) => {
+    // useEffect(() => {
+    //     dispatch(loadStays())
 
-        console.log('target==', [...target.value]);
+    //   return () => {
+    //     dispatch(loadStays())
+    //   }
+    // }, [filterBy.category])
+
+
+    const handleChange = ({ target }) => {
         const val = [...target.value]
-        console.log("handleChange , val", val[0])
         const MIN = val[0]
         const MAX = val[1]
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, minPrice: MIN, maxPrice: MAX }))
@@ -37,8 +48,9 @@ export const MainFilter = () => {
 
     const onFilter = async (ev) => {
         ev.preventDefault()
-        console.log('filterBy from cmp', filterBy);
-        await dispatch(setFilter(filterBy))
+        console.log("onFilter , onFilter")
+
+        dispatch(setFilter(filterBy))
         dispatch(loadStays())
         toggleModal()
     }
@@ -47,13 +59,53 @@ export const MainFilter = () => {
         setIsModalOpen(prevIsModalDisplay => !prevIsModalDisplay)
     }
 
+    const onSelectModalType = (type) => {
+        dispatch(modalType(type))
+    }
+
+    const onSelectValue = (field, value) => {
+        console.log(field, value);
+        // const field = fiel
+        // const value = val 
+        // setFilterBy(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
+        setFilterBy(prevFilterBy => ({ ...prevFilterBy, category: value }))
+        console.log('FFFFFF', filterBy);
+        dispatch(setFilter(filterBy))
+        console.log('TTTTTT', filterBy);
+        dispatch(loadStays())
+
+    }
+
+    const settings = {
+        // dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3
+    };
+
     return (
         <section className="main-filter">
-            <button className="btn btn-filter-modal" onClick={toggleModal}>Filter
-            
-            </button>
-            {/* <CustomizedSlider filterBy={filterBy}  handleChange={handleChange} /> */}
-            {isModalOpen && <form className="filter-options-modal-wrapper" onSubmit={onFilter}>
+            {/* <button className="btn btn-filter-modal" onClick={() => onSelectModalType('filter-options')}>Filter</button> */}
+
+
+
+            <div className="category-filterbar-wrapper">
+                {/* <Slider className="test" {...settings}>
+                </Slider> */}
+                <div className={(filterBy.category === 'Amazing views') ? 'active' : ''} onClick={() => onSelectValue('category', 'Amazing views')}>Amazing views</div>
+                <div className={(filterBy.category === 'Amazing pools') ? 'active' : ''} onClick={() => onSelectValue('category', 'Amazing pools')}>Amazing pools</div>
+                <div className={(filterBy.category === 'Islands') ? 'active' : ''} onClick={() => onSelectValue('category', 'Islands')}>Islands</div>
+                <div className={(filterBy.category === 'Mansions') ? 'active' : ''} onClick={() => onSelectValue('category', 'Mansions')}>Mansions</div>
+                <div className={(filterBy.category === 'Arctic') ? 'active' : ''} onClick={() => onSelectValue('category', 'Arctic')}>Arctic</div>
+                <div className={(filterBy.category === 'OMG!') ? 'active' : ''} onClick={() => onSelectValue('category', 'OMG!')}>OMG!</div>
+                <div className={(filterBy.category === 'Beach') ? 'active' : ''} onClick={() => onSelectValue('category', 'Beach')}>Beach</div>
+                <div className={(filterBy.category === 'Cabins') ? 'active' : ''} onClick={() => onSelectValue('category', 'Cabins')}>Cabins</div>
+            </div>
+
+            <button className="btn btn-filter-modal" onClick={() => onSelectModalType('filter-options')}>Filter</button>
+
+            {(currModalType === 'filter-options') && <form className="filter-options-modal-wrapper" onSubmit={onFilter}>
                 <div className="modal-header">
                     <h3>Filters</h3>
                 </div>
@@ -67,7 +119,7 @@ export const MainFilter = () => {
                     <FormControlLabel
                         control={<Checkbox
                             name="Entire place"
-                            value={filterBy.roomTypes.includes('Entire place')}
+                            checked={filterBy.roomTypes.includes('Entire place')}
                             onChange={toggleRoomType}
                             color="default"
                         />}
@@ -75,14 +127,14 @@ export const MainFilter = () => {
                     <FormControlLabel
                         control={<Checkbox
                             name="Shared room"
-                            value={filterBy.roomTypes.includes('Shared room')}
+                            checked={filterBy.roomTypes.includes('Shared room')}
                             onChange={toggleRoomType}
                             color="default"
                         />} label="Shared room" />
                     <FormControlLabel
                         control={<Checkbox
                             name="Private room"
-                            value={filterBy.roomTypes.includes('Private room')}
+                            checked={filterBy.roomTypes.includes('Private room')}
                             onChange={toggleRoomType}
                             color="default"
                         />} label="Private room" />

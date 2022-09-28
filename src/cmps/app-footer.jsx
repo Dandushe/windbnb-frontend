@@ -14,7 +14,7 @@ export function AppFooter() {
                     <a href="">Terms</a>
                 </div>
                 <div className='footer-menu'>
-                    <a href="">Support & resurces </a><KeyboardArrowUpIcon />
+                    <a href="">Support & resources </a><KeyboardArrowUpIcon />
                 </div>
             </div>
         </footer>

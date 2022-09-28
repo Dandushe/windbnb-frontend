@@ -81,14 +81,16 @@
         // width: 750px;
         // width:fit-content;
         // overflow: hidden;
-        // gap: 25px;
+        gap: 4px;
+        transform: scale(1.01);
 
         .location-wrapper {
-            cursor: pointer;
+            // cursor: pointer;
             // width: 100%;
             border-radius: 32px;
             padding: 14px 24px;
             outline: none;
+            position: relative;
 
             .location-con {
                 display: flex;
@@ -96,10 +98,15 @@
                 // border-right: 1px solid $clr6;
                 padding-inline-end: 40px;
                 padding-inline-start: 20px;
+                cursor: pointer;
 
                 input[type="text"] {
                     border: none;
                     background-color: inherit;
+
+                    &::-webkit-search-cancel-button {
+                        caret-color: $clr1;
+                    }
 
                     &:focus {
                         outline: none;
@@ -120,6 +127,67 @@
                 z-index: 3;
                 box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
                 // border: 1px solid transparent;
+                transform: scale(1.02);
+            }
+
+            .region-warpper {
+                position: fixed;
+                // width: 800px;
+                width: fit-content; // height: 400px;
+                top: 75px;
+                background-color: $clr2;
+                border-radius: 21px;
+                padding: 30px;
+                // z-index: 100;
+                // display: flex;
+                // flex-direction: column;
+
+                h4 {
+                    padding-inline-start: 37px;
+                    padding-bottom: 20px;
+                }
+
+                .region-menu-con {
+                    // display: flex;
+                    // flex-wrap: wrap;
+                    // width: 100%;
+                    display: grid;
+                    grid-template-columns: repeat(3, min-content);
+                    width: 500px;
+                    gap: 30px;
+                    margin: 0;
+                    justify-content: center;
+
+                    >* {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        color: $clr3;
+                        font-size: rem(15px);
+                    }
+
+                    .region-image-con {
+                        display: flex;
+                        flex-direction: column;
+                        flex-wrap: wrap;
+                        // width: 100%;
+                        margin: 0;
+                        width: 122px;
+                        height: 122px;
+                        outline: 1px solid $clr6;
+                        border-radius: 11px;
+                        transition: 0.2s;
+
+                        img {
+                            cursor: pointer;
+                        }
+
+                        .active {
+                            outline: 1px solid $clr3;
+                        }
+                    }
+                }
+
             }
         }
 
@@ -138,6 +206,7 @@
                 border-radius: 32px;
                 padding: 14px 24px;
                 position: relative;
+
                 .title {
                     font-size: rem(16px);
                 }
@@ -158,12 +227,18 @@
                     z-index: 3;
                     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
                     // border: 1px solid transparent;
+                    transform: scale(1.02);
                 }
+
                 .checkin-datepicker-con {
                     position: absolute;
                     top: 75px;
                     right: 0px;
                 }
+            }
+
+            .MuiCalendarPicker-root {
+                background-color: $clr2;
             }
 
             .checkOut-dates-con {
@@ -174,6 +249,7 @@
                 border-radius: 32px;
                 padding: 14px 24px;
                 position: relative;
+
                 .title {
                     font-size: rem(16px);
                 }
@@ -194,7 +270,9 @@
                     z-index: 3;
                     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
                     // border: 1px solid transparent;
+                    transform: scale(1.02);
                 }
+
                 .checkOut-datepicker-con {
                     position: absolute;
                     top: 75px;
@@ -217,6 +295,7 @@
                 border-radius: 32px;
                 padding: 14px 24px;
                 position: relative;
+
                 .title {
                     font-size: rem(16px);
                 }
@@ -225,10 +304,75 @@
                     font-size: rem(16px);
                     color: $clr4;
                 }
-                .num-of-guests-con{
+
+                .grop-consists-wrapper {
                     position: absolute;
                     top: 75px;
-                    left :20px;
+                    // left: 20px;
+                    background-color: $clr2;
+                    width: 387px;
+                    right: -157px;
+                    height: 430px;
+                    border: 1px solid $clr6;
+                    border-radius: 32px;
+                    padding: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    .grop-main-con {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-bottom: 1px solid $clr6;
+                        padding: 20px 20px 20px 20px;
+
+                        .text-con {
+
+                            .title {
+                                margin-bottom: 3px;
+                            }
+
+                            .sub {
+                                font-size: rem(14px);
+                                color: $clr4
+                            }
+                        }
+
+                        &.pets {
+                            border-bottom: none;
+                        }
+
+                        .controls-con {
+                            display: flex;
+                            align-items: center;
+                            gap: 15px;
+                            .btn {
+                                display: grid;
+                                align-items: center;
+                                width: 30px;
+                                height: 30px;
+                                border: 1px solid $clr5;
+                                border-radius: 50%;
+                                font-size: rem(16px);
+                                color: $clr4;
+                                background-color: $clr2;
+                                cursor: pointer;
+                                &:hover{
+                                    border: 1px solid $clr3;
+                                    color: $clr3;
+                                }
+                                &:disabled{
+                                    border: 1px solid $clr6;
+                                    color: $clr6;
+                                }
+                            }
+
+                            .btn-dec {}
+
+                            .btn-inc {}
+                        }
+                    }
                 }
             }
 
@@ -265,6 +409,7 @@
                 z-index: 3;
                 box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
                 // border: 1px solid transparent;
+                transform: scale(1.02);
             }
         }
     }

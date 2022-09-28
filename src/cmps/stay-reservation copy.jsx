@@ -53,7 +53,7 @@ export const StayReservation = ({ stay }) => {
     const onReserve = (ev) => {
         ev.preventDefault()
         // setIsModalDisplay(prevIsModalDisplay => !prevIsModalDisplay)
-        console.log('jojojoj');
+        
         setIsModalDisplay(isModalDisplay => !isModalDisplay)
     }
 

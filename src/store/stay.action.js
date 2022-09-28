@@ -16,10 +16,21 @@ export function loadStays() {
 export function setFilter(filterBy) {
     return async (dispatch) => {
         try {
-            console.log('fdfd');
+            console.log('fdfd@@',filterBy);
             dispatch({ type: 'SET_FILTER', filterBy })
         } catch (err) {
             console.log('filter catch', err)
+        }
+    }
+}
+
+export function modalType(type) {
+    return async (dispatch) => {
+        try {
+         dispatch({ type: 'SET_MODAL_TYPE', currModalType: type })
+            
+        } catch (err) {
+            console.log('faild to set modal type', err)
         }
     }
 }

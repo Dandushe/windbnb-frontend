@@ -6,6 +6,7 @@
     grid-template-rows: min-content 1fr min-content;
     // gap: 20px;
     // padding-bottom: 10px;
+    
 }
 
 .main-layout {
@@ -38,4 +39,15 @@
 
 .main-text {
     margin-bottom: rem(90px);
+}
+
+.main-screen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0 ,0, 0 , 0.29);
+    z-index: 1;
+    pointer-events: auto;
 }
