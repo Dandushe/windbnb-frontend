@@ -5,7 +5,8 @@ import React, { useRef } from "react"
 import { useClickOutside } from "../hooks/useClickOutside";
 // import { LoginSignup } from "./login-signup";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, modalType } from "../store/user.action";
+import { logout } from "../store/user.action";
+import { modalType } from "../store/stay.action";
 
 export const AppHeader = () => {
     const user = useSelector(state => state.userModule.user)
@@ -35,8 +36,7 @@ export const AppHeader = () => {
     const onSelectModalType = (type) => {
         dispatch(modalType(type))
     }
-    console.log('user', user);
-   
+
     return (
         <header className="header-wrapper main-layout full">
             {/* <div className="main-header"> */}
@@ -53,13 +53,13 @@ export const AppHeader = () => {
                     </nav> :
                     <StayFilter />}
                 {/* <div className="user-menu"  onClick={toggleIsShown}> */}
-                <div className="user-menu" onClick={toggleIsShown} ref={ref}>
-                    {(user && !location.pathname.startsWith('/dashboard')) &&<>
-                   
+                <div className="user-menu">
+                    {(user && !location.pathname.startsWith('/dashboard')) && <>
+
                         {!!user.listingsCount && <span className="host-link"><Link to='/dashboard/listing'>Switch to hosting</Link></span>}
                         {!user.listingsCount && <span className="host-link" onClick={() => onSelectModalType('')}><Link to='/host'>Become a host</Link></span>}
                     </>}
-                    <div className="user-pill-menu-con">
+                    <div className="user-pill-menu-con" onClick={toggleIsShown} ref={ref}>
                         <span>&#9776;</span>
                         <div className="user-avater-con">
                             <img src={user ? user.userImg : defaultImg} alt="Profile pic" />

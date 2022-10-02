@@ -5,12 +5,14 @@ import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import StarIcon from '@mui/icons-material/Star';
 import { formatNumber } from "../services/util.service";
+import { BrandBtn } from "./brand-btn";
+import { useNavigate } from "react-router-dom";
 
 
 export const HostingReservation = () => {
     const user = useSelector(state => state.userModule.user)
     const reservations = useSelector(state => state.reservationModule.reservations)
-
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -24,10 +26,9 @@ export const HostingReservation = () => {
     // 'approved'
     // 'pending'
     if (!reservations) return <div>Loading...</div>
-    console.log('reservations', reservations);
     return (
         <section className="hosting-reservation-main-wrapper">
-            <div className="stats-warpper">
+           {!reservations&&  <div className="stats-warpper">
                 <div className="income-con">
                     <div className="container">
                         <p>This month income</p>
@@ -63,12 +64,11 @@ export const HostingReservation = () => {
                     </div>
                     <StarIcon />
                 </div>
-            </div>
+            </div>}
 
+            {!reservations&& <h1>Reservations</h1>}
 
-            <h1>Reservations</h1>
-
-            <table>
+           {!reservations&&  <table>
                 <thead>
                     <tr>
                         <th>Status</th>
@@ -96,7 +96,26 @@ export const HostingReservation = () => {
                     </tr>
                     )}
                 </tbody>
-            </table>
+            </table>}
+
+            <section className="hosting-banner-wrapper">
+                <div className="banner-title">Find out what you could earn as a Host</div>
+                <div className="stats-hosting-con">
+                    <div className="avg-income">
+                        <p>Hosts in your area earn an average of*</p>
+                        <h1>14,209<span>/ month</span></h1>
+                    </div>
+                    <div>
+                        <p>They earn</p>
+                        <h1>677<span>/ night</span></h1>
+                    </div>
+                    <div>
+                        <p>They're booked</p>
+                        <h1>21<span> nights / month</span></h1>
+                    </div>
+                </div>
+                <BrandBtn text={'Let`s go!'} cb={() => navigate('/host')} />
+            </section>
         </section>
     )
 }

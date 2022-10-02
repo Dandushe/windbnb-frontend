@@ -28,23 +28,25 @@
             display: flex;
             gap: 20px;
             color: $clr4;
+
             // font-weight: 600;
             a.active {
                 position: relative;
                 font-weight: 600;
                 color: $clr3;
-             
+
                 &::after {
                     content: '';
                     position: absolute;
                     top: calc(100% + 4px);
-                    left:0;
+                    left: 0;
                     width: 100%;
                     height: 2px;
                     border-radius: 5rem;
                     background-color: $clr3;
                 }
             }
+
             // a:hover{
             //     display: flex;
             //     justify-content: center;
@@ -56,7 +58,7 @@
             //     border-radius: 60px;
             //     text-align: center;
             // }
-           
+
         }
 
         .user-menu {
@@ -76,6 +78,7 @@
                 // font-family: 'AirMedium';
                 font-size: rem(15px);
                 font-weight: 600;
+
                 &:hover {
                     background-color: $clr7;
                 }

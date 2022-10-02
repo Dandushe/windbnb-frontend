@@ -1,7 +1,5 @@
 import React from "react"
 
-
-
 export class LongText extends React.Component {
 
     state = {
@@ -10,10 +8,6 @@ export class LongText extends React.Component {
     }
 
     onToggleShown = () => {
-        // let isLongShownCopy = this.state.isLongShown
-        // isLongShownCopy = !isLongShownCopy
-
-        // this.setState({ isLongShown: isLongShownCopy })
         this.setState(prevState => ({ ...prevState, isLongShown: !prevState.isLongShown }))
     }
 

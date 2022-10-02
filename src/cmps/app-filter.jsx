@@ -27,7 +27,6 @@ export const StayFilter = () => {
 
 
     const handleChange = ({ target }) => {
-        console.log('target', target);
         const field = target.name
         const value = target.type === 'number' ? +target.value : target.value
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
@@ -35,21 +34,14 @@ export const StayFilter = () => {
 
     const handleDateChange = (ev) => {
         const field = activeTab
-        console.log('ev', ev, field);
         const date = new Date(ev.$d)
         const value = utilService.formatDate(date)
-        console.log(utilService.formatDate(date));
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
-
-        // if(field === 'checkIn'){
-        //     setFilterBy(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
-        // }
 
     }
 
     const onSubmitSearch = (ev) => {
         ev.preventDefault()
-        console.log('here??');
         dispatch(setFilter(filterBy))
         dispatch(loadStays())
         // dispatch(addReservation(reservation))
@@ -74,7 +66,6 @@ export const StayFilter = () => {
     }
 
     const onSelectGuestNum = (field, value) => {
-        console.log("onSelectValue , field", field, value)
 
         setFilterBy(prevFilterBy => ({
             ...prevFilterBy,
@@ -275,7 +266,6 @@ export const StayFilter = () => {
     return (
         <section className="filter-preview-pill-wrapper" onClick={() => onSelectModalType('expended-pill')}>
             <div className="anywhere" onClick={() => expendedTab('where')} >Anywhere</div>
-            {/* <div className="anywhere" onClick={()=>setActiveTab('where')}>Anywhere</div> */}
             <div className="anyweek" onClick={() => expendedTab('checkIn')}>Any Week</div>
             <div className="addguests" onClick={() => expendedTab('guests')}>
                 <span className='title'>Add guests</span>
@@ -286,7 +276,5 @@ export const StayFilter = () => {
         </section>
     )
 
-
-    // className="stay-filter-main-warapper"
 
 }

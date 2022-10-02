@@ -22,8 +22,7 @@ export const UserWishList = () => {
         dispatch(saveUserTrips({ buyerId: user._id }))
 
     }
-    // console.log(trips);
-    // if (!trips) return <div>Loading...</div>
+ 
     return (
         <section className="trips-page">
             <h1>Wishlist</h1>

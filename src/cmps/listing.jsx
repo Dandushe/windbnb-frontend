@@ -16,14 +16,11 @@ export const Listing = () => {
     }, [])
 
     const loadListings = async () => {
-        console.log(user._id);
         // 632c617e1e03fec448f71ace
         dispatch(saveUserListing({ hostId: user._id }))
-        console.log('listings', listings);
     }
     // Georgina
     if (!listings) return <div>Loading...</div>
-    console.log('listings', listings);
     return (
         <section className="listing-main-wrapper">
             {!!listings.length && <div className="header-container">

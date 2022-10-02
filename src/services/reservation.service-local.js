@@ -33,7 +33,6 @@ function save(reservation) {
     if (reservation._id) {
         return storageService.put(STORAGE_KEY, reservation)
     } else {
-        console.log('HERERHEE??');
         return storageService.post(STORAGE_KEY, reservation)
     }
 }

@@ -7,26 +7,16 @@ import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutl
 import { formatNumber, utilService } from "../services/util.service";
 import { iconService } from "../services/icon.service"
 import StarIcon from '@mui/icons-material/Star';
+import { BrandBtn } from "./brand-btn";
+import { modalType } from "../store/stay.action";
 
 
 export const StayReservation = ({ stay }) => {
 
-    const formatDate = (date) => {
-        var d = new Date(date),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
-
-        if (month.length < 2)
-            month = '0' + month;
-        if (day.length < 2)
-            day = '0' + day;
-
-        return [year, month, day].join('-');
-    }
 
     const user = useSelector(state => state.userModule.user)
     const filterBy = useSelector(state => state.stayModule.filterBy)
+    const currModalType = useSelector(state => state.stayModule.currModalType)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [reservation, setReservation] = useState({ ...filterBy })
@@ -35,13 +25,9 @@ export const StayReservation = ({ stay }) => {
     const ArrowUp = KeyboardArrowUpOutlinedIcon
 
     const getDaysCount = () => {
+
         let daysDiffInMill = new Date(reservation.checkOut) - new Date(reservation.checkIn)
-        // console.log('reservation.checkOut', typeof (daysDiffInMill), daysDiffInMill);
-        // console.log('reservation.checkcheckIn', reservation.checkIn);
-
         let daysCount = daysDiffInMill / (1000 * 60 * 60 * 24)
-        // console.log("getDaysCount , daysCount", daysCount)
-
         return daysCount
     }
 
@@ -59,7 +45,6 @@ export const StayReservation = ({ stay }) => {
             hostName: stay.host.fullname,
             checkIn: reservation.checkIn,
             checkOut: reservation.checkOut,
-            // guestsNum: reservation.guestsNum,
             guestsNum: totalGuests,
             totalPrice: (stay.price * getDaysCount()),
             createdAt: Date.now(),
@@ -80,8 +65,9 @@ export const StayReservation = ({ stay }) => {
     }
 
     const toggleModal = () => {
-        setIsModalOpen(prevIsModalDisplay => !prevIsModalDisplay)
-
+        // setIsModalOpen(prevIsModalDisplay => !prevIsModalDisplay)
+        const type = currModalType === 'confirm-reservation' ? '' : 'confirm-reservation'
+        dispatch(modalType(type))
     }
 
     const onToggleMenu = () => {
@@ -89,7 +75,6 @@ export const StayReservation = ({ stay }) => {
     }
 
     const onSelectValue = (field, value) => {
-        console.log("onSelectValue , field", field, value)
 
         setReservation(prevReservation => ({
             ...prevReservation,
@@ -115,11 +100,16 @@ export const StayReservation = ({ stay }) => {
             <div className="reservation-wrapper">
                 <div className="reservation-heder">
                     <span className="price"><h2>{formatNumber(stay.price)}</h2>night</span>
-                    <div className="rate-con">
+                    {!!stay.reviews.length ? <div className="rate-con">
                         <StarIcon />
                         <span>{utilService.financial(sumRate)} •</span>
                         <span className="reviews-length">{stay.reviews.length} reviews</span>
-                    </div>
+                    </div> :
+                        <div className="rate-con">
+                            <StarIcon />
+                            <span>New</span>
+                        </div>
+                    }
                 </div>
 
                 <div className="form-wrapper">
@@ -145,8 +135,6 @@ export const StayReservation = ({ stay }) => {
                                     <p className="lable">Guests</p>
                                     <p>{totalGuests} guest</p>
                                 </div>
-                                {/* {!isMenuOpen && <ArrowDown className="arrow-down-icn" onClick={onToggleMenu} />} */}
-                                {/* {iconService.ArrowDown} */}
 
                                 {!isMenuOpen && <ArrowDown className="arrow-down-icn" onClick={onToggleMenu} />}
                                 {isMenuOpen && <ArrowUp className="arrow-down-icn" onClick={onToggleMenu} />}
@@ -199,10 +187,9 @@ export const StayReservation = ({ stay }) => {
                                 </div>}
                             </div>
 
-
                         </div>
-                        <button className="btn btn-reserve" onClick={onReserve}>Reserve</button>
-
+                        {/* <button className="btn btn-reserve" onClick={onReserve}>Reserve</button> */}
+                        <BrandBtn text={'Reserve'} cb={onReserve} />
                         <span>You won't be charged yet</span>
                     </form>
 
@@ -232,7 +219,7 @@ export const StayReservation = ({ stay }) => {
 
             </div>
 
-            {isModalOpen && <div className="confirmation-modal-wrapper">
+            {currModalType === 'confirm-reservation' && <div className="confirmation-modal-wrapper">
                 <div className="confirmation-modal-header">
                     <div className="img-container ratio-square">
                         <img src={stay.imgUrls[0]} alt="property" />
@@ -254,7 +241,8 @@ export const StayReservation = ({ stay }) => {
                     <div className="trip-dates-wrapper">
                         <div className="dates-con">
                             <h4>Dates</h4>
-                            <span>Oct 26 - 31</span>
+                            {/* <span>Oct 26 - 31</span> */}
+                            <span>{new Date(reservation.checkIn).toLocaleString('en-US', { month: 'short', day: 'numeric' })}-{new Date(reservation.checkOut).getDate()}</span>
                         </div>
                         <span className="edit-dates">Edit</span>
                     </div>
@@ -283,7 +271,8 @@ export const StayReservation = ({ stay }) => {
                         <span>Total</span>
                         <span className="total-price">{formatNumber(stay.price * getDaysCount())}</span>
                     </div>
-                    <button className="btn" onClick={toggleModal}>confirm</button>
+                    {/* <button className="btn" onClick={toggleModal}>confirm</button> */}
+                    <BrandBtn text={'Confirm'} cb={toggleModal} />
                 </div>
             </div>}
 

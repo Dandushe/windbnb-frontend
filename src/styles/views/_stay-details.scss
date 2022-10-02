@@ -18,6 +18,7 @@
             display: flex;
             justify-content: space-between;
             font-family: 'AirMedium';
+            align-items: end;
 
             .address-info {
                 display: flex;
@@ -29,7 +30,7 @@
 
                 .rate-con {
                     display: flex;
-                    // align-items: center;
+                    align-items: center;
                     gap: 2px;
                     // font-size: rem(16px);
 
@@ -50,8 +51,7 @@
 
                 >* {
                     display: flex;
-                    gap: 4px;
-                    padding: 5px;
+                    gap: 6px;
                     border-radius: 10px;
 
                     >span {

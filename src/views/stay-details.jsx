@@ -40,6 +40,7 @@ export const StayDetails = () => {
     }
 
     if (!stay) return <div>Loading...</div>
+    const defaultDesc = 'You`ll have a great time at this comfortable place to stay. just pack your bags and come over or dont pack just come over'
     const sumRate = (stay.reviewScores.rating) * (stay.reviews.length) / (6 * stay.reviews.length)
     const { cleanliness, communication, checkin, accuracy, location, value } = stay.reviewScores
     return (
@@ -51,7 +52,9 @@ export const StayDetails = () => {
                     <div className="address-info">
                         <div className="rate-con">
                             <StarIcon />
-                            <span>{utilService.financial(sumRate)} •</span>
+                            {stay.reviews.length ?
+                                <span>{utilService.financial(sumRate)} •</span> :
+                                <span>New</span>}
                         </div>
                         <span>{stay.reviews.length} reviews •</span>
                         <span>{stay.address.street}</span>
@@ -125,7 +128,7 @@ export const StayDetails = () => {
                         </div>
 
                         <div className="info-place-desc">
-                            <LongText text={stay.description ? stay.description : 'hahahahahhaha'} limit={180} />
+                            <LongText text={stay.description ? stay.description : defaultDesc} limit={170} />
                         </div>
 
                         <div className="amenities">
@@ -141,70 +144,72 @@ export const StayDetails = () => {
                     </div>
                     <StayReservation stay={stay} />
                 </div>
-                <section className="reviwes">
-                    <div className="reviews-header">
-                        <StarIcon />
-                        <h2>{utilService.financial(sumRate)} •</h2>
-                        <h2>{stay.reviews.length} reviews</h2>
-                    </div>
-                    <div className="reviews-score-board">
-                        <div className="rate-prm">
-                            <span>Cleanliness</span>
-                            <div>
-                                <progress value={utilService.financial(cleanliness)} max={5} className="progressbar" />
-                                <span>{utilService.financial(cleanliness)}</span>
-                            </div>
+                {!!stay.reviews.length &&
+                    <section className="reviwes">
+                        <div className="reviews-header">
+                            <StarIcon />
+                            <h2>{utilService.financial(sumRate)} •</h2>
+                            <h2>{stay.reviews.length} reviews</h2>
                         </div>
-                        <div className="rate-prm">
-                            <span>Communication</span>
-                            <div>
-                                <progress value={utilService.financial(communication)} max={5} className="progressbar" />
-                                <span>{utilService.financial(communication)}</span>
-                            </div>
-                        </div>
-                        <div className="rate-prm">
-                            <span>Check-in</span>
-                            <div>
-                                <progress value={utilService.financial(checkin)} max={5} className="progressbar" />
-                                <span>{utilService.financial(checkin)}</span>
-                            </div>
-                        </div>
-                        <div className="rate-prm">
-                            <span>Accuracy</span>
-                            <div>
-                                <progress value={utilService.financial(accuracy)} max={5} className="progressbar" />
-                                <span>{utilService.financial(accuracy)}</span>
-                            </div>
-                        </div>
-                        <div className="rate-prm">
-                            <span>Location</span>
-                            <div>
-                                <progress value={utilService.financial(location)} max={5} className="progressbar" />
-                                <span>{utilService.financial(location)}</span>
-                            </div>
-                        </div>
-                        <div className="rate-prm">
-                            <span>Value</span>
-                            <div>
-                                <progress value={utilService.financial(value)} max={5} className="progressbar" />
-                                <span>{utilService.financial(value)}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="reviwes-list">
-                        {stay.reviews.splice(0, 6).map((review, i) =>
-                            <div className="review-preview" key={i}>
-                                <div className="user-img-con"><img src={review.by.imgUrl} alt="user" />
-                                    <div className="user-header">
-                                        <span>{review.by.fullname}</span>
-                                        <span className="date">September 2022</span>
-                                    </div>
-
+                        <div className="reviews-score-board">
+                            <div className="rate-prm">
+                                <span>Cleanliness</span>
+                                <div>
+                                    <progress value={utilService.financial(cleanliness)} max={5} className="progressbar" />
+                                    <span>{utilService.financial(cleanliness)}</span>
                                 </div>
-                                <div><LongText text={review.txt} limit={180} /></div>
-                            </div>)}
-                    </div>
-                </section>
+                            </div>
+                            <div className="rate-prm">
+                                <span>Communication</span>
+                                <div>
+                                    <progress value={utilService.financial(communication)} max={5} className="progressbar" />
+                                    <span>{utilService.financial(communication)}</span>
+                                </div>
+                            </div>
+                            <div className="rate-prm">
+                                <span>Check-in</span>
+                                <div>
+                                    <progress value={utilService.financial(checkin)} max={5} className="progressbar" />
+                                    <span>{utilService.financial(checkin)}</span>
+                                </div>
+                            </div>
+                            <div className="rate-prm">
+                                <span>Accuracy</span>
+                                <div>
+                                    <progress value={utilService.financial(accuracy)} max={5} className="progressbar" />
+                                    <span>{utilService.financial(accuracy)}</span>
+                                </div>
+                            </div>
+                            <div className="rate-prm">
+                                <span>Location</span>
+                                <div>
+                                    <progress value={utilService.financial(location)} max={5} className="progressbar" />
+                                    <span>{utilService.financial(location)}</span>
+                                </div>
+                            </div>
+                            <div className="rate-prm">
+                                <span>Value</span>
+                                <div>
+                                    <progress value={utilService.financial(value)} max={5} className="progressbar" />
+                                    <span>{utilService.financial(value)}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="reviwes-list">
+                            {stay.reviews.splice(0, 6).map((review, i) =>
+                                <div className="review-preview" key={i}>
+                                    <div className="user-img-con"><img src={review.by.imgUrl} alt="user" />
+                                        <div className="user-header">
+                                            <span>{review.by.fullname}</span>
+                                            <span className="date">September 2022</span>
+                                        </div>
+
+                                    </div>
+                                    <div><LongText text={review.txt} limit={100} /></div>
+                                </div>)}
+                        </div>
+                    </section>
+                }
 
                 <section className="about-host">
 

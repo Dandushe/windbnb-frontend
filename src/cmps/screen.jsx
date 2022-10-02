@@ -5,7 +5,6 @@ export const Screen = () => {
     const dispatch = useDispatch()
     const currModalType = useSelector(state => state.stayModule.currModalType)
 
-
     const onSelectModalType = (type) => {
         dispatch(modalType(type))
       }

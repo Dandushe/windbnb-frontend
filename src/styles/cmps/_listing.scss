@@ -40,6 +40,10 @@
         tr {
             border-bottom: 1px solid $clr4;
 
+            &:hover {
+                background-color: $clr7;
+                transition: background-color 0.3s ease-in-out;
+            }
             // width: 100%;
             th {
                 text-align: start;
@@ -75,10 +79,11 @@
     }
 
     .hosting-banner-wrapper {
-        display: flex;
+        // display: flex;
         width: 90%;
         height: 85%;
-        position: relative;
+        // position: relative;
+        margin: auto;
         // height: 400px;
         // overflow: hidden;
         .side {
@@ -95,10 +100,21 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            & :nth-child(2){
+                padding-bottom: 20px;
+            }
+            .btn-container{
+                align-self: flex-end;
+                .btn-text{
+                    font-size: rem(15px);
+                    text-transform:uppercase;
+                }
+            }
         }
 
         .img-container{
             width: 100%;
+            height: 90%;
             border-radius: 15px;
             overflow: hidden;
             img{

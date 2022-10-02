@@ -20,14 +20,11 @@ export const UserTrips = () => {
     }, [])
 
     const loadUserTrips = async () => {
-        console.log(user._id);
         // 632c617e1e03fec448f71ace
         dispatch(saveUserTrips({ buyerId: user._id }))
 
     }
 
-    console.log(trips);
-    // if (!trips) return <div>Loading...</div>
     return (
         <section className="trips-page">
             <h1>Trips</h1>

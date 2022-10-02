@@ -1,6 +1,6 @@
 
 import { useState } from "react"
-import { Link, NavLink, Outlet, Route, Routes } from "react-router-dom"
+import { Link, NavLink, Outlet, Route, Routes, useNavigate } from "react-router-dom"
 import Dropzone from 'react-dropzone'
 import { utilService } from "../services/util.service"
 import { uploadImg } from "../services/upload-service"
@@ -9,11 +9,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { addStay } from "../store/stay.action"
 import { LongText } from "../cmps/long-text"
 import { BrandBtn } from "../cmps/brand-btn"
+import { ToolTip } from "../cmps/tool-tip"
 
 export const BecomeHost = () => {
     const user = useSelector(state => state.userModule.user)
     const [tabIdx, setTabIdx] = useState(0)
     const [isOn, setIsOn] = useState(true)
+    const navigate=useNavigate()
 
     const [stay, setStay] = useState({
         name: '',
@@ -69,7 +71,6 @@ export const BecomeHost = () => {
         } else {
             newAmenities.push(amenity)
         }
-        console.log('newAmenities', newAmenities);
         setStay(prevStay => ({ ...prevStay, amenities: newAmenities }))
     }
 
@@ -106,7 +107,6 @@ export const BecomeHost = () => {
         } else if (nextTabIdx === idxMaxLength) {
             return setTabIdx(0)
         }
-        console.log(diff);
         setTabIdx(prevTabIdx => prevTabIdx += diff)
     }
 
@@ -122,7 +122,6 @@ export const BecomeHost = () => {
     }
 
     const toggleIsOn = () => {
-        console.log('here?');
         setIsOn(prevIsOn => !prevIsOn)
     }
 
@@ -132,8 +131,9 @@ export const BecomeHost = () => {
     //     else hostVideo.pause();
     // }
 
-    const onAddListing = () => {
-        dispatch(addStay(stay))
+    const onAddListing = async() => {
+        await dispatch(addStay(stay))
+        navigate('/dashboard/listing')
     }
 
     const amenities = [
@@ -174,7 +174,6 @@ export const BecomeHost = () => {
     ]
 
     const { country, city, street } = stay.address
-    console.log('stay', stay);
     return (
         <section className="become-host-main-wrapper">
             {!isOn && <section className="side-wrapper">
@@ -303,7 +302,8 @@ export const BecomeHost = () => {
                                         const imgUrl = stay.imgUrls[idx]
                                         return <div key={idx} className={`img-con ${!idx && 'cover'} ${imgUrl ? 'full' : ''}`}>
                                             {imgUrl && <>
-                                                <span className="img-menu-icon" onClick={(ev) => onRemoveImg(ev, imgUrl)}>del </span>
+                                                <span className="img-menu-icon"><ToolTip cb={onRemoveImg} imgUrl={imgUrl} /></span>
+                                                {/* <span className="img-menu-icon" onClick={(ev) => onRemoveImg(ev, imgUrl)}>del </span> */}
                                                 <img src={imgUrl} alt="property" />
                                             </>}
                                         </div>
@@ -402,7 +402,8 @@ export const BecomeHost = () => {
                     </div>
                     <div className="paging-btns-con">
                         <button className="btn-back" onClick={() => changeTabIdx(-1)}>Back</button>{(tabIdx !== 10) && <button className="btn-next" onClick={() => changeTabIdx(1)} disabled={tabIdx === 11}>Next</button>}
-                        {(tabIdx === 10) && <button className="btn-save-listing" onClick={onAddListing}>Save your listing</button>}
+                        {/* {(tabIdx === 10) && <button className="btn-save-listing" onClick={onAddListing}>Save your listing</button>} */}
+                        {(tabIdx === 10) && <BrandBtn text={'Save your listing'} cb={onAddListing} />}
                     </div>
                 </div>
             </section>}
