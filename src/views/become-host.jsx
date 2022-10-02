@@ -110,17 +110,6 @@ export const BecomeHost = () => {
         setTabIdx(prevTabIdx => prevTabIdx += diff)
     }
 
-    // const toggCategory= ({ target }) => {
-    //     const toggledRoomType = target.name
-    //     let newRoomTypes = [...filterBy.roomTypes]
-    //     if (newRoomTypes.includes(toggledRoomType)) {
-    //         newRoomTypes = newRoomTypes.filter(type => type !== toggledRoomType)
-    //     } else {
-    //         newRoomTypes.push(toggledRoomType)
-    //     }
-    //     setFilterBy(prevFilterBy => ({ ...prevFilterBy, roomTypes: newRoomTypes }))
-    // }
-
     const onUploadImg = async (ev) => {
         const newImgUrl = await uploadImg(ev)
         setStay(prevStay => ({ ...prevStay, imgUrls: [...prevStay.imgUrls, newImgUrl] }))
@@ -128,10 +117,7 @@ export const BecomeHost = () => {
 
     const onRemoveImg = (ev, imgUrl) => {
         ev.stopPropagation()
-        // let newImgUrls =
-        // console.log('newImgUrls',newImgUrls);
         const newImgUrls = stay.imgUrls.filter(url => url !== imgUrl)
-        // let newImgUrls = stay.imgUrls.splice(idx)
         setStay(prevStay => ({ ...prevStay, imgUrls: newImgUrls }))
     }
 
@@ -192,10 +178,7 @@ export const BecomeHost = () => {
     return (
         <section className="become-host-main-wrapper">
             {!isOn && <section className="side-wrapper">
-                {/* <Link to="/host/avi">show avi</Link>
-                <Link to="/host/dani">show dani</Link>
-                <Outlet/> */}
-                {/* <button onClick={()=>onRemoveImg(1)}></button> */}
+               
                 <div className="questions-con">
                     {tabIdx === 0 && <div>What kind of place will you host?</div>}
                     {tabIdx === 1 && <div>What kind of space will guests have?</div>}
@@ -325,22 +308,6 @@ export const BecomeHost = () => {
                                             </>}
                                         </div>
                                     })}
-
-                                    {/* <div className={`img-con cover ${stay.imgUrls[0] ? 'full' : ''}`}>
-                                        {stay.imgUrls[0] && <img src={stay.imgUrls[0]} alt="one" />}
-                                    </div>
-                                    <div className={`img-con ${stay.imgUrls[1] ? 'full' : ''}`}>
-                                        {stay.imgUrls[1] && <img src={stay.imgUrls[1]} alt="one" />}
-                                    </div>
-                                    <div className={`img-con ${stay.imgUrls[2] ? 'full' : ''}`}>
-                                        {stay.imgUrls[2] && <img src={stay.imgUrls[2]} alt="one" />}
-                                    </div>
-                                    <div className={`img-con ${stay.imgUrls[3] ? 'full' : ''}`}>
-                                        {stay.imgUrls[3] && <img src={stay.imgUrls[3]} alt="one" />}
-                                    </div>
-                                    <div className={`img-con ${stay.imgUrls[4] ? 'full' : ''}`}>
-                                        {stay.imgUrls[4] && <img src={stay.imgUrls[4]} alt="one" />}
-                                    </div> */}
                                 </div>}
                             </div>
                         </section>
@@ -421,7 +388,6 @@ export const BecomeHost = () => {
                         </div>
                     </div>
                     <div className="preview-desc">
-                        {/* <p>{stay.description}</p> */}
                         <p><LongText text={stay.description} limit={40}/></p>
                     </div>
                     <div className="preview-location">
@@ -443,113 +409,6 @@ export const BecomeHost = () => {
 
             {isOn && <section className="side-con">
                 <div>Open your door to hosting</div>
-                {/* <div className="btn-container" onClick={toggleIsOn}>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="cell"></div>
-                    <div className="content">
-                        <button className="action-btn">
-                            <span>Try hosting</span>
-                        </button>
-                    </div>
-                </div> */}
                 <BrandBtn text={'Try hosting'} cb={toggleIsOn} />
             </section>}
             {isOn && <section className="video-wrapper">
