@@ -97,27 +97,20 @@ export const StayFilter = () => {
 
     const { adults, infants, children, pets } = filterBy.guestsNum
 
-    return (
-        <section className="stay-filter-main-warapper" onClick={() => onSelectModalType('expended-pill')}>
-            {(currModalType === '') && <section className="filter-preview-pill-wrapper">
-                <div className="anywhere" onClick={() => expendedTab('where')} >Anywhere</div>
-                {/* <div className="anywhere" onClick={()=>setActiveTab('where')}>Anywhere</div> */}
-                <div className="anyweek" onClick={() => expendedTab('checkIn')}>Any Week</div>
-                <div className="addguests" onClick={() => expendedTab('guests')}>
-                    <span>Add guests</span>
-                    <div className="search-icon-con">
-                        <SearchIcon />
-                    </div>
-                </div>
-            </section>}
 
-            {(currModalType === 'expended-pill') && <section className="filter-expended-pill-wrapper">
+    if (currModalType === 'expended-pill') {
+        return (
+
+            // <section className={`stay-filter-main-warapper ${(currModalType === 'expended-pill') ? 'expended' : ''}`} onClick={() => onSelectModalType('expended-pill')} >
+
+
+            <section className="filter-expended-pill-wrapper">
 
                 {/* <section className={`location-wrapper ${activeTab === 'where' ? 'active' : ''}`} onClick={setActiveTab('where')}> */}
                 <section className={`location-wrapper ${(activeTab === 'where') ? 'active' : ''}`} onClick={() => setActiveTab('where')}>
                     {/* <section className="location-wrapper active"> */}
                     <div className='location-con'>
-                        <span>Where</span>
+                        <span className='title'>Where</span>
                         <form onSubmit={onSubmitSearch} id="destinationform" >
                             <input
                                 ref={inputRef}
@@ -271,8 +264,29 @@ export const StayFilter = () => {
                     </div>
                 </section>
 
-            </section>}
+            </section>
 
+
+            // </section>
+        )
+    }
+
+
+    return (
+        <section className="filter-preview-pill-wrapper" onClick={() => onSelectModalType('expended-pill')}>
+            <div className="anywhere" onClick={() => expendedTab('where')} >Anywhere</div>
+            {/* <div className="anywhere" onClick={()=>setActiveTab('where')}>Anywhere</div> */}
+            <div className="anyweek" onClick={() => expendedTab('checkIn')}>Any Week</div>
+            <div className="addguests" onClick={() => expendedTab('guests')}>
+                <span className='title'>Add guests</span>
+                <div className="search-icon-con">
+                    <SearchIcon />
+                </div>
+            </div>
         </section>
     )
+
+
+    // className="stay-filter-main-warapper"
+
 }

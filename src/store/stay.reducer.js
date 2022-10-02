@@ -9,30 +9,27 @@ const INITIAL_STATE = {
         checkIn: utilService.formatDate(Date.now()),
         checkOut: utilService.formatDate(Date.now() + fiveDays),
         guestsNum: {
-            adults:1,
-            children:0,
-            infants:0,
-            pets:0
+            adults: 1,
+            children: 0,
+            infants: 0,
+            pets: 0
         },
         minPrice: 0,
         maxPrice: Infinity,
         roomTypes: [],
-        category:''
+        category: ''
     },
-    currModalType:'',
+    currModalType: '',
 }
 
 export function stayReducer(state = INITIAL_STATE, action) {
-    var stays;
+    let stays;
     switch (action.type) {
         case 'SET_STAYS':
             return { ...state, stays: action.stays }
-        // case 'SET_LOADING':
-        //     return { ...state, isLoading: action.isLoading }
         case 'SET_MODAL_TYPE':
-            return { ...state, currModalType: action.currModalType }
+            return { ...state, currModalType: action.modalType }
         case 'SET_FILTER':
-            console.log('filterBy from reducer', { ...state.filterBy, ...action.filterBy });
             return { ...state, filterBy: { ...state.filterBy, ...action.filterBy } }
         case 'REMOVE_STAY':
             stays = state.stays.filter(stay => stay._id !== action.stayId)
@@ -44,7 +41,7 @@ export function stayReducer(state = INITIAL_STATE, action) {
             stays = state.stays.map(currStay => (currStay._id === action.stay._id) ? action.stay : currStay)
             return { ...state, stays: stays }
         default:
-            console.log('DEFAULT-STAY!!!');
+            // console.log('DEFAULT-STAY!!!');
             return state
     }
 }

@@ -1,14 +1,9 @@
 
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { AppFooter } from "../cmps/app-footer"
-import { MainFilter } from "../cmps/main-filter"
-import CustomizedSlider from "../cmps/slider"
+import { ExploreFilter } from "../cmps/explore-filter"
 import { StayList } from "../cmps/stay-list"
 import { loadStays } from "../store/stay.action"
-
-
-
 
 export const ExplorePage = () => {
 
@@ -19,22 +14,10 @@ export const ExplorePage = () => {
         dispatch(loadStays())
     }, [])
 
-    // const onRemoveStay = (toyId) => {
-    //     dispatch(removeStay(toyId))
-    // }
-
-    // const onChangeFilter = (filterBy) => {
-    //     dispatch(setFilter(filterBy))
-    //     dispatch(loadStays())
-    // }
-
     return (
-
         <section className="explore-page">
-            <MainFilter/>
-            {/* <CustomizedSlider/> */}
-           <StayList stays={stays}/>
-           {/* <AppFooter/> */}
+            <ExploreFilter />
+            <StayList stays={stays} />
         </section>
     )
 }

@@ -4,9 +4,9 @@ import { addReservation } from '../store/reservation.action';
 import { BasicDatePicker } from "./date-picker";
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
-import { utilService } from "../services/util.service";
+import { formatNumber, utilService } from "../services/util.service";
 import { iconService } from "../services/icon.service"
-
+import StarIcon from '@mui/icons-material/Star';
 
 
 export const StayReservation = ({ stay }) => {
@@ -108,13 +108,18 @@ export const StayReservation = ({ stay }) => {
 
 
     const { adults, infants, children, pets } = reservation.guestsNum
-
+    const serviceFee = 30
+    const sumRate = (stay.reviewScores.rating) * (stay.reviews.length) / (6 * stay.reviews.length)
     return (
         <section className="stay-reservation">
             <div className="reservation-wrapper">
                 <div className="reservation-heder">
-                    <span className="price"><h2>{stay.price}</h2>night</span>
-                    <span className="reviews-length">{stay.reviews.length} reviews</span>
+                    <span className="price"><h2>{formatNumber(stay.price)}</h2>night</span>
+                    <div className="rate-con">
+                        <StarIcon />
+                        <span>{utilService.financial(sumRate)} •</span>
+                        <span className="reviews-length">{stay.reviews.length} reviews</span>
+                    </div>
                 </div>
 
                 <div className="form-wrapper">
@@ -142,7 +147,7 @@ export const StayReservation = ({ stay }) => {
                                 </div>
                                 {/* {!isMenuOpen && <ArrowDown className="arrow-down-icn" onClick={onToggleMenu} />} */}
                                 {/* {iconService.ArrowDown} */}
-                              
+
                                 {!isMenuOpen && <ArrowDown className="arrow-down-icn" onClick={onToggleMenu} />}
                                 {isMenuOpen && <ArrowUp className="arrow-down-icn" onClick={onToggleMenu} />}
                                 {isMenuOpen && <div className='grop-consists-wrapper'>
@@ -205,16 +210,22 @@ export const StayReservation = ({ stay }) => {
 
                 <div className="reservation-breakdown-wrapper">
                     <div className="price-breakdown-con">
-                        <span className="price">{stay.price} x {getDaysCount()} nights</span>
-                        <span className="price">{stay.price * getDaysCount()}</span>
-                        {/* <div>
-                       <span className="">Service fee </span>
-                       <span>0</span>
-                       </div> */}
+                        <div className="brakdown">
+                            <span className="price">{formatNumber(stay.price)} x {getDaysCount()} nights</span>
+                            <span className="price">{formatNumber(stay.price * getDaysCount())}</span>
+                        </div>
+                        <div>
+                            <span>cleaning fee</span>
+                            <span className={stay.cleaningFee === 0 ? 'green' : ''}>${formatNumber(stay.cleaningFee)}</span>
+                        </div>
+                        <div>
+                            <span>Service fee </span>
+                            <span>${formatNumber(serviceFee)}</span>
+                        </div>
                     </div>
                     <div className="total-con">
                         <span>Total</span>
-                        <span className="total-price">{stay.price * getDaysCount()}</span>
+                        <span className="total-price">{formatNumber((stay.price * getDaysCount()) + serviceFee + stay.cleaningFee)}</span>
                         {/* <button className="btn " onClick={onReserve}>Reserve</button> */}
                     </div>
                 </div>
@@ -259,12 +270,18 @@ export const StayReservation = ({ stay }) => {
 
                 <div className="price-breakdown-wrapper">
                     <div className="price-breakdown-con">
-                        <span className="price">{stay.price} x {getDaysCount()} nights</span>
-                        <span className="price">{stay.price * getDaysCount()}</span>
+                        <div>
+                            <span className="price">{formatNumber(stay.price)} x {getDaysCount()} nights</span>
+                            <span className="price">{formatNumber(stay.price * getDaysCount())}</span>
+                        </div>
+                        <div>
+                            <span className="">Service fee </span>
+                            <span>$0</span>
+                        </div>
                     </div>
                     <div className="total-con">
                         <span>Total</span>
-                        <span className="total-price">{stay.price * getDaysCount()}</span>
+                        <span className="total-price">{formatNumber(stay.price * getDaysCount())}</span>
                     </div>
                     <button className="btn" onClick={toggleModal}>confirm</button>
                 </div>

@@ -4,57 +4,74 @@ import { Link } from "react-router-dom";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import StarIcon from '@mui/icons-material/Star';
+import { formatNumber, utilService } from "../services/util.service";
+
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export function StayPreview({ stay }) {
-    const [imgIdx, setImgIdx] = useState(0)
+    const randDate = utilService.getRandDateRange()
+    const [availableDates, setAvailableDates] = useState(randDate)
 
-    const changeImgIdx = (ev, diff) => {
-        ev.preventDefault();
-
-        const lastImgIdx = stay.imgUrls.length - 1
-        let newImgIdx = imgIdx + diff
-
-        if (newImgIdx < 0) {
-            return setImgIdx(lastImgIdx)
-        } else if (newImgIdx === stay.imgUrls.length) {
-            return setImgIdx(0)
-        }
-
-        setImgIdx(newImgIdx)
+    const PrevArrow = (props) => {
+        const { onClick } = props;
+        return <button className="btn prev"
+            onClick={(ev) => {
+                ev.preventDefault()
+                onClick()
+            }}>
+            <NavigateBeforeIcon />
+        </button>
+    }
+    const NextArrow = (props) => {
+        const { onClick } = props;
+        return <button className="btn next" onClick={(ev) => {
+            ev.preventDefault()
+            onClick()
+        }}>
+            <NavigateNextIcon />
+        </button>
     }
 
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        prevArrow: <PrevArrow />,
+        nextArrow: <NextArrow />,
+    };
 
     if (!stay) return <div>Loading...</div>
+
+    const sumRate = (stay.reviewScores.rating) * (stay.reviews.length) / (6 * stay.reviews.length)
     return (
         <section className="stay-preview">
-         
+
             <Link to={`/stay/${stay._id}`} >
-                <div className="img-container ratio-square">
-                    <button className="btn prev" onClick={(ev) => changeImgIdx(ev, 1)}>
-                        <NavigateBeforeIcon />
-                    </button>
-                    <button className="btn next" onClick={(ev) => changeImgIdx(ev, -1)}>
-                        <NavigateNextIcon />
-                    </button>
-                    <img src={stay.imgUrls[imgIdx]} alt="property" />
-                    {/* <img src={stay.imgUrls[0]} alt="property" /> */}
+                <div className="img-container">
+                    <Slider {...settings}>
+                        {stay.imgUrls.map(imgUrl => <img key={imgUrl} src={imgUrl} alt="property" />)}
+                    </Slider>
                 </div>
-                {/* <h2>{stay.name}</h2> */}
-                {/* <Link to={`/stay/${stay._id}`} > */}
                 <div className="info-container">
                     <div className="info-header-con">
                         <div className="address-info-con">
-                            <span>{stay.address.city},</span>
+                            <span>{stay.address.city}, </span>
                             <span>{stay.address.country}</span>
                         </div>
                         <div className="rate-con">
                             <StarIcon />
-                            <span>4.85</span>
+                            <span>{(isNaN(sumRate)) ? 'New' : utilService.financial(sumRate)}</span>
                         </div>
                     </div>
-                    <span className="property-type">{stay.propertyType}</span>
-                    {/* <h4>${stay.price}</h4> */}
-                    <span className="price"><h4>${stay.price}</h4>night</span>
+                    <div className="property-type">
+                        <span>{stay.propertyType}</span>
+                        <span>{availableDates}</span>
+                    </div>
+                    <span className="price"><h4>${formatNumber(stay.price)}</h4>night</span>
                 </div>
             </Link>
         </section>

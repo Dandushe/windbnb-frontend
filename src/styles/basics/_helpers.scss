@@ -34,3 +34,13 @@
 .ratio-card { @include aspect-ratio(100, 80); }
 
 .ratio-poster { @include aspect-ratio(100, 150); }
+
+
+.read-more-less{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: 'AirLight';
+    text-decoration: underline;
+    cursor: pointer;
+}

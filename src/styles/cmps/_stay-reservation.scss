@@ -16,7 +16,8 @@
         .reservation-heder {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            // align-items: baseline;
+            align-items: flex-end;
 
             .price {
                 display: flex;
@@ -31,11 +32,21 @@
                     }
                 }
             }
-
-            .reviews-length {
-                color: $clr4;
-                font-size: rem(16px);
-                text-decoration: 1px solid $clr4 underline;
+            .rate-con{
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                span:not(:last-child){
+                    font-weight: 600;
+                }
+                svg{
+                    font-size: rem(15px);
+                }
+                .reviews-length {
+                    color: $clr4;
+                    font-size: rem(16px);
+                    text-decoration: 1px solid $clr4 underline;
+                }
             }
         }
 
@@ -88,6 +99,7 @@
 
                     .guests-main-wrapper {
                         position: relative;
+                        z-index: 1;
                         width: 99.5%;
                         height: 55px;
                         border: 1px solid #c4c4c4;
@@ -119,7 +131,6 @@
 
                         .arrow-down-icn {
                             color: $clr4;
-                            align-self: flex-end;
                             font-size: rem(28px);
                             cursor: pointer;
                         }
@@ -143,6 +154,7 @@
                                 border-bottom: 1px solid $clr6;
                                 padding: 20px 20px 20px 20px;
                                 gap: 5px;
+
                                 &.pets {
                                     border-bottom: none;
                                 }
@@ -151,7 +163,7 @@
                                     display: flex;
                                     align-items: center;
                                     gap: 15px;
-                                    
+
                                     .btn {
                                         display: grid;
                                         align-items: center;
@@ -174,7 +186,8 @@
                                             color: $clr6;
                                         }
                                     }
-                                    .val-display{
+
+                                    .val-display {
                                         padding-bottom: 0;
                                         font-size: rem(18px);
                                     }
@@ -231,9 +244,24 @@
 
             .price-breakdown-con {
                 display: flex;
-                justify-content: space-between;
-                border-bottom: 1px solid $clr6 ;
-                padding-bottom: 20px;
+                flex-direction: column;
+                gap: 15px;
+                font-weight: 600;
+
+                >* {
+
+                    display: flex;
+                    justify-content: space-between;
+                    >*:first-child{
+                        text-decoration: 0.01rem underline;
+
+                    }
+                }
+
+                >:last-child {
+                    border-bottom: 1px solid $clr6 ;
+                    padding-bottom: 20px;
+                }
 
                 .price {
 
@@ -243,6 +271,9 @@
                     }
                 }
 
+                .green{
+                    color: green
+                }
 
             }
 

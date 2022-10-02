@@ -1,41 +1,47 @@
 
 import { useEffect, useState } from "react"
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { stayService } from "../services/stay.service"
-
+import { LongText } from "../cmps/long-text"
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
 import StarIcon from '@mui/icons-material/Star';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import IosShareIcon from '@mui/icons-material/IosShare';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { StayReservation } from "../cmps/stay-reservation";
-import { BasicDatePicker } from "../cmps/date-picker";
+import { utilService } from "../services/util.service";
 
 
 export const StayDetails = () => {
     const [stay, setStay] = useState(null)
     const params = useParams()
-    const navigate = useNavigate()
+
 
     useEffect(() => {
+        //Page layout
+        const elRoot = document.querySelector(':root')
+        const prevValue = getComputedStyle(elRoot).getPropertyValue('--from-narrow-gtc')
+        elRoot.style.setProperty('--from-narrow-gtc', '1fr 1120px 1fr')
 
+        return () => {
+            elRoot.style.setProperty('--from-narrow-gtc', prevValue)
+        }
+    }, [])
+
+    useEffect(() => {
         loadStay()
     }, [params.id])
 
-    const loadStay = () => {
+    const loadStay = async () => {
         const stayId = params.id
-        stayService.getById(stayId)
-            .then(stay => {
-                setStay(stay)
-            })
+        const stay = await stayService.getById(stayId)
+        setStay(stay)
     }
 
-
-
-    // const onBack = () => {
-    //     navigate('/')
-    // }
-
     if (!stay) return <div>Loading...</div>
+    const sumRate = (stay.reviewScores.rating) * (stay.reviews.length) / (6 * stay.reviews.length)
+    const { cleanliness, communication, checkin, accuracy, location, value } = stay.reviewScores
     return (
         <section className="stay-details">
 
@@ -43,12 +49,22 @@ export const StayDetails = () => {
                 <h1>{stay.name}</h1>
                 <div className="sub-con">
                     <div className="address-info">
-                        <span>{stay.reviews.length} reviews</span>
+                        <div className="rate-con">
+                            <StarIcon />
+                            <span>{utilService.financial(sumRate)} •</span>
+                        </div>
+                        <span>{stay.reviews.length} reviews •</span>
                         <span>{stay.address.street}</span>
                     </div>
                     <div className="links-con">
-                        <span>Share</span>
-                        <span>♥ Save</span>
+                        <div>
+                            <IosShareIcon />
+                            <span> Share</span>
+                        </div>
+                        <div>
+                            <FavoriteBorderIcon />
+                            <span> Save</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,9 +85,9 @@ export const StayDetails = () => {
                                 <h2>{stay.propertyType} <span> hosted by</span> {stay.host.fullname}</h2>
 
                                 <div className="proprietary-info-con">
-                                    <span>{stay.capacity} guests</span>
-                                    <span>{stay.bedrooms} bedrooms</span>
-                                    <span>{stay.beds}{stay.beds > 1 ? 'beds' : 'bed'}</span>
+                                    <span>{stay.capacity} guests</span> •
+                                    <span>{stay.bedrooms} bedrooms</span> •
+                                    <span>{stay.beds}{stay.beds > 1 ? ' beds' : ' bed'}</span> •
                                     <span>{stay.bathrooms} bath</span>
                                 </div>
                             </div>
@@ -85,7 +101,6 @@ export const StayDetails = () => {
                             {<div className="highlight super-host-bage">
                                 <WorkspacePremiumOutlinedIcon />
                                 <div>
-                                    {/* <h4>{stay.host.fullname} <span>is a Superhost</span></h4> */}
                                     <h4>{stay.host.fullname} is a Superhost</h4>
                                     <span>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</span>
                                 </div>
@@ -103,14 +118,14 @@ export const StayDetails = () => {
 
                         <div className="info-cover">
                             <h1><span>wind</span>cover</h1>
-                            <span>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</span>
-                            <a href="">Learn more</a>
+                            <span className="test">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</span>
+                            <div>
+                                <a href="">Learn more</a>
+                            </div>
                         </div>
 
                         <div className="info-place-desc">
-                            <p>The luxurious spacious suite is furnished with a cozy seating area, flat-screen TV, minibar, double box spring, double sink, jacuzzi, hairdryer, bathroom with spacious rain shower and toilet.
-                                A luxury breakfast is served every morning.
-                                From the suite you have a unique view of the largest tidal area in the world: the Unesco</p>
+                            <LongText text={stay.description ? stay.description : 'hahahahahhaha'} limit={180} />
                         </div>
 
                         <div className="amenities">
@@ -123,66 +138,100 @@ export const StayDetails = () => {
                         <BasicDatePicker />
                         <BasicDatePicker />
                         </div> */}
-
                     </div>
                     <StayReservation stay={stay} />
                 </div>
                 <section className="reviwes">
                     <div className="reviews-header">
                         <StarIcon />
-                        <span>•</span>
+                        <h2>{utilService.financial(sumRate)} •</h2>
                         <h2>{stay.reviews.length} reviews</h2>
                     </div>
                     <div className="reviews-score-board">
-                        {/* <div> */}
-                        <div className="rate-prm"><span>Cleanliness</span> <span>{stay.reviewScores.cleanliness}</span></div>
-                        <div className="rate-prm"><span>Communication</span> <span>{stay.reviewScores.communication}</span></div>
-                        <div className="rate-prm"><span>Check-in</span> <span>{stay.reviewScores.checkin}</span></div>
-                        {/* </div> */}
-                        {/* <div> */}
-                        <div className="rate-prm"><span>Accuracy</span> <span>{stay.reviewScores.accuracy}</span></div>
-                        <div className="rate-prm"><span>Location</span> <span>{stay.reviewScores.location}</span></div>
-                        <div className="rate-prm"><span>Value</span> <span>{stay.reviewScores.value}</span></div>
-                        {/* </div> */}
+                        <div className="rate-prm">
+                            <span>Cleanliness</span>
+                            <div>
+                                <progress value={utilService.financial(cleanliness)} max={5} className="progressbar" />
+                                <span>{utilService.financial(cleanliness)}</span>
+                            </div>
+                        </div>
+                        <div className="rate-prm">
+                            <span>Communication</span>
+                            <div>
+                                <progress value={utilService.financial(communication)} max={5} className="progressbar" />
+                                <span>{utilService.financial(communication)}</span>
+                            </div>
+                        </div>
+                        <div className="rate-prm">
+                            <span>Check-in</span>
+                            <div>
+                                <progress value={utilService.financial(checkin)} max={5} className="progressbar" />
+                                <span>{utilService.financial(checkin)}</span>
+                            </div>
+                        </div>
+                        <div className="rate-prm">
+                            <span>Accuracy</span>
+                            <div>
+                                <progress value={utilService.financial(accuracy)} max={5} className="progressbar" />
+                                <span>{utilService.financial(accuracy)}</span>
+                            </div>
+                        </div>
+                        <div className="rate-prm">
+                            <span>Location</span>
+                            <div>
+                                <progress value={utilService.financial(location)} max={5} className="progressbar" />
+                                <span>{utilService.financial(location)}</span>
+                            </div>
+                        </div>
+                        <div className="rate-prm">
+                            <span>Value</span>
+                            <div>
+                                <progress value={utilService.financial(value)} max={5} className="progressbar" />
+                                <span>{utilService.financial(value)}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div className="reviwes-list-wrapper">
-                        {/* <div className="reviews-list"> */}
-                        {stay.reviews.map((review, i) =>
-
-                            <div className="reviews-list" key={i}>
-                                <div className="user-img-con"><img src={review.by.imgUrl} alt="" />
-                                    <span>{review.by.fullname}</span>
-                                    {/* <span>{review.at}</span> */}
+                    <div className="reviwes-list">
+                        {stay.reviews.splice(0, 6).map((review, i) =>
+                            <div className="review-preview" key={i}>
+                                <div className="user-img-con"><img src={review.by.imgUrl} alt="user" />
+                                    <div className="user-header">
+                                        <span>{review.by.fullname}</span>
+                                        <span className="date">September 2022</span>
+                                    </div>
 
                                 </div>
-                                <div>{review.txt}</div>
+                                <div><LongText text={review.txt} limit={180} /></div>
                             </div>)}
-                        {/* </div> */}
                     </div>
                 </section>
 
                 <section className="about-host">
-                    <div>
-                        <div className="about-host-header">
-                            <img src={stay.imgUrls[0]} alt="" />
-                            <div className="host-title-con">
-                                <h2> Hosted by {stay.host.fullname}</h2>
-                                <span>Joined in March 2019</span>
-                            </div>
+
+                    <div className="about-host-header">
+                        <img src={stay.imgUrls[0]} alt="" />
+                        <div className="host-title-con">
+                            <h2> Hosted by {stay.host.fullname}</h2>
+                            <span>Joined in March 2019</span>
                         </div>
-                        <div className="quick-host-info">
-                            <StarIcon />
-                            <span>{stay.reviews.length} Reviews</span>
-                            <VerifiedUserIcon />
-                            <span>Identity verified</span>
-                        </div>
-                        <p>{stay.interaction}</p>
                     </div>
-                    <div>
-                        <p>Languages: English, Deutsch</p>
-                        <p>Response rate: 88%</p>
-                        <p>Response time:{stay.host.responseTime}</p>
-                        <button>Contact Host</button>
+
+                    <div className="content">
+                        <div>
+                            <div className="quick-host-info">
+                                <StarIcon />
+                                <span>{stay.reviews.length} Reviews</span>
+                                <VerifiedUserIcon />
+                                <span>Identity verified</span>
+                            </div>
+                            <p>{stay.interaction}</p>
+                        </div>
+                        <div className="host-stats">
+                            <p>Languages: English, Deutsch</p>
+                            <p>Response rate: 88%</p>
+                            <p>Response time:{stay.host.responseTime}</p>
+                            <button>Contact Host</button>
+                        </div>
                     </div>
                 </section>
 
@@ -200,7 +249,6 @@ export const StayDetails = () => {
                     </section> */}
 
             </section>
-            {/* <button onClick={onBack}>Back</button> */}
         </section>
     )
 

@@ -1,11 +1,12 @@
 import { reservationService } from "../services/reservation.service";
-import { userService } from "../services/user.service";
+import { stayService } from "../services/stay.service";
+import { authService } from "../services/auth.service";
 
 export function login(credentials) {
 
     return async (dispatch) => {
         try {
-            const user = await userService.login(credentials)
+            const user = await authService.login(credentials)
             dispatch({ type: 'SET_USER', user })
 
         } catch (err) {
@@ -19,12 +20,12 @@ export function signup(credentials) {
 
     return async (dispatch) => {
         try {
-            const user = await  userService.signup(credentials)
+            const user = await authService.signup(credentials)
             dispatch({ type: 'SET_USER', user })
-            
+
         } catch (err) {
             console.log('faild to sign-up', err);
-            
+
         }
 
     }
@@ -33,9 +34,9 @@ export function signup(credentials) {
 export function logout() {
     return async (dispatch) => {
         try {
-         await userService.logout()
-         dispatch({ type: 'SET_USER', user: null })
-            
+            await authService.logout()
+            dispatch({ type: 'SET_USER', user: null })
+
         } catch (err) {
             console.log('faild to log-out', err)
         }
@@ -45,9 +46,7 @@ export function logout() {
 export function modalType(type) {
     return async (dispatch) => {
         try {
-        //  await userService.logout()
-         dispatch({ type: 'SET_MODAL_TYPE', currModalType: type })
-            
+            dispatch({ type: 'SET_MODAL_TYPE', currModalType: type })
         } catch (err) {
             console.log('faild to set modal type', err)
         }
@@ -57,23 +56,21 @@ export function modalType(type) {
 export function saveUserTrips(filterBy) {
     return async (dispatch) => {
         try {
-          const trips = await reservationService.query(filterBy)
-          console.log('trips:!!!',trips)
-         dispatch({ type: 'SET_TRIPS', trips })
-            
+            const trips = await reservationService.query(filterBy)
+            dispatch({ type: 'SET_TRIPS', trips })
         } catch (err) {
             console.log('faild to set modal type', err)
         }
     }
 }
-// export function getUserTrips(userId) {
-//     return async (dispatch) => {
-//         try {
-//         //  await userService.logout()
-//          dispatch({ type: 'SET_TRIPS', trips })
-            
-//         } catch (err) {
-//             console.log('faild to set modal type', err)
-//         }
-//     }
-// }
+
+export function saveUserListing(filterBy) {
+    return async (dispatch) => {
+        try {
+            const listings = await stayService.query(filterBy)
+            dispatch({ type: 'SET_LISTINGS', listings })
+        } catch (err) {
+            console.log('faild ', err)
+        }
+    }
+}

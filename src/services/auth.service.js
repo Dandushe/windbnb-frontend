@@ -2,7 +2,7 @@ import { httpService } from './http.service.js'
 
 // const STORAGE_KEY = 'userDB'
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
-export const userService = {
+export const authService = {
     login,
     logout,
     signup,

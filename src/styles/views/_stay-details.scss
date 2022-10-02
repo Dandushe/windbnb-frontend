@@ -1,23 +1,75 @@
 .stay-details {
+    max-width: 1120px;
 
     .top-container {
         display: flex;
         flex-direction: column;
         gap: 10px;
         padding-bottom: 20px;
+        color: $clr3;
+
+        h1 {
+            font-family: 'AirBold';
+            font-size: rem(26px);
+            font-weight: 600;
+        }
 
         .sub-con {
             display: flex;
             justify-content: space-between;
+            font-family: 'AirMedium';
 
             .address-info {
                 display: flex;
                 gap: 10px;
+
+                >span {
+                    text-decoration: 0.5px solid $clr3 underline;
+                }
+
+                .rate-con {
+                    display: flex;
+                    // align-items: center;
+                    gap: 2px;
+                    // font-size: rem(16px);
+
+                    // &::after{
+                    //     content: '•';
+                    // }
+                    svg {
+                        font-size: rem(16px);
+                        // align-self: flex-start;
+                    }
+                }
             }
 
             .links-con {
                 display: flex;
                 gap: 10px;
+                color: $clr3;
+
+                >* {
+                    display: flex;
+                    gap: 4px;
+                    padding: 5px;
+                    border-radius: 10px;
+
+                    >span {
+                        text-decoration: 0.5px solid $clr3 underline;
+                    }
+
+                    &:hover {
+                        background-color: $clr7;
+                        cursor: pointer;
+                    }
+
+                    svg {
+                        font-size: rem(18px);
+                        // font-weight: light;
+                        // align-self: flex-start;
+                    }
+
+                }
             }
         }
 
@@ -67,6 +119,9 @@
                         .proprietary-info-con {
                             display: flex;
                             gap: 10px;
+                            // font-family: 'AirMedium';
+                            // font-weight: 600;
+                            // font-weight: bolder;
                         }
                     }
 
@@ -100,6 +155,7 @@
                             h4 {
                                 font-size: rem(16px);
                                 color: $clr3;
+                                // font-weight: 600;
                             }
 
                             span {
@@ -113,8 +169,11 @@
 
 
                 .info-cover {
+                    display: flex;
+                    flex-direction: column;
                     border-bottom: 1px solid $clr6 ;
                     padding: 20px 0px 20px 0px;
+                    font-family: 'AirMedium';
 
                     h1 {
                         font-size: rem(30px);
@@ -122,7 +181,12 @@
 
                         span {
                             color: $clr1;
+                            // padding-bottom: 15px;
                         }
+                    }
+
+                    >span {
+                        margin-bottom: 20px;
                     }
 
                     a {
@@ -132,12 +196,16 @@
 
                 .info-place-desc {
                     border-bottom: 1px solid $clr6 ;
-                    padding: 20px 0px 20px 0px;
+                    padding-block: 20px;
+                    font-size: rem(17px);
+                    line-break: strict;
+
                 }
 
                 .amenities {
                     // border-bottom: 1px solid $clr6 ;
-                    padding: 40px 0px 40px 0px;
+                    // padding: 40px 0px 40px 0px;
+                    padding-block: 40px;
 
                     h3 {
                         padding-bottom: 20px;
@@ -147,6 +215,7 @@
                         display: grid;
                         grid-template-columns: 1fr 1fr;
                         gap: 14px;
+                        font-family: 'AirMedium';
 
                         span {
                             font-size: rem(18px);
@@ -154,30 +223,33 @@
                     }
                 }
 
-                .dates{
+                .dates {
                     display: flex;
                     justify-content: center;
+
                     .MuiCalendarPicker-root {
-                    //   background-color: $clr1;
+                        //   background-color: $clr1;
                         margin: 0;
                         // font-size: 20px;
-                        
+
                     }
-                    .MuiButtonBase-root{
+
+                    .MuiButtonBase-root {
                         // color: $clr3;
                     }
-                   
+
                 }
             }
+
             border-bottom: 1px solid $clr6 ;
 
         }
 
 
         .reviwes {
-            margin: 46px 0px 46px 0px;
+            // margin: 46px 0px 46px 0px;
             border-bottom: 1px solid $clr6 ;
-            padding-bottom: 46px;
+            padding-block: 40px;
 
             .reviews-header {
                 display: flex;
@@ -188,40 +260,73 @@
 
             .reviews-score-board {
                 display: grid;
-                grid-template-columns: 50% 50%;
+                grid-template-columns: 1fr 1fr;
                 column-gap: 30px;
                 row-gap: 20px;
                 padding-bottom: 40px;
                 font-size: rem(17px);
+                font-family: 'AirMedium';
 
                 .rate-prm {
                     display: flex;
                     justify-content: space-between;
+
+                    >div {
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+
+                        // justify-content: space-between;
+                        progress {
+                            accent-color: $clr3;
+                            height: 9px;
+                            width: 120px;
+                            // border: none;
+                            // background-color: $clr5;
+                            transition: 0.4s ease-in;
+                            // -webkit-appearance: none;
+                        }
+                    }
+
                 }
             }
 
-            .reviwes-list-wrapper {
+            .reviwes-list {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 50px;
 
-                .reviews-list {
+                .review-preview {
                     display: flex;
                     flex-direction: column;
                     gap: 10px;
 
-                    span {
-                        font-size: rem(18px);
-                        font-weight: bold;
+                    .user-header {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+
+                        span {
+                            font-size: rem(18px);
+                            font-weight: bold;
+                        }
+
+                        .date {
+                            font-size: rem(14px);
+                            font-weight: 400;
+                            color: $clr4;
+
+                        }
                     }
 
                     .user-img-con {
                         display: flex;
                         align-items: center;
+                        gap: 10px;
 
                         img {
-                            height: 60px;
-                            width: 60px;
+                            height: 50px;
+                            width: 50px;
                             border-radius: 50%;
                             object-fit: cover;
                         }
@@ -231,17 +336,21 @@
         }
 
         .about-host {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            // border-bottom: 1px solid $clr6 ;
-            padding-bottom: 40px;
+            // display: grid;
+            // grid-template-columns: 1fr 1fr;
+            // gap: 20px;
+            // // border-bottom: 1px solid $clr6 ;
+            // padding-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding-block: 46px;
+
 
             .about-host-header {
                 display: flex;
                 align-items: center;
                 gap: 20px;
-                padding-bottom: 15px;
 
                 img {
                     height: 70px;
@@ -266,8 +375,35 @@
                 display: flex;
                 align-items: center;
                 gap: 15px;
+            }
 
+            .content {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                // border-bottom: 1px solid $clr6 ;
+                padding-bottom: 40px;
 
+                >div {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 24px;
+                }
+
+                .host-stats {
+                    gap: 14px;
+                    align-items: flex-start;
+                }
+
+                button {
+                    padding: 13px 23px;
+                    font-size: rem(16px);
+                    border-radius: 8px;
+                    background-color: transparent;
+                    border: solid 1px $clr3;
+                    font-family: 'AirMedium';
+                    cursor: pointer;
+                }
             }
         }
     }

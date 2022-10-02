@@ -2,7 +2,7 @@ import { storageService } from "./async-storage.service"
 
 const STORAGE_KEY = 'userDB'
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
-export const userService = {
+export const authService = {
     login,
     logout,
     signup,
@@ -36,6 +36,3 @@ function logout() {
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
 }
-// Test Data
-// userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Ja', balance: 10000})
-// userService.login({username: 'muki', password: 'muki1'})

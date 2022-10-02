@@ -1,12 +1,10 @@
 import { reservationService } from "../services/reservation.service"
 
 
-
-export function loadReservations(buyerId) {
-    return async (dispatch,getState) => {
-        // const { filterBy } = getState().reservationModule
+export function loadReservations(filterBy) {
+    return async (dispatch) => {
         try {
-            let reservations = await reservationService.query(buyerId)
+            const reservations = await reservationService.query(filterBy)
             dispatch({ type: 'SET_RESERVATIONS', reservations })
         } catch (err) {
             console.error('RESERVATIONS ACTION faild load:', err)
@@ -14,27 +12,16 @@ export function loadReservations(buyerId) {
     }
 }
 
-export function setFilter(filterBy) {
-    return async (dispatch) => {
-        try {
-            dispatch({ type: 'SET_FILTER', filterBy })
-        } catch (err) {
-            console.log('filter catch', err)
-        }
-    }
-}
-
 export function updateReservation(reservation) {
     return async (dispatch) => {
         try {
-           const reservationToUpdate = reservationService.save({ ...reservation })       
+            const reservationToUpdate = reservationService.save({ ...reservation })
             dispatch({ type: 'UPDATE_RESERVATION', reservation: reservationToUpdate })
             return reservationToUpdate
-            
+
         } catch (err) {
             console.log('Updated reservation catch', err)
         }
-         
     }
 }
 
@@ -58,7 +45,6 @@ export function removeReservation(reservationId) {
 
         } catch (err) {
             console.error('Oops:', err)
-
         }
     }
 }

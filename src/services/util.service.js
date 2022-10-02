@@ -1,13 +1,11 @@
 export const utilService = {
     makeId,
-    makeLorem,
     getRandomIntInclusive,
     delay,
-    formatDate
-
+    formatDate,
+    getRandDateRange,
+    financial
 }
-
-
 
 function formatDate(date) {
     var d = new Date(date),
@@ -20,7 +18,7 @@ function formatDate(date) {
     if (day.length < 2)
         day = '0' + day;
 
-        return [year, month, day].join('-');
+    return [year, month, day].join('-');
     // return [day, month, year].join('-');
 }
 
@@ -32,16 +30,6 @@ function makeId(length = 6) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length));
     }
 
-    return txt;
-}
-
-function makeLorem(size = 100) {
-    var words = ['The sky', 'above', 'the port', 'was', 'the color of television', 'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less', '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', '.', 'It', 'was', 'a pleasure', 'to', 'burn'];
-    var txt = '';
-    while (size > 0) {
-        size--;
-        txt += words[Math.floor(Math.random() * words.length)] + ' ';
-    }
     return txt;
 }
 
@@ -57,3 +45,28 @@ function delay(ms = 1500) {
     })
 }
 
+
+function getRandDateRange() {
+    const now = new Date();
+
+    const thisMonth = now.getMonth();
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+    const nextMonth = months[thisMonth + 1]
+
+    const startDate = getRandomIntInclusive(1, 27)
+
+    let maxEndDate = startDate + 7
+    if (maxEndDate > 28) maxEndDate = 28
+    const endDate = getRandomIntInclusive(startDate + 1, maxEndDate)
+
+    const dateStr = `${nextMonth} ${startDate} - ${endDate}`
+    return dateStr
+}
+
+function financial(x) {
+    return Number.parseFloat(x).toFixed(1);
+}
+
+export function formatNumber(num) {
+    return num.toLocaleString('en-US')
+}

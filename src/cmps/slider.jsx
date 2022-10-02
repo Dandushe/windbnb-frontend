@@ -12,10 +12,10 @@ const AirbnbSlider = styled(Slider)(({ theme }) => ({
     height: 3,
     padding: '13px 0',
     '& .MuiSlider-thumb': {
-        // height: 37,
-        // width: 37,
-        height: 27,
-        width: 27,
+        height: 30,
+        width: 30,
+        // height: 27,
+        // width: 27,
         backgroundColor: '#fff',
         border: '1px solid currentColor',
         '&:hover': {
@@ -61,7 +61,7 @@ AirbnbThumbComponent.propTypes = {
 export default function CustomizedSlider({minPrice,maxPrice,handleChange}) {
 
     return (
-        <Box sx={{ width: 520 }}>
+        <Box sx={{ width: 450 }}>
             <Box sx={{ m: 3 }} />
             <Typography gutterBottom></Typography>
             <AirbnbSlider

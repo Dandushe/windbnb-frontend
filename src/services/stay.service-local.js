@@ -21,7 +21,6 @@ const gDefaultStays = [
         "capacity": 8,
         "bedrooms": 2,
         "beds": 4,
-        "numOfReviews": 9,
         "highlights": {
             "selfCheckIn": false,
             "greatLocation": true,
@@ -235,7 +234,6 @@ const gDefaultStays = [
         "capacity": 2,
         "bedrooms": 1,
         "beds": 1,
-        "numOfReviews": 4,
         "highlights": {
             "selfCheckIn": false,
             "greatLocation": true,
@@ -357,7 +355,6 @@ const gDefaultStays = [
         "capacity": 4,
         "bedrooms": 2,
         "beds": 2,
-        "numOfReviews": 18,
         "highlights": {
             "selfCheckIn": false,
             "greatLocation": true,

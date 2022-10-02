@@ -1,0 +1,100 @@
+.hosting-reservation-main-wrapper {
+    .stats-warpper {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin-bottom: 30px;
+        gap: 20px;
+
+        >* {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            // width: 220px;
+            width: 100%;
+            border: 1px solid $clr6;
+            border-radius: 10px;
+            padding: 10px;
+
+            // gap: 40px;
+            p {
+                font-weight: 600;
+                font-size: rem(14px);
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+
+                .total {
+                    font-family: 'AirMedium';
+                    padding-inline-end: 3px;
+                }
+
+                .percentage {
+                    // font-size: rem(14px);
+                    color: #0BDA51;
+
+                    &::before {
+                        content: '+';
+                        color: $clr6;
+                    }
+                }
+            }
+
+
+
+
+        }
+    }
+
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    table {
+        width: 100%;
+        // border-bottom: 1px solid $clr6;
+        // border: 1px solid $clr6;
+        color: $clr3;
+        border-collapse: collapse;
+
+        tr {
+            border-bottom: 1px solid $clr6;
+        }
+
+        tbody {
+
+
+            tr:hover {
+                background-color: $clr7;
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            // border: 1px solid $clr6;
+            // font-weight: 600;
+            .approved {
+                color: #0BDA51;
+            }
+
+            .pending {
+                color: #FFBF00;
+            }
+
+            .declined {
+                color: #DC143C;
+            }
+
+        }
+
+        th,
+        td {
+            text-align: start;
+            padding: 10px;
+            // border-bottom: 1px solid $clr4;
+        }
+    }
+
+}

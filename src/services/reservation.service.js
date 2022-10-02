@@ -1,6 +1,4 @@
-
 import { httpService } from './http.service.js'
-
 
 export const reservationService = {
     query,
@@ -8,28 +6,13 @@ export const reservationService = {
     remove,
     getById,
 }
-const BASE_URL = `reservation/`
-// function query(buyerId) {
 
-//     return storageService.query(STORAGE_KEY)
-//         .then(reservations =>{
-//             if(buyerId){
-//                 // let {userId} =filterBy
-//                 reservations = reservations.filter(reservation => reservation.buyer._id === buyerId)
-//             }
-//             return reservations
-//         })
-//         // return reservations
-//     }
+const BASE_URL = `reservation/`
+
 
 function query(filterBy) {
-    console.log("queryrese , filterBy", filterBy)
-        
     return httpService.get(BASE_URL, filterBy)
 }
-
-
-
 
 function getById(reservationId) {
     return httpService.get(BASE_URL + reservationId).then((res) => res)

@@ -2,13 +2,58 @@
 
     .img-container {
         position: relative;
+        overflow: hidden;
         border-radius: 20px;
+        overflow: hidden;
+
+        // >div {
+        //     border-radius: 20px;
+        //     overflow: hidden;
+        // }
+
+        img {
+            border-radius: 20px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .slick-dots {
+            bottom: 10px;
+            z-index: 1;
+
+            li {
+                margin: 0;
+                width: 12px;
+
+                ::before {
+                    color: $clr2;
+                    opacity: .6;
+                    font-size: 7px;
+                }
+
+                &.slick-active {
+
+                    ::before {
+                        opacity: 1;
+                    }
+                }
+
+                &:first-child:not(.slick-active),
+                &:last-child:not(.slick-active) {
+                    ::before {
+                        font-size: 5px;
+                        line-height: 18px;
+                    }
+
+                }
+            }
+        }
 
         .prev,
         .next {
             display: none;
             position: absolute;
-            z-index: 10;
+            z-index: 1;
             top: 50%;
             transform: translateY(-50%);
             background-color: rgba(255, 255, 255, 0.9);
@@ -51,19 +96,20 @@
     .info-container {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        // gap: 8px;
         padding: 8px 0px 10px 0px;
 
         .info-header-con {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 4px;
+            // padding-bottom: 4px;
 
             .address-info-con {
                 span {
                     font-weight: bold;
-                    font-size: rem(15px);
+                    font-size: rem(16px);
+                    letter-spacing: rem(0.5px);
                 }
 
 
@@ -74,9 +120,10 @@
                 align-items: center;
                 gap: 2px;
 
+                // font-size: rem(16px);
                 svg {
                     font-size: rem(16px);
-                    align-self: flex-start;
+                    // align-self: flex-start;
                 }
             }
 
@@ -92,16 +139,20 @@
         // }
 
         .property-type {
-            color: $clr5;
-            font-size: rem(14px);
-            letter-spacing: rem(0.5px);
-
+            display: flex;
+            flex-direction: column;
+            color: $clr4;
+            font-size: rem(16px);
+            // letter-spacing: rem(0.5px);
+            // font-weight: 600;
+            // font-family: AirMedium;
         }
 
         .price {
             display: flex;
             gap: 2px;
-            padding-top: 4px;
+            padding-top: 8px;
+            font-size: rem(17px);
         }
     }
 }

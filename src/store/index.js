@@ -15,6 +15,3 @@ const composeEnhancers =
 
 export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 window.gStore = store
-// store.subscribe(() => {
-//     console.log('Store state is:', store.getState())
-// })

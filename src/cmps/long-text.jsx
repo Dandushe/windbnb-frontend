@@ -1,3 +1,4 @@
+import React from "react"
 
 
 
@@ -22,8 +23,8 @@ export class LongText extends React.Component {
     }
 
     get cropedText() {
-        const { isLongShown, limit } = this.state
-        const { text } = this.props
+        const { isLongShown } = this.state
+        const { text ,limit} = this.props
         return isLongShown ? text : text.substr(0, limit)
     }
 

@@ -1,12 +1,17 @@
-#root, .App{
+:root {
+    --from-narrow-gtc: 80px 1fr 80px;
+}
+
+#root,
+.App {
     min-height: 100vh;
 }
 
-.App{
+.App {
     grid-template-rows: min-content 1fr min-content;
     // gap: 20px;
     // padding-bottom: 10px;
-    
+
 }
 
 .main-layout {
@@ -15,22 +20,26 @@
     grid-template-columns: $layoutPadding 1fr $layoutPadding;
     // grid-auto-columns: 100px 200px 100px;
 
-    > * {
+    >* {
         grid-column: 2;
     }
 
-    > *.full {
+    >*.full {
         grid-column: 1 / -1;
     }
 
-    // @include for-narrow-layout {
-    //     @include layoutGTC($break-narrow);
-    // }
-    
+    @include for-narrow-layout {
+        // @include layoutGTC($break-narrow);
+
+        // grid-template-columns: $layoutPadding 1fr $layoutPadding;
+        grid-template-columns: var(--from-narrow-gtc);
+        // grid-template-columns: 1fr 1120px 1fr;
+    }
+
     // @include for-normal-layout {
     //     @include layoutGTC($break-normal);
     // }
-    
+
     // @include for-wide-layout {
     //     @include layoutGTC($break-wide);
     // }
@@ -41,13 +50,13 @@
     margin-bottom: rem(90px);
 }
 
-.main-screen{
+.main-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0 ,0, 0 , 0.29);
-    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.29);
+    z-index: 2;
     pointer-events: auto;
 }
