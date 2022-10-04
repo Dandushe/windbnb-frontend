@@ -6,16 +6,21 @@ import { utilService } from "../services/util.service"
 import { uploadImg } from "../services/upload-service"
 import { iconService } from "../services/icon.service"
 import { useDispatch, useSelector } from "react-redux"
-import { addStay } from "../store/stay.action"
+import { addStay, modalType } from "../store/stay.action"
 import { LongText } from "../cmps/long-text"
 import { BrandBtn } from "../cmps/brand-btn"
 import { ToolTip } from "../cmps/tool-tip"
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+
 
 export const BecomeHost = () => {
     const user = useSelector(state => state.userModule.user)
+    const currModalType = useSelector(state => state.stayModule.currModalType)
     const [tabIdx, setTabIdx] = useState(0)
     const [isOn, setIsOn] = useState(true)
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
     const [stay, setStay] = useState({
         name: '',
@@ -125,13 +130,17 @@ export const BecomeHost = () => {
         setIsOn(prevIsOn => !prevIsOn)
     }
 
+    const onSelectModalType = (type) => {
+        dispatch(modalType(type))
+    }
+
     // const toggleVideo = () => {
     //     const elVideo = document.querySelector('video');
     //     if (hostVideo.paused) hostVideo.play();
     //     else hostVideo.pause();
     // }
 
-    const onAddListing = async() => {
+    const onAddListing = async () => {
         await dispatch(addStay(stay))
         navigate('/dashboard/listing')
     }
@@ -172,12 +181,19 @@ export const BecomeHost = () => {
         'Desert',
         'Creative spaces'
     ]
+    const prevButton = {
+        prevBtnIcn: <Tooltip title="go back" onClick={() => navigate('/')}>
+            <IconButton>
+                <NavigateBeforeIcon />
+            </IconButton>
+        </Tooltip>
+    }
 
     const { country, city, street } = stay.address
     return (
         <section className="become-host-main-wrapper">
             {!isOn && <section className="side-wrapper">
-               
+
                 <div className="questions-con">
                     {tabIdx === 0 && <div>What kind of place will you host?</div>}
                     {tabIdx === 1 && <div>What kind of space will guests have?</div>}
@@ -333,7 +349,6 @@ export const BecomeHost = () => {
                         name="description"
                         value={stay.description}
                         onChange={handleChange}
-                        // disabled={stay.description.length === 100}
                         maxlength='500'
                     >{stay.description}</textarea>
                     <div>{stay.description.length} / 500</div>
@@ -388,7 +403,7 @@ export const BecomeHost = () => {
                         </div>
                     </div>
                     <div className="preview-desc">
-                        <p><LongText text={stay.description} limit={40}/></p>
+                        <p><LongText text={stay.description} limit={40} /></p>
                     </div>
                     <div className="preview-location">
                         <h4>Location</h4>
@@ -402,13 +417,13 @@ export const BecomeHost = () => {
                     </div>
                     <div className="paging-btns-con">
                         <button className="btn-back" onClick={() => changeTabIdx(-1)}>Back</button>{(tabIdx !== 10) && <button className="btn-next" onClick={() => changeTabIdx(1)} disabled={tabIdx === 11}>Next</button>}
-                        {/* {(tabIdx === 10) && <button className="btn-save-listing" onClick={onAddListing}>Save your listing</button>} */}
-                        {(tabIdx === 10) && <BrandBtn text={'Save your listing'} cb={onAddListing} />}
+                        {(tabIdx === 10) && <button className="btn-save-listing" onClick={onAddListing}>Save your listing</button>}
                     </div>
                 </div>
             </section>}
 
             {isOn && <section className="side-con">
+                {prevButton.prevBtnIcn}
                 <div>Open your door to hosting</div>
                 <BrandBtn text={'Try hosting'} cb={toggleIsOn} />
             </section>}

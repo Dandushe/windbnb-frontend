@@ -3,7 +3,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 12;
     background-color: $clr2;
     border: 1px solid $clr5;
     border-radius: 15px;
@@ -18,7 +18,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        gap: 12px;
+        gap: 16px;
         padding: 20px 32px;
 
         .title {
@@ -32,7 +32,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        gap: 12px;
+        gap: 16px;
         padding: 20px 32px;
 
         .title {
@@ -47,7 +47,7 @@
         gap: 20px;
 
         input {
-            width: 200px;
+            width: 250px;
             height: 50px;
             border-radius: 7px;
             border: 1px solid #6b6b6b3d;
@@ -81,6 +81,12 @@
             border-radius: 5px;
             padding: 12px;
             cursor: pointer;
+        }
+
+        span{
+            text-align: center;
+            text-decoration: underline;
+            cursor:pointer;
         }
     }
 

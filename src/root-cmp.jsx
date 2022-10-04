@@ -12,13 +12,13 @@ function App() {
 
   return (
     <div className={`App ${location.pathname !== '/host' && 'main-layout'}`}>
-      <Screen />
       {location.pathname !== '/host' && <AppHeader />}
       <Routes>
         {routes.map(route => <Route key={route.path} element={route.component} path={route.path} />)}
       </Routes>
       <LoginSignup />
       {location.pathname === '/' && <AppFooter />}
+      <Screen />
     </div>
   );
 }

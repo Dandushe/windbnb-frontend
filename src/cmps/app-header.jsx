@@ -42,7 +42,10 @@ export const AppHeader = () => {
             {/* <div className="main-header"> */}
             <div className={`main-header ${(currModalType === 'expended-pill') ? 'expended' : ''}`}>
 
-                <Link to='/' className="logo">windbnb</Link>
+                {/* <Link to='/' className="logo">windbnb</Link> */}
+                <Link to='/' className="logo">
+                    <img style={{ width: '50px' }} src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664797356/LOGOOO_og9lqv.png" alt="logo" />
+                </Link>
 
                 {location.pathname.startsWith('/dashboard') ?
                     <nav className="dashboard-nav">
@@ -68,7 +71,7 @@ export const AppHeader = () => {
 
                         {isShown && <div className="dropdown-content">
                             {user && <Link to='/dashboard/trips'>Trips</Link>}
-                            <span>Wishlist</span>
+                            {user && <span>Wishlist</span>}
                             {user && <Link to='/dashboard/listing'>Manage listings</Link>}
                             {!user && <span onClick={() => onSelectModalType('login')}>Log in</span>}
                             {!user && <span onClick={() => onSelectModalType('signup')}>Sign up</span>}

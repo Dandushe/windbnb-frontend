@@ -31,6 +31,22 @@ export function signup(credentials) {
     }
 }
 
+export function update(credentials) {
+console.log("updateACTION , credentials", credentials)
+
+    return async (dispatch) => {
+        try {
+            const user = await authService.update(credentials)
+            dispatch({ type: 'SET_USER', user })
+
+        } catch (err) {
+            console.log('faild to update user', err);
+
+        }
+
+    }
+}
+
 export function logout() {
     return async (dispatch) => {
         try {

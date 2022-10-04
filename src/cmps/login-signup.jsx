@@ -62,57 +62,63 @@ export const LoginSignup = () => {
         setCredentials(prevCredentials => ({ ...prevCredentials, [field]: value }))
     }
 
+    const onSelectModalType = (type) => {
+        dispatch(modalType(type))
+    }
+
     if (currModalType === 'login' || currModalType === 'signup') return (
 
         <section className="login-signup-main-wrapper">
             {(currModalType === 'login') && <div className="login-wrapper">
                 <div className="title">Log-in</div>
                 <form onSubmit={onLogin}>
-                        <input
-                            ref={inputRef}
-                            type="text"
-                            name='username'
-                            value={credentials.username}
-                            onChange={handleChange}
-                            placeholder='User-name'
-                            autoComplete="off" />
-                        <input
-                            type="password"
-                            name='password'
-                            value={credentials.password}
-                            onChange={handleChange}
-                            placeholder="Enter password"
-                            autoComplete="off" />
+                    <input
+                        ref={inputRef}
+                        type="text"
+                        name='username'
+                        value={credentials.username}
+                        onChange={handleChange}
+                        placeholder='User-name'
+                        autoComplete="off" />
+                    <input
+                        type="password"
+                        name='password'
+                        value={credentials.password}
+                        onChange={handleChange}
+                        placeholder="Enter password"
+                        autoComplete="off" />
                     <button>Log-in</button>
                     {/* <button type='button' onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button> */}
+                    <span onClick={() => onSelectModalType('signup')}>Don't have an account yet?</span>
                 </form>
             </div>}
             {(currModalType === 'signup') && <div className="signup-wrapper">
                 <div className="title">Signup</div>
                 <form onSubmit={onSignup}>
-                        <input
-                            type="text"
-                            name='fullname'
-                            value={credentials.fullname}
-                            onChange={handleChange}
-                            placeholder='Full-name'
-                            autoComplete="off" />
-                        <input
-                            type="text"
-                            name='username'
-                            value={credentials.username}
-                            onChange={handleChange}
-                            placeholder='User-name'
-                            autoComplete="off"
-                        />
-                        <input
-                            type="password"
-                            name='password'
-                            value={credentials.password}
-                            onChange={handleChange}
-                            placeholder="Enter password"
-                            autoComplete="off" />
+                    <input
+                        type="text"
+                        name='fullname'
+                        value={credentials.fullname}
+                        onChange={handleChange}
+                        placeholder='Full-name'
+                        autoComplete="off" />
+                    <input
+                        type="text"
+                        name='username'
+                        value={credentials.username}
+                        onChange={handleChange}
+                        placeholder='User-name'
+                        autoComplete="off"
+                    />
+                    <input
+                        type="password"
+                        name='password'
+                        value={credentials.password}
+                        onChange={handleChange}
+                        placeholder="Enter password"
+                        autoComplete="off" />
                     <button>Sign-up</button>
+                    <span onClick={() => onSelectModalType('login')}>Log in</span>
                     {/* <button type='button' onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button> */}
                 </form>
             </div>}

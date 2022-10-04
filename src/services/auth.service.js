@@ -7,6 +7,7 @@ export const authService = {
     logout,
     signup,
     getLoggedinUser,
+    update
     
 }
 
@@ -30,4 +31,9 @@ async function logout() {
 
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
+}
+
+async function update(user) {
+    user = await httpService.put(`user/${user._id}`, user)
+    return user
 }

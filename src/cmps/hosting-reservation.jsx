@@ -7,7 +7,9 @@ import StarIcon from '@mui/icons-material/Star';
 import { formatNumber } from "../services/util.service";
 import { BrandBtn } from "./brand-btn";
 import { useNavigate } from "react-router-dom";
-
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 export const HostingReservation = () => {
     const user = useSelector(state => state.userModule.user)
@@ -25,6 +27,14 @@ export const HostingReservation = () => {
     // 'declined'
     // 'approved'
     // 'pending'
+
+    const prevButton = {
+        prevBtnIcn: <Tooltip title="go back" onClick={() => navigate('/')}>
+            <IconButton>
+                <NavigateBeforeIcon />
+            </IconButton>
+        </Tooltip>
+    }
     if (!reservations) return <div>Loading...</div>
     return (
         <section className="hosting-reservation-main-wrapper">
@@ -65,8 +75,8 @@ export const HostingReservation = () => {
                     <StarIcon />
                 </div>
             </div>}
-
-            {!reservations&& <h1>Reservations</h1>}
+            {prevButton.prevBtnIcn}
+             <h1>Reservations</h1>
 
            {!reservations&&  <table>
                 <thead>
@@ -98,7 +108,12 @@ export const HostingReservation = () => {
                 </tbody>
             </table>}
 
-            <section className="hosting-banner-wrapper">
+            
+            <section>
+                <h3>You have no reservations yet...</h3>
+            </section>
+
+            {/* <section className="hosting-banner-wrapper">
                 <div className="banner-title">Find out what you could earn as a Host</div>
                 <div className="stats-hosting-con">
                     <div className="avg-income">
@@ -115,7 +130,7 @@ export const HostingReservation = () => {
                     </div>
                 </div>
                 <BrandBtn text={'Let`s go!'} cb={() => navigate('/host')} />
-            </section>
+            </section> */}
         </section>
     )
 }

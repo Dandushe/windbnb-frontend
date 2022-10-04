@@ -134,7 +134,8 @@ export const StayDetails = () => {
                         <div className="amenities">
                             <h3>What this place offers</h3>
                             <div className="amenities-wrapper">
-                                {stay.amenities.splice(0, 10).map((item, i) => <span key={i}>{item}</span>)}
+                                {stay.amenities.splice(0, 10).map((item, i) => <span key={i}> 
+                                {item}</span>)}
                             </div>
                         </div>
                         {/* <div className="dates">

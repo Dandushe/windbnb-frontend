@@ -1,16 +1,35 @@
+import { useState } from "react"
 import Dropzone from "react-dropzone"
 import { useDispatch, useSelector } from "react-redux"
 import { uploadImg } from "../services/upload-service"
+import { update } from "../store/user.action"
 
 
 export const UserProfile = () => {
 
     const user = useSelector(state => state.userModule.user)
     const dispatch = useDispatch()
+    const [credentials, setCredentials] = useState({
+        // userImg: '',
+        mailAddress: ''
+    })
+
 
     const onUploadImg = async (ev) => {
         const newImgUrls = await uploadImg(ev)
         // setStay(prevStay => ({ ...prevStay, imgUrls: [...prevStay.imgUrls, newImgUrls] }))
+    }
+
+    const handleChange = ({ target }) => {
+        const field = target.name
+        const value = target.type === 'number' ? +target.value : target.value
+        setCredentials(prevCredentials => ({ ...prevCredentials, [field]: value }))
+    }
+
+    const onSubmit = (ev) => {
+        ev.preventDefault()
+       const updatedCred ={...credentials}
+        dispatch(update(updatedCred))
     }
 
     return (
@@ -30,7 +49,19 @@ export const UserProfile = () => {
                     )}
                 </Dropzone>
                 <div className="confirmation">
-                    <input type="email" name="email" />
+                    <div>
+                        <div>Email verification</div>
+                        <p>Add your email address</p>
+
+                        <form onSubmit={onSubmit}>
+                            <input
+                                type="email"
+                                name="mailAddress"
+                                autoComplete="off"
+                                onChange={handleChange}
+                                placeholder="user@example.com" />
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -38,7 +69,7 @@ export const UserProfile = () => {
                 <div>
                     <h1>Hi, I`m {user.fullname}</h1>
                     <div className="sub">Joined in 2022</div>
-                    <form >
+                    {/* <form >
                         <label >
                             About
                             <textarea name="about"></textarea>
@@ -51,7 +82,7 @@ export const UserProfile = () => {
                             Work
                             <input type="text" name="work" />
                         </label>
-                    </form>
+                    </form> */}
                 </div>
 
             </section>

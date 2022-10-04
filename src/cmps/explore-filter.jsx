@@ -67,65 +67,66 @@ export const ExploreFilter = () => {
     }
 
     return (
-        <section className="explore-filter-main-wrapper ">
-            <div className="filter-content-wrapper">
+        // <section className="explore-filter-main-wrapper ">
+        <div className="explore-filter-wrapper">
 
 
-                <div className="category-filterbar-wrapper">
-                    {/* <Slider {...settings}> */}
-                    <div className={(filterBy.category === 'Amazing views') ? 'active' : ''} onClick={() => onSelectValue('category', 'Amazing views')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568190/windbnb/views.png" alt="view" />
-                        Amazing views</div>
-                    <div className={(filterBy.category === 'Lake') ? 'active' : ''} onClick={() => onSelectValue('category', 'Lake')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568378/windbnb/lake.png" alt="lake" />
-                        Lakes</div>
-                    <div className={(filterBy.category === 'Amazing pools') ? 'active' : ''} onClick={() => onSelectValue('category', 'Amazing pools')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568136/windbnb/pool.png" alt="pool" />
-                        Amazing pools</div>
-                    <div className={(filterBy.category === 'Islands') ? 'active' : ''} onClick={() => onSelectValue('category', 'Islands')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568088/windbnb/island.png" alt="island" />
-                        Islands</div>
-                    <div className={(filterBy.category === 'Mansions') ? 'active' : ''} onClick={() => onSelectValue('category', 'Mansions')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568017/windbnb/mansions.png" alt="mansions" />
-                        Mansions</div>
-                    <div className={(filterBy.category === 'Arctic') ? 'active' : ''} onClick={() => onSelectValue('category', 'Arctic')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664566778/windbnb/arctic.png" alt="arctic" />
-                        Arctic</div>
-                    <div className={(filterBy.category === 'OMG!') ? 'active' : ''} onClick={() => onSelectValue('category', 'OMG!')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664566733/windbnb/omg.png" alt="omg" />
-                        OMG!</div>
-                    <div className={(filterBy.category === 'Beach') ? 'active' : ''} onClick={() => onSelectValue('category', 'Beach')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664567712/windbnb/beach.png" alt="beach" />
-                        Beach</div>
-                    <div className={(filterBy.category === 'Cabins') ? 'active' : ''} onClick={() => onSelectValue('category', 'Cabins')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664566509/windbnb/cabin.png" alt="cabin" />
-                        Cabins
-                    </div>
-                    <div className={(filterBy.category === 'Bed & breakfast') ? 'active' : ''} onClick={() => onSelectValue('category', 'Bed & breakfast')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568592/windbnb/bnb.png" alt="bnb" />
-                        Bed & breakfast
-                    </div>
-                    <div className={(filterBy.category === 'Campers') ? 'active' : ''} onClick={() => onSelectValue('category', 'Campers')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568772/windbnb/camp.png" alt="capm" />
-                        Campers
-                    </div>
-                    <div className={(filterBy.category === 'Desert') ? 'active' : ''} onClick={() => onSelectValue('category', 'Desert')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568883/windbnb/desert.png" alt="Desert" />
-                        Desert
-                    </div>
-                    <div className={(filterBy.category === 'Creative spaces') ? 'active' : ''} onClick={() => onSelectValue('category', 'Creative spaces')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664569019/windbnb/creative.png" alt="creative" />
-                        Creative spaces
-                    </div>
-                    {/* </Slider> */}
+            <div className="category-filterbar-wrapper">
+                {/* <Slider {...settings}> */}
+                <div className={(filterBy.category === 'Amazing views') ? 'active' : ''} onClick={() => onSelectValue('category', 'Amazing views')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568190/windbnb/views.png" alt="view" />
+                    Amazing views</div>
+                <div className={(filterBy.category === 'Lake') ? 'active' : ''} onClick={() => onSelectValue('category', 'Lake')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568378/windbnb/lake.png" alt="lake" />
+                    Lakes</div>
+                <div className={(filterBy.category === 'Amazing pools') ? 'active' : ''} onClick={() => onSelectValue('category', 'Amazing pools')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568136/windbnb/pool.png" alt="pool" />
+                    Amazing pools</div>
+                <div className={(filterBy.category === 'Islands') ? 'active' : ''} onClick={() => onSelectValue('category', 'Islands')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568088/windbnb/island.png" alt="island" />
+                    Islands</div>
+                <div className={(filterBy.category === 'Mansions') ? 'active' : ''} onClick={() => onSelectValue('category', 'Mansions')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568017/windbnb/mansions.png" alt="mansions" />
+                    Mansions</div>
+                <div className={(filterBy.category === 'Arctic') ? 'active' : ''} onClick={() => onSelectValue('category', 'Arctic')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664566778/windbnb/arctic.png" alt="arctic" />
+                    Arctic</div>
+                <div className={(filterBy.category === 'OMG!') ? 'active' : ''} onClick={() => onSelectValue('category', 'OMG!')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664566733/windbnb/omg.png" alt="omg" />
+                    OMG!</div>
+                <div className={(filterBy.category === 'Beach') ? 'active' : ''} onClick={() => onSelectValue('category', 'Beach')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664567712/windbnb/beach.png" alt="beach" />
+                    Beach</div>
+                <div className={(filterBy.category === 'Cabins') ? 'active' : ''} onClick={() => onSelectValue('category', 'Cabins')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664566509/windbnb/cabin.png" alt="cabin" />
+                    Cabins
                 </div>
+                <div className={(filterBy.category === 'Bed & breakfast') ? 'active' : ''} onClick={() => onSelectValue('category', 'Bed & breakfast')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568592/windbnb/bnb.png" alt="bnb" />
+                    Bed & breakfast
+                </div>
+                <div className={(filterBy.category === 'Campers') ? 'active' : ''} onClick={() => onSelectValue('category', 'Campers')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568772/windbnb/camp.png" alt="capm" />
+                    Campers
+                </div>
+                <div className={(filterBy.category === 'Desert') ? 'active' : ''} onClick={() => onSelectValue('category', 'Desert')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568883/windbnb/desert.png" alt="Desert" />
+                    Desert
+                </div>
+                <div className={(filterBy.category === 'Creative spaces') ? 'active' : ''} onClick={() => onSelectValue('category', 'Creative spaces')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664569019/windbnb/creative.png" alt="creative" />
+                    Creative spaces
+                </div>
+                {/* </Slider> */}
+            </div>
 
-                <button className="btn btn-filter-modal" onClick={() => onSelectModalType('filter-options')}>Filter</button>
+            <button className="btn btn-filter-modal" onClick={() => onSelectModalType('filter-options')}>Filter</button>
 
-                {(currModalType === 'filter-options') && <form className="filter-options-modal-wrapper" onSubmit={onFilter}>
-                    <div className="modal-header">
-                        <h3>Filters</h3>
-                    </div>
+            {(currModalType === 'filter-options') && <form className="filter-options-modal-wrapper" onSubmit={onFilter}>
+                <div className="modal-header">
+                    <h3>Filters</h3>
+                </div>
+                <div className="filter-content">
                     <div className="price-range-wrapper">
                         <div className="price-range-title">
                             <h2>Price range</h2>
@@ -146,58 +147,61 @@ export const ExploreFilter = () => {
                         </div>
                     </div>
                     {/* <FormGroup> */}
-                    <div className="check-boxs-wrappeer">
+                    <div className="room-types">
                         <h1>Type of place</h1>
-                        {/* <FormControlLabel */}
-                        <label className="label-con">
-                            <Checkbox
-                                name="Entire place"
-                                checked={filterBy.roomTypes.includes('Entire place')}
-                                onChange={toggleRoomType}
-                                color="default"
-                            />
-                            <div className="text-con">
-                                <p>Entire place</p>
-                                <p>A place all to yourself</p>
-                            </div>
-                        </label>
-                        {/* // label="Entire place" /> */}
-                        {/* <FormControlLabel */}
-                        <label className="label-con">
-                            <Checkbox
-                                name="Shared room"
-                                checked={filterBy.roomTypes.includes('Shared room')}
-                                onChange={toggleRoomType}
-                                color="default"
-                            />
-                            <div className="text-con">
-                                <p>Shared room</p>
-                                <p>A sleeping space and common areas that may be shared with others</p>
-                            </div>
-                        </label>
-                        {/* label="Shared room" /> */}
-                        {/* <FormControlLabel */}
-                        <label className="label-con">
-                            <Checkbox
-                                name="Private room"
-                                checked={filterBy.roomTypes.includes('Private room')}
-                                onChange={toggleRoomType}
-                                color="default"
-                            // sx={{ '& .MuiSvgIcon-root': { width: 30} }}
-                            />
-                            <div className="text-con">
-                                <p>Private room</p>
-                                <p>Your own room in a home or a hotel, plus some shared common spaces</p>
-                            </div>
-                        </label>
+                        <div className="checkboxes-wrapper">
+                            {/* <FormControlLabel */}
+                            <label className="label-con">
+                                <Checkbox
+                                    name="Entire place"
+                                    checked={filterBy.roomTypes.includes('Entire place')}
+                                    onChange={toggleRoomType}
+                                    color="default"
+                                />
+                                <div className="text-con">
+                                    <p>Entire place</p>
+                                    <p>A place all to yourself</p>
+                                </div>
+                            </label>
+                            {/* // label="Entire place" /> */}
+                            {/* <FormControlLabel */}
+                            <label className="label-con">
+                                <Checkbox
+                                    name="Shared room"
+                                    checked={filterBy.roomTypes.includes('Shared room')}
+                                    onChange={toggleRoomType}
+                                    color="default"
+                                />
+                                <div className="text-con">
+                                    <p>Shared room</p>
+                                    <p>A sleeping space and common areas that may be shared with others</p>
+                                </div>
+                            </label>
+                            {/* label="Shared room" /> */}
+                            {/* <FormControlLabel */}
+                            <label className="label-con">
+                                <Checkbox
+                                    name="Private room"
+                                    checked={filterBy.roomTypes.includes('Private room')}
+                                    onChange={toggleRoomType}
+                                    color="default"
+                                // sx={{ '& .MuiSvgIcon-root': { width: 30} }}
+                                />
+                                <div className="text-con">
+                                    <p>Private room</p>
+                                    <p>Your own room in a home or a hotel, plus some shared common spaces</p>
+                                </div>
+                            </label>
+                        </div>
                     </div>
-                    <div className="submit-search-con">
-                        <button className="btn btn-submit-filter">Filter</button>
-                    </div>
-                </form>}
-                {/* </FormGroup> */}
-            </div>
-        </section>
+                </div>
+                <div className="submit-search-con">
+                    <button className="btn btn-submit-filter">Filter</button>
+                </div>
+            </form>}
+            {/* </FormGroup> */}
+        </div>
+        // </section >
     )
 }
 

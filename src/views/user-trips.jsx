@@ -36,7 +36,7 @@ export const UserTrips = () => {
                         <p className="title">No trips booked...yet!</p>
                         <p className="sub">Time to dust off your bags and start planning your next adventure</p>
                     </div>
-                    <BrandBtn text="Start searching" cb={() => navigate('/host')} />
+                    <BrandBtn text="Start searching" cb={() => navigate('/')} />
                 </div>
                 <div className="img-container">
                     <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664009033/windbnb/family.jpg" alt="family" />

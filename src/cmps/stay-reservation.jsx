@@ -40,6 +40,11 @@ export const StayReservation = ({ stay }) => {
 
     const onReserve = (ev) => {
         ev.preventDefault()
+
+        if (!user) {
+            dispatch(modalType('login'))
+            return
+        }
         let rservToSave = {
             hostId: stay.host._id,
             hostName: stay.host.fullname,
@@ -74,8 +79,8 @@ export const StayReservation = ({ stay }) => {
         setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen)
     }
 
-    const onSelectValue = (field, value) => {
-
+    const onSelectValue = (ev, field, value) => {
+        ev.preventDefault()
         setReservation(prevReservation => ({
             ...prevReservation,
             guestsNum: {
@@ -96,128 +101,133 @@ export const StayReservation = ({ stay }) => {
     const serviceFee = 30
     const sumRate = (stay.reviewScores.rating) * (stay.reviews.length) / (6 * stay.reviews.length)
     return (
-        <section className="stay-reservation">
-            <div className="reservation-wrapper">
-                <div className="reservation-heder">
-                    <span className="price"><h2>{formatNumber(stay.price)}</h2>night</span>
-                    {!!stay.reviews.length ? <div className="rate-con">
-                        <StarIcon />
-                        <span>{utilService.financial(sumRate)} •</span>
-                        <span className="reviews-length">{stay.reviews.length} reviews</span>
-                    </div> :
-                        <div className="rate-con">
+        <>
+            <section className="stay-reservation">
+                <div className="reservation-wrapper">
+                    <div className="reservation-heder">
+                        <span className="price"><h2>{formatNumber(stay.price)}</h2>night</span>
+                        {!!stay.reviews.length ? <div className="rate-con">
                             <StarIcon />
-                            <span>New</span>
-                        </div>
-                    }
-                </div>
-
-                <div className="form-wrapper">
-                    <form >
-                        <div className="inputs-con">
-                            <div className="input-date-con">
-                                <BasicDatePicker
-                                    lable={'check in'}
-                                    field={'checkIn'}
-                                    handleDateChange={handleDateChange}
-                                />
-
-                                <BasicDatePicker
-                                    lable={'check out'}
-                                    field={'checkOut'}
-                                    handleDateChange={handleDateChange}
-                                />
-
+                            <span>{utilService.financial(sumRate)} •</span>
+                            <span className="reviews-length">{stay.reviews.length} reviews</span>
+                        </div> :
+                            <div className="rate-con">
+                                <StarIcon />
+                                <span>New</span>
                             </div>
+                        }
+                    </div>
 
-                            <div className="guests-main-wrapper">
-                                <div className="text-con">
-                                    <p className="lable">Guests</p>
-                                    <p>{totalGuests} guest</p>
+                    <div className="form-wrapper">
+                        <form >
+                            <div className="inputs-con">
+                                <div className="input-date-con">
+                                    <BasicDatePicker
+                                        lable={'check in'}
+                                        field={'checkIn'}
+                                        handleDateChange={handleDateChange}
+                                    />
+
+                                    <BasicDatePicker
+                                        lable={'check out'}
+                                        field={'checkOut'}
+                                        handleDateChange={handleDateChange}
+                                    />
+
                                 </div>
 
-                                {!isMenuOpen && <ArrowDown className="arrow-down-icn" onClick={onToggleMenu} />}
-                                {isMenuOpen && <ArrowUp className="arrow-down-icn" onClick={onToggleMenu} />}
-                                {isMenuOpen && <div className='grop-consists-wrapper'>
-                                    <div className='grop-main-con adults'>
-                                        <div className='text-con'>
-                                            <div className='title'>Adults</div>
-                                            <div className="sub">Ages 13 or above</div>
-                                        </div>
-                                        <div className="controls-con">
-                                            <button className="btn btn-dec" disabled={adults === 1} onClick={() => onSelectValue('adults', adults - 1)}>-</button>
-                                            <span className="val-display">{adults}</span>
-                                            <button className="btn btn-inc" onClick={() => onSelectValue('adults', adults + 1)}>+</button>
-                                        </div>
+                                <div className="guests-main-wrapper">
+                                    <div className="text-con">
+                                        <p className="lable">Guests</p>
+                                        <p>{totalGuests} guest</p>
                                     </div>
 
-                                    <div className='grop-main-con children'>
-                                        <div className='text-con'>
-                                            <div className='title'>Children</div>
-                                            <div className="sub">Ages 2-12</div>
+                                    {!isMenuOpen && <ArrowDown className="arrow-down-icn" onClick={onToggleMenu} />}
+                                    {isMenuOpen && <ArrowUp className="arrow-down-icn" onClick={onToggleMenu} />}
+                                    {isMenuOpen && <div className='grop-consists-wrapper'>
+                                        <div className='grop-main-con adults'>
+                                            <div className='text-con'>
+                                                <div className='title'>Adults</div>
+                                                <div className="sub">Ages 13 or above</div>
+                                            </div>
+                                            <div className="controls-con">
+                                                <button className="btn btn-dec" disabled={adults === 1} onClick={(ev) => onSelectValue(ev, 'adults', adults - 1)}>-</button>
+                                                <span className="val-display">{adults}</span>
+                                                <button className="btn btn-inc" onClick={(ev) => onSelectValue(ev, 'adults', adults + 1)}>+</button>
+                                            </div>
                                         </div>
-                                        <div className="controls-con">
-                                            <button className="btn btn-dec" disabled={children === 0} onClick={() => onSelectValue('children', children - 1)}>-</button>
-                                            <span className="val-display">{children}</span>
-                                            <button className="btn btn-inc" onClick={() => onSelectValue('children', children + 1)}>+</button>
+
+                                        <div className='grop-main-con children'>
+                                            <div className='text-con'>
+                                                <div className='title'>Children</div>
+                                                <div className="sub">Ages 2-12</div>
+                                            </div>
+                                            <div className="controls-con">
+                                                <button className="btn btn-dec" disabled={children === 0} onClick={(ev) => onSelectValue(ev, 'children', children - 1)}>-</button>
+                                                <span className="val-display">{children}</span>
+                                                <button className="btn btn-inc" onClick={(ev) => onSelectValue(ev, 'children', children + 1)}>+</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className='grop-main-con infants'>
-                                        <div className='text-con'>
-                                            <div className='title'>Infants</div>
-                                            <div className="sub">Under 2</div>
+                                        <div className='grop-main-con infants'>
+                                            <div className='text-con'>
+                                                <div className='title'>Infants</div>
+                                                <div className="sub">Under 2</div>
+                                            </div>
+                                            <div className="controls-con">
+                                                <button className="btn btn-dec" disabled={infants === 0} onClick={(ev) => onSelectValue(ev, 'infants', infants - 1)}>-</button>
+                                                <span className="val-display">{infants}</span>
+                                                <button className="btn btn-inc" onClick={(ev) => onSelectValue(ev, 'infants', infants + 1)}>+</button>
+                                            </div>
                                         </div>
-                                        <div className="controls-con">
-                                            <button className="btn btn-dec" disabled={infants === 0} onClick={() => onSelectValue('infants', infants - 1)}>-</button>
-                                            <span className="val-display">{infants}</span>
-                                            <button className="btn btn-inc" onClick={() => onSelectValue('infants', infants + 1)}>+</button>
+                                        <div className='grop-main-con pets'>
+                                            <div className='text-con'>
+                                                <div className='title'>Pets</div>
+                                                <div className="sub">Bringing a service animal?</div>
+                                            </div>
+                                            <div className="controls-con">
+                                                <button className="btn btn-dec" disabled={pets === 0} onClick={(ev) => onSelectValue(ev, 'pets', pets - 1)}>-</button>
+                                                <span className="val-display">{pets}</span>
+                                                <button className="btn btn-inc" onClick={(ev) => onSelectValue(ev, 'pets', pets + 1)}>+</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className='grop-main-con pets'>
-                                        <div className='text-con'>
-                                            <div className='title'>Pets</div>
-                                            <div className="sub">Bringing a service animal?</div>
-                                        </div>
-                                        <div className="controls-con">
-                                            <button className="btn btn-dec" disabled={pets === 0} onClick={() => onSelectValue('pets', pets - 1)}>-</button>
-                                            <span className="val-display">{pets}</span>
-                                            <button className="btn btn-inc" onClick={() => onSelectValue('pets', pets + 1)}>+</button>
-                                        </div>
-                                    </div>
-                                </div>}
+                                    </div>}
+                                </div>
+
                             </div>
+                            {/* <button className="btn btn-reserve" onClick={onReserve}>Reserve</button> */}
+                            <BrandBtn text={'Reserve'} cb={onReserve} />
+                            <span>You won't be charged yet</span>
+                        </form>
 
+                    </div>
+
+                    <div className="reservation-breakdown-wrapper">
+                        <div className="price-breakdown-con">
+                            <div className="brakdown">
+                                <span className="price">{formatNumber(stay.price)} x {getDaysCount()} nights</span>
+                                <span className="price">{formatNumber(stay.price * getDaysCount())}</span>
+                            </div>
+                            <div>
+                                <span>cleaning fee</span>
+                                <span className={stay.cleaningFee === 0 ? 'green' : ''}>${formatNumber(stay.cleaningFee)}</span>
+                            </div>
+                            <div>
+                                <span>Service fee </span>
+                                <span>${formatNumber(serviceFee)}</span>
+                            </div>
                         </div>
-                        {/* <button className="btn btn-reserve" onClick={onReserve}>Reserve</button> */}
-                        <BrandBtn text={'Reserve'} cb={onReserve} />
-                        <span>You won't be charged yet</span>
-                    </form>
+                        <div className="total-con">
+                            <span>Total</span>
+                            <span className="total-price">{formatNumber((stay.price * getDaysCount()) + serviceFee + stay.cleaningFee)}</span>
+                            {/* <button className="btn " onClick={onReserve}>Reserve</button> */}
+                        </div>
+                    </div>
 
                 </div>
 
-                <div className="reservation-breakdown-wrapper">
-                    <div className="price-breakdown-con">
-                        <div className="brakdown">
-                            <span className="price">{formatNumber(stay.price)} x {getDaysCount()} nights</span>
-                            <span className="price">{formatNumber(stay.price * getDaysCount())}</span>
-                        </div>
-                        <div>
-                            <span>cleaning fee</span>
-                            <span className={stay.cleaningFee === 0 ? 'green' : ''}>${formatNumber(stay.cleaningFee)}</span>
-                        </div>
-                        <div>
-                            <span>Service fee </span>
-                            <span>${formatNumber(serviceFee)}</span>
-                        </div>
-                    </div>
-                    <div className="total-con">
-                        <span>Total</span>
-                        <span className="total-price">{formatNumber((stay.price * getDaysCount()) + serviceFee + stay.cleaningFee)}</span>
-                        {/* <button className="btn " onClick={onReserve}>Reserve</button> */}
-                    </div>
-                </div>
 
-            </div>
+
+            </section>
 
             {currModalType === 'confirm-reservation' && <div className="confirmation-modal-wrapper">
                 <div className="confirmation-modal-header">
@@ -272,11 +282,10 @@ export const StayReservation = ({ stay }) => {
                         <span className="total-price">{formatNumber(stay.price * getDaysCount())}</span>
                     </div>
                     {/* <button className="btn" onClick={toggleModal}>confirm</button> */}
-                    <BrandBtn text={'Confirm'} cb={toggleModal} />
+                    <BrandBtn text='Confirm' cb={toggleModal} />
                 </div>
             </div>}
-
-        </section>
+        </>
     )
 }
 
