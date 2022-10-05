@@ -5,8 +5,8 @@ const INITIAL_STATE = {
     user: authService.getLoggedinUser(),
     currModalType: '',
     trips: [],
-    listings:[]
-
+    listings: [],
+    alertData: null
 }
 
 
@@ -21,6 +21,8 @@ export function userReducer(state = INITIAL_STATE, action) {
             return { ...state, trips: action.trips }
         case 'SET_LISTINGS':
             return { ...state, listings: action.listings }
+        case 'SET_ALERT_DATA':
+            return { ...state, alertData: action.alertData }
         default:
             // console.log('DEFAULT!!!');
             return state

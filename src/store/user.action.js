@@ -1,12 +1,14 @@
 import { reservationService } from "../services/reservation.service";
 import { stayService } from "../services/stay.service";
 import { authService } from "../services/auth.service";
+import { socketService } from "../services/socket.service";
 
 export function login(credentials) {
 
     return async (dispatch) => {
         try {
             const user = await authService.login(credentials)
+            socketService.login(user._id)
             dispatch({ type: 'SET_USER', user })
 
         } catch (err) {
@@ -21,6 +23,7 @@ export function signup(credentials) {
     return async (dispatch) => {
         try {
             const user = await authService.signup(credentials)
+            socketService.login(user._id)
             dispatch({ type: 'SET_USER', user })
 
         } catch (err) {
@@ -32,7 +35,7 @@ export function signup(credentials) {
 }
 
 export function update(credentials) {
-console.log("updateACTION , credentials", credentials)
+    console.log("updateACTION , credentials", credentials)
 
     return async (dispatch) => {
         try {
@@ -51,6 +54,7 @@ export function logout() {
     return async (dispatch) => {
         try {
             await authService.logout()
+            socketService.logout()
             dispatch({ type: 'SET_USER', user: null })
 
         } catch (err) {
@@ -86,7 +90,18 @@ export function saveUserListing(filterBy) {
             const listings = await stayService.query(filterBy)
             dispatch({ type: 'SET_LISTINGS', listings })
         } catch (err) {
-            console.log('faild ', err)
+            console.log('failed ', err)
         }
     }
 }
+
+export function setAlertData(alertData) {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: 'SET_ALERT_DATA', alertData })
+        } catch (err) {
+            console.log('failed ', err)
+        }
+    }
+}
+

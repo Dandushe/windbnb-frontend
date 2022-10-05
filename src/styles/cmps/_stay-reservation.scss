@@ -152,13 +152,14 @@
                             border: 1px solid $clr6;
                             border-radius: 10px;
                             background-color: $clr2;
+                            z-index: 1;
 
                             .grop-main-con {
                                 display: flex;
                                 justify-content: space-between;
                                 align-items: center;
                                 border-bottom: 1px solid $clr6;
-                                padding: 20px 20px 20px 20px;
+                                padding: 20px;
                                 gap: 5px;
 
                                 &.pets {

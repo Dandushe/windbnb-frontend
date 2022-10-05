@@ -1,0 +1,48 @@
+.user-msg {
+    position: fixed;
+    z-index: 300;
+    right: 16px;
+    bottom: 60px;
+    background-color: $clr2;
+    display: flex;
+    padding: 12px 46px 12px 12px;
+    gap: 8px;
+    border: 1px solid $clr3;
+    border-radius: 4px;
+
+    p {
+        line-height: 22px;
+
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        // font-size: rem(18px);
+        padding: 5px;
+        border-radius: 4rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba($clr6, 95%);
+        }
+    }
+
+
+    &.success {
+        svg:not(.close-btn) {
+            color: #0BDA51;
+        }
+    }
+
+    &.error {
+        svg:not(.close-btn) {
+            color: #DC143C;
+        }
+    }
+}

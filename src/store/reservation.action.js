@@ -30,6 +30,7 @@ export function addReservation(reservation) {
         try {
             const reservationToAdd = await reservationService.save({ ...reservation })
             dispatch({ type: 'ADD_RESERVATION', reservation: reservationToAdd })
+            // dispatch({ type: 'SET_ALERT_DATA', alertData: { type: 'success', txt: 'new reservation' } })
             return reservationToAdd
         } catch (err) {
             console.log('Added reservation catch', err)
