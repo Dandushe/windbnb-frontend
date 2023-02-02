@@ -34,8 +34,12 @@ export const StayReservation = ({ stay }) => {
     const handleDateChange = (ev, field) => {
         const date = new Date(ev.$d)
         const value = utilService.formatDate(date)
+        if (!reservation.checkIn && !reservation.checkOut) {
+            console.log('HI');
+            setReservation(prevReservation => ({ ...prevReservation, checkIn: value, checkOut: value }))
+            return
+        }
         setReservation(prevReservation => ({ ...prevReservation, [field]: value }))
-
     }
 
     const onReserve = (ev) => {
@@ -100,6 +104,7 @@ export const StayReservation = ({ stay }) => {
     const { adults, infants, children, pets } = reservation.guestsNum
     const serviceFee = 30
     const sumRate = (stay.reviewScores.rating) * (stay.reviews.length) / (6 * stay.reviews.length)
+
     return (
         <>
             <section className="stay-reservation">
@@ -125,12 +130,16 @@ export const StayReservation = ({ stay }) => {
                                     <BasicDatePicker
                                         lable={'check in'}
                                         field={'checkIn'}
+                                        initalValue={reservation.checkIn}
+                                        maxDate={reservation.checkOut}
                                         handleDateChange={handleDateChange}
                                     />
 
                                     <BasicDatePicker
                                         lable={'check out'}
                                         field={'checkOut'}
+                                        initalValue={reservation.checkOut}
+                                        minDate={reservation.checkIn}
                                         handleDateChange={handleDateChange}
                                     />
 

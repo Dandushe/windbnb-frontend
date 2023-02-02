@@ -1,47 +1,142 @@
-.user-profile-main-wrapper{
+.user-profile-main-wrapper {
     display: flex;
     gap: 20px;
-    .side-card{
-       display: flex;
-       flex-direction: column;
-       border: 1px solid $clr5;
-       width: 300px;
-        border-radius: 15px;
-        padding: 20px;
-        align-self: flex-start;
-        .img-container{
+    height: min-content;
+
+    >* {
+        border: 1px solid $clr6;
+        border-radius: 12px;
+        background-color: $clr7;
+    }
+
+    .side-card {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 60px;
+
+        .img-container {
             width: 130px;
             height: 130px;
             border-radius: 50%;
             align-self: center;
+            cursor: pointer;
+            position: relative;
+
+            &::after {
+                content: 'Edit';
+                position: absolute;
+                display: grid;
+                place-content: center;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                background-color: transparent;
+                transition: background-color .2s, opacity .1s;
+            }
+
+            &:hover {
+                &::after {
+                    opacity: 1;
+                    background-color: rgba($clr6, 0.5);
+                }
+            }
         }
-        .drop-warapper{
+
+        .drop-warapper {
             align-self: center;
-            p{
+
+            p {
                 text-decoration: underline;
                 cursor: pointer;
                 color: $clr3;
-                
+
             }
         }
-        .confirmation{
-        
-        }
-    }
-    .profile-main-content{
-        width: 100%;
-        h1{
-            font-size: rem(30px);
-            color: $clr3;
-        }
-        .sub{
-            color: $clr4;
-        }
-        form{
+
+        .user-info {
             display: flex;
             flex-direction: column;
-            
+            align-items: center;
+            gap: 12px;
+        }
+    }
+
+    h1 {
+        font-size: rem(30px);
+        color: $clr3;
+    }
+
+    .sub {
+        color: $clr4;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+
+        tr {
+            &:not(:last-child) {
+                border-bottom: 1px solid $clr6;
+            }
+
+            &:first-child {
+                td {
+                    padding-top: 0;
+                }
+            }
+
+            td {
+                padding: 10px 0;
+
+                &:first-child {
+                    width: 200px;
+                }
+            }
         }
 
+
+        label {
+            font-size: rem(18px);
+            font-weight: 600;
+
+        }
+
+        input {
+            border: none;
+            outline: none;
+            font-size: rem(17px);
+            color: $clr4;
+            background-color: transparent;
+            padding: 4px 0;
+        }
+
+
     }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+        padding: 20px;
+
+        button {
+            align-self: flex-end;
+            background-color: $clr3;
+            color: white;
+            border: 1px solid $clr4;
+            border-radius: 4px;
+            padding: 4px 12px;
+            font-size: rem(16px);
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.05);
+                transition: transform .1s;
+            }
+        }
+    }
+
 }

@@ -1,21 +1,25 @@
 .explore-filter-wrapper {
-
-    // position: sticky;
-    // top: 0px;
-    // z-index: 1;
-    // background-color: $clr2;
-    // .filter-content-wrapper {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 30px;
+    width: 100%;
+
     // background-color: $clr2;
+    // @include for-narrow-layout {
+    //     flex-direction: column;
+
+    //     button{
+    //         color: red;
+    //     }
+    // }
 
     .category-filterbar-wrapper {
         display: flex;
         align-items: center;
         gap: 10px;
+        // max-width: 1100px;
+
 
         img {
             width: 25px;
@@ -25,7 +29,21 @@
 
         // font-weight: bold;
         // font-family: AirBold;
-        >* {
+        // >* {
+        //     display: flex;
+        //     flex-direction: column;
+        //     align-items: center;
+        //     border-bottom: 2px solid rgba(255, 255, 255, 0);
+        //     cursor: pointer;
+        //     padding: 10px;
+        //     color: $clr4;
+        //     font-family: 'AirMedium';
+        //     font-size: rem(12px);
+        //     text-align: center;
+        //     // aspect-ratio: 1/1;
+        // }
+
+        .category-preview {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -34,20 +52,24 @@
             padding: 10px;
             color: $clr4;
             font-family: 'AirMedium';
-            font-size: rem(15px);
+            font-size: rem(12px);
             text-align: center;
-            // aspect-ratio: 1/1;
+
+           
+         
+
+            &:hover {
+                border-bottom: 2px solid $clr6;
+                color: $clr3;
+            }
+            &.active {
+                border-bottom: 2px solid $clr3;
+                color: $clr3;
+                transform: scale(1.2);
+            }
         }
 
-        .active {
-            border-bottom: 2px solid $clr3;
-            color: $clr3;
-        }
-
-        >*:hover {
-            border-bottom: 2px solid $clr6;
-            color: $clr3;
-        }
+       
 
     }
 
@@ -55,8 +77,8 @@
         background-color: $clr2;
         border: 1px solid $clr6;
         border-radius: 10px;
-        font-size: rem(17px);
-        padding: 13px 20px 13px 20px;
+        font-size: rem(12px);
+        padding: 15px 20px 15px 20px;
         cursor: pointer;
         display: flex;
         font-family: 'AirMedium';
@@ -117,12 +139,12 @@
                         font-weight: 600;
                     }
 
-                    h2 {
+                    // h2 {
                         // align-self: flex-start;
                         // padding-inline-start: 40px;
                         // padding-bottom: 30px;
                         // font-weight: 600;
-                    }
+                    // }
                 }
 
                 .price-inputs-con {
@@ -209,7 +231,7 @@
                         }
                     }
 
-                    .css-dk24d0-MuiButtonBase-root-MuiCheckbox-root{
+                    .css-dk24d0-MuiButtonBase-root-MuiCheckbox-root {
                         padding: 0;
                     }
                 }
@@ -245,3 +267,228 @@
     // }
 
 }
+
+// .explore-filter-wrapper {
+//     width: calc(100vw - 240px);
+//     display: flex;
+//     gap: 10px;
+
+//     .category-filterbar-wrapper {
+//         width: 100%;
+//     }
+
+//     .slick-slide {
+//         // width: fit-content !important;
+//     }
+
+//     .slick-track {
+//         // width: unset !important;
+//     }
+
+//     .slick-slide {
+//         // width: auto !important;
+
+//         .category-preview {
+//             display: flex !important;
+//             flex-direction: column;
+//             align-items: center;
+//             font-size: rem(12px);
+
+//             img {
+//                 width: 24px;
+//                 aspect-ratio: 1;
+//             }
+//         }
+//     }
+
+//     .btn-filter-modal {
+//         background-color: $clr2;
+//         border: 1px solid $clr6;
+//         border-radius: 10px;
+//         font-size: rem(12px);
+//         padding: 15px 20px 15px 20px;
+//         cursor: pointer;
+//         display: flex;
+//         font-family: 'AirMedium';
+//         // align-self: flex-end;
+//         // justify-content: flex-end;
+//     }
+
+
+//     .filter-options-modal-wrapper {
+//         position: fixed;
+//         left: 50%;
+//         top: 50%;
+//         transform: translate(-50%, -50%);
+//         z-index: 12;
+//         // width: 700px;
+//         height: 60vh;
+//         background-color: $clr2;
+//         border: 1px solid $clr4;
+//         border-radius: 15px;
+//         // padding: 20px;
+//         display: flex;
+//         flex-direction: column;
+//         // align-items: center;
+//         justify-content: space-between;
+//         overflow-y: auto;
+
+//         // bottom: -1000px;
+//         .modal-header {
+//             border-bottom: 1px solid $clr6;
+//             text-align: center;
+//             padding: 20px;
+//         }
+
+//         .filter-content {
+//             overflow-y: scroll;
+
+//             >* {
+//                 padding: 20px 24px 30px 24px;
+//             }
+
+//             .price-range-wrapper {
+//                 border-bottom: 1px solid $clr6;
+//                 display: flex;
+//                 flex-direction: column;
+//                 align-items: center;
+//                 gap: 10px;
+
+//                 .price-range-title {
+//                     display: flex;
+//                     flex-direction: column;
+//                     gap: 10px;
+//                     width: 100%;
+//                     // padding-inline-start: 40px;
+//                     padding-bottom: 30px;
+
+//                     span {
+//                         color: $clr4;
+//                         font-weight: 600;
+//                     }
+
+//                     h2 {
+//                         // align-self: flex-start;
+//                         // padding-inline-start: 40px;
+//                         // padding-bottom: 30px;
+//                         // font-weight: 600;
+//                     }
+//                 }
+
+//                 .price-inputs-con {
+//                     display: flex;
+//                     justify-content: center;
+//                     gap: 25px;
+
+//                     .min-con,
+//                     .max-con {
+//                         // display: flex;
+//                         // flex-direction: column;
+//                         width: 200px;
+//                         height: 60px;
+//                         // width: 230px;
+//                         // height: 60px;
+//                         border: 1px solid $clr4;
+//                         border-radius: 12px;
+//                         // overflow: hidden;
+//                         padding: 5px 0px 0px 10px;
+
+
+//                     }
+
+//                     // .max-con{
+//                     //     display: flex;
+//                     //     flex-direction: column;
+//                     //     width: 230px;
+//                     //     height: 60px;
+//                     //     border: 1px solid $clr4;
+//                     //     border-radius: 12px;
+//                     //     overflow: hidden;
+//                     // }
+//                     input[type=number] {
+//                         width: 170px;
+//                         height: 30px;
+//                         align-self: flex-end;
+//                         border: none;
+//                         outline: none;
+//                         font-size: rem(18px);
+
+//                         //    background-color: gray;
+//                         // &::before{
+//                         //     content: '\0024';
+
+//                         // }
+//                         &::-webkit-inner-spin-button {
+//                             -webkit-appearance: none;
+//                             margin: 0;
+//                         }
+//                     }
+//                 }
+
+//             }
+
+//             .room-types {
+//                 // border-bottom: 1px solid $clr6 ;
+//                 // padding: 40px 30px 30px 40px ;
+//                 // padding-bottom: 40px;
+//                 display: flex;
+//                 flex-direction: column;
+//                 // padding-block: 30px;
+
+//                 h1 {
+//                     font-size: rem(22px);
+//                     padding-bottom: 20px;
+//                     // width: 100%;
+//                 }
+
+//                 .checkboxes-wrapper {
+//                     display: grid;
+//                     grid-template-columns: 1fr 1fr;
+
+//                     .label-con {
+//                         display: flex;
+//                         align-items: start;
+//                         gap: 8px;
+
+//                         .text-con {
+//                             // padding-top: 18px;
+
+//                             p:first-child {
+//                                 font-weight: 600;
+//                             }
+//                         }
+//                     }
+
+//                     .css-dk24d0-MuiButtonBase-root-MuiCheckbox-root {
+//                         padding: 0;
+//                     }
+//                 }
+//             }
+//         }
+
+//         .submit-search-con {
+//             background-color: $clr2;
+//             position: sticky;
+//             bottom: 0;
+//             border-top: 1px solid $clr6;
+//             // height: 50px; //temp
+//             padding: 16px 24px;
+//             background-color: $clr2;
+//             display: flex;
+//             justify-content: flex-end;
+//             z-index: 1;
+
+//             .btn-submit-filter {
+//                 background-color: $clr3;
+//                 color: $clr2;
+//                 font-size: rem(17px);
+//                 font-family: 'AirMedium';
+//                 padding: 13px 20px 13px 20px;
+//                 cursor: pointer;
+//                 border-radius: 10px;
+
+//             }
+//         }
+
+//     }
+// }

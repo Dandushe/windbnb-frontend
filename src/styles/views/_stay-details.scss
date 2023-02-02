@@ -1,13 +1,13 @@
 .stay-details {
     max-width: 1120px;
-
+    margin: auto;
     .top-container {
         display: flex;
         flex-direction: column;
         gap: 10px;
         padding-bottom: 20px;
         color: $clr3;
-
+     
         h1 {
             font-family: 'AirBold';
             font-size: rem(26px);
@@ -27,6 +27,9 @@
                 >span {
                     text-decoration: 0.5px solid $clr3 underline;
                 }
+                // .stay-address:hover{
+                //     background-color: $clr1;
+                // }
 
                 .rate-con {
                     display: flex;
@@ -44,11 +47,12 @@
                 }
             }
 
+            
+
             .links-con {
                 display: flex;
                 gap: 10px;
                 color: $clr3;
-
                 >* {
                     display: flex;
                     gap: 6px;
@@ -70,8 +74,12 @@
                     }
 
                 }
+
+                
             }
         }
+
+        
 
     }
 
@@ -234,9 +242,9 @@
 
                     }
 
-                    .MuiButtonBase-root {
+                    // .MuiButtonBase-root {
                         // color: $clr3;
-                    }
+                    // }
 
                 }
             }
@@ -405,6 +413,12 @@
                     cursor: pointer;
                 }
             }
+        }
+    }
+
+    @include for-narrow-layout{
+        .links-con{
+            display: none;
         }
     }
 }

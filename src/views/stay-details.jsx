@@ -1,22 +1,23 @@
-
 import { useEffect, useState } from "react"
 import { useParams } from 'react-router-dom'
+//JS
 import { stayService } from "../services/stay.service"
+import { utilService } from "../services/util.service";
+//CMPS
+import { StayReservation } from "../cmps/stay-reservation";
 import { LongText } from "../cmps/long-text"
+//ASSETS
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
 import StarIcon from '@mui/icons-material/Star';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
-import { StayReservation } from "../cmps/stay-reservation";
-import { utilService } from "../services/util.service";
 
 
 export const StayDetails = () => {
     const [stay, setStay] = useState(null)
     const params = useParams()
-
 
     useEffect(() => {
         //Page layout
@@ -39,6 +40,11 @@ export const StayDetails = () => {
         setStay(stay)
     }
 
+    const onOpenLocation = async (address) => {
+        window.open(`https://www.google.com/maps/place/${address}`,'_blank')
+    }
+
+
     if (!stay) return <div>Loading...</div>
     const defaultDesc = 'You`ll have a great time at this comfortable place to stay. just pack your bags and come over or dont pack just come over'
     const sumRate = (stay.reviewScores.rating) * (stay.reviews.length) / (6 * stay.reviews.length)
@@ -57,7 +63,7 @@ export const StayDetails = () => {
                                 <span>New</span>}
                         </div>
                         <span>{stay.reviews.length} reviews •</span>
-                        <span>{stay.address.street}</span>
+                        <span className="stay-address" onClick={()=>onOpenLocation(stay.address.street)}>{stay.address.street}</span>
                     </div>
                     <div className="links-con">
                         <div>
@@ -134,14 +140,10 @@ export const StayDetails = () => {
                         <div className="amenities">
                             <h3>What this place offers</h3>
                             <div className="amenities-wrapper">
-                                {stay.amenities.splice(0, 10).map((item, i) => <span key={i}> 
-                                {item}</span>)}
+                                {stay.amenities.splice(0, 10).map((item, i) => <span key={i}>
+                                    {item}</span>)}
                             </div>
                         </div>
-                        {/* <div className="dates">
-                        <BasicDatePicker />
-                        <BasicDatePicker />
-                        </div> */}
                     </div>
                     <StayReservation stay={stay} />
                 </div>

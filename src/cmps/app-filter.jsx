@@ -36,12 +36,17 @@ export const StayFilter = () => {
         const field = activeTab
         const date = new Date(ev.$d)
         const value = utilService.formatDate(date)
+        if (!filterBy.checkIn && !filterBy.checkOut) {
+            console.log('HI');
+            setFilterBy(prevFilterBy => ({ ...prevFilterBy, checkIn: value, checkOut: value }))
+            return
+        }
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
-
     }
 
     const onSubmitSearch = (ev) => {
         ev.preventDefault()
+        ev.stopPropagation()
         dispatch(setFilter(filterBy))
         dispatch(loadStays())
         // dispatch(addReservation(reservation))
@@ -172,8 +177,9 @@ export const StayFilter = () => {
                                 <CalendarPicker
                                     date={value}
                                     views={["day", "month"]}
-                                    showDaysOutsideCurrentMonth
+                                    maxDate={filterBy.checkOut}
                                     disablePast
+                                    showDaysOutsideCurrentMonth
                                     onChange={(newDate) => handleDateChange({ ...newDate })}
                                 />
                             </LocalizationProvider>}
@@ -188,6 +194,7 @@ export const StayFilter = () => {
                                 <CalendarPicker
                                     date={value}
                                     views={["day", "month"]}
+                                    minDate={filterBy.checkIn}
                                     showDaysOutsideCurrentMonth
                                     disablePast
                                     onChange={(newDate) => handleDateChange({ ...newDate })}
@@ -251,7 +258,7 @@ export const StayFilter = () => {
                     </div>
 
                     <div className="search-con">
-                        <button className='btn search-btn' type='submit' form="destinationform"><SearchIcon /> Search</button>
+                        <button className='btn search-btn' type='submit' form="destinationform" onClick={ev => ev.stopPropagation()}><SearchIcon /> Search</button>
                     </div>
                 </section>
 

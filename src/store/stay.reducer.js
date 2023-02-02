@@ -6,8 +6,10 @@ const INITIAL_STATE = {
     stays: [],
     filterBy: {
         txt: '',
-        checkIn: utilService.formatDate(Date.now()),
-        checkOut: utilService.formatDate(Date.now() + fiveDays),
+        checkIn: null,
+        checkOut: null,
+        // checkIn: utilService.formatDate(Date.now()),
+        // checkOut: utilService.formatDate(Date.now() + fiveDays),
         guestsNum: {
             adults: 1,
             children: 0,

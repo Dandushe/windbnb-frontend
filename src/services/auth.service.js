@@ -34,6 +34,7 @@ function getLoggedinUser() {
 }
 
 async function update(user) {
+    console.log('update');
     user = await httpService.put(`user/${user._id}`, user)
     return user
 }

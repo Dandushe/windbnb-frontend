@@ -34,13 +34,13 @@ export function signup(credentials) {
     }
 }
 
-export function update(credentials) {
-    console.log("updateACTION , credentials", credentials)
-
+export function update(user) {
+    
     return async (dispatch) => {
+        console.log("updateACTION , user", user)
         try {
-            const user = await authService.update(credentials)
-            dispatch({ type: 'SET_USER', user })
+            const updatedUser = await authService.update(user)
+            dispatch({ type: 'SET_USER', user: updatedUser })
 
         } catch (err) {
             console.log('faild to update user', err);

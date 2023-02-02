@@ -84,6 +84,7 @@ export const BecomeHost = () => {
         const value = target.type === 'number' ? +target.value : target.value
         setStay(prevReservation => ({ ...prevReservation, [field]: value }))
     }
+    
     const handleAddressChange = ({ target }) => {
         const field = target.name
         const value = target.value

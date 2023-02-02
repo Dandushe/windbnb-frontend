@@ -1,13 +1,13 @@
-import * as React from 'react';
 
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker';
+import { useState } from 'react';
 
-export const BasicDatePicker = ({ field, lable, handleDateChange }) => {
-    const [value, setValue] = React.useState(null);
+export const BasicDatePicker = ({ field, lable, handleDateChange,minDate,maxDate,initalValue }) => {
+    const [value, setValue] = useState(initalValue);
     // const [date, setDate] = React.useState(dayjs());
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -21,6 +21,9 @@ export const BasicDatePicker = ({ field, lable, handleDateChange }) => {
                 // onClose
                 // variant="standard"
                 // closeOnSelect={false}
+                minDate={minDate}
+                maxDate={maxDate}
+                disablePast={true}
                 
                 onChange={(newValue) => {
                 
