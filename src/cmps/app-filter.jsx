@@ -1,26 +1,24 @@
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+//JS
 import { loadStays, modalType, setFilter } from '../store/stay.action';
 import { utilService } from '../services/util.service';
+//ASSETS
 import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { BasicDatePicker } from './date-picker';
 import SearchIcon from '@mui/icons-material/Search';
 
-// const image = require('../../public/assets/images/unitedStates')
 
 export const StayFilter = () => {
     const currModalType = useSelector(state => state.stayModule.currModalType)
     const [activeTab, setActiveTab] = useState('')
     const [isExpended, setIsExpended] = useState(false)
-    // const [reservation, setReservation] = useState({
-    // })
+ 
     const [value, setValue] = useState(null);
     const storeFilterBy = useSelector(state => state.stayModule.filterBy)
 
     const [filterBy, setFilterBy] = useState({ ...storeFilterBy })
-    // const filterBy = useSelector(state => state.stayModule.filterBy)
     const dispatch = useDispatch()
     const inputRef = useRef()
 
@@ -37,7 +35,6 @@ export const StayFilter = () => {
         const date = new Date(ev.$d)
         const value = utilService.formatDate(date)
         if (!filterBy.checkIn && !filterBy.checkOut) {
-            console.log('HI');
             setFilterBy(prevFilterBy => ({ ...prevFilterBy, checkIn: value, checkOut: value }))
             return
         }
@@ -49,8 +46,6 @@ export const StayFilter = () => {
         ev.stopPropagation()
         dispatch(setFilter(filterBy))
         dispatch(loadStays())
-        // dispatch(addReservation(reservation))
-
     }
 
     const toggleIsExpended = () => {
@@ -96,10 +91,6 @@ export const StayFilter = () => {
 
     if (currModalType === 'expended-pill') {
         return (
-
-            // <section className={`stay-filter-main-warapper ${(currModalType === 'expended-pill') ? 'expended' : ''}`} onClick={() => onSelectModalType('expended-pill')} >
-
-
             <section className="filter-expended-pill-wrapper">
 
                 {/* <section className={`location-wrapper ${activeTab === 'where' ? 'active' : ''}`} onClick={setActiveTab('where')}> */}
@@ -116,8 +107,6 @@ export const StayFilter = () => {
                                 onChange={handleChange}
                                 placeholder='Search destination'
                                 autoComplete='off' />
-                            {/* <button>test</button> */}
-                            {/* {<span onClick={() => setFilterBy(prevFilterBy => ({ ...prevFilterBy, txt: '' }))}>X</span>} */}
                         </form>
                     </div>
                     {(activeTab === 'where') && <div className="region-warpper" >
@@ -172,7 +161,6 @@ export const StayFilter = () => {
                         <span className='title'>Check in</span>
                         <span className='sub-title'>{!filterBy.checkIn ? 'Add dates' : filterBy.checkIn}</span>
                         <div className='checkin-datepicker-con'>
-                            {/* {(activeTab === 'checkIn') && <BasicDatePicker lable={'check in'} field={'checkIn'} handleDateChange={handleDateChange} />} */}
                             {(activeTab === 'checkIn') && <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <CalendarPicker
                                     date={value}
@@ -189,7 +177,6 @@ export const StayFilter = () => {
                         <span className='title'>Check out</span>
                         <span className='sub-title'>{!filterBy.checkOut ? 'Add dates' : filterBy.checkOut}</span>
                         <div className='checkOut-datepicker-con'>
-                            {/* {(activeTab === 'checkOut') && <BasicDatePicker lable={'check out'} field={'checkOut'} handleDateChange={handleDateChange} />} */}
                             {(activeTab === 'checkOut') && <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <CalendarPicker
                                     date={value}
@@ -263,9 +250,6 @@ export const StayFilter = () => {
                 </section>
 
             </section>
-
-
-            // </section>
         )
     }
 

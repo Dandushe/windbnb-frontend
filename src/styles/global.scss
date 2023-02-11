@@ -7,14 +7,14 @@
 @import 'basics/layout';
 @import 'basics/helpers';
 @import 'basics/typography';
-//views
+//VIEWS
 @import 'views/stay-details';
 @import 'views/become-host';
 @import 'views/user-profile';
 @import 'views/hosting-reservation';
 
 
-// COMPONENTS
+//COMPONENTS
 @import 'cmps/stay-list';
 @import 'cmps/stay-preview';
 @import 'cmps/header';
@@ -23,12 +23,12 @@
 @import 'cmps/filter';
 @import 'cmps/explore-filter';
 @import 'cmps/login-signup';
-@import 'cmps/listing';
+@import 'cmps/listings';
 @import 'cmps/brand-btn';
 @import 'cmps/user-msg';
 
 
-///USER CMPS
+//USER CMPS
 @import 'cmps/user-trip';
 @import 'cmps/trip-list';
 @import 'cmps/trip-preview';

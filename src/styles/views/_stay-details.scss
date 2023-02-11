@@ -27,22 +27,14 @@
                 >span {
                     text-decoration: 0.5px solid $clr3 underline;
                 }
-                // .stay-address:hover{
-                //     background-color: $clr1;
-                // }
 
                 .rate-con {
                     display: flex;
                     align-items: center;
                     gap: 2px;
-                    // font-size: rem(16px);
 
-                    // &::after{
-                    //     content: '•';
-                    // }
                     svg {
                         font-size: rem(16px);
-                        // align-self: flex-start;
                     }
                 }
             }
@@ -69,8 +61,6 @@
 
                     svg {
                         font-size: rem(18px);
-                        // font-weight: light;
-                        // align-self: flex-start;
                     }
 
                 }
@@ -127,9 +117,6 @@
                         .proprietary-info-con {
                             display: flex;
                             gap: 10px;
-                            // font-family: 'AirMedium';
-                            // font-weight: 600;
-                            // font-weight: bolder;
                         }
                     }
 
@@ -163,7 +150,6 @@
                             h4 {
                                 font-size: rem(16px);
                                 color: $clr3;
-                                // font-weight: 600;
                             }
 
                             span {
@@ -189,7 +175,6 @@
 
                         span {
                             color: $clr1;
-                            // padding-bottom: 15px;
                         }
                     }
 
@@ -211,8 +196,6 @@
                 }
 
                 .amenities {
-                    // border-bottom: 1px solid $clr6 ;
-                    // padding: 40px 0px 40px 0px;
                     padding-block: 40px;
 
                     h3 {
@@ -236,15 +219,8 @@
                     justify-content: center;
 
                     .MuiCalendarPicker-root {
-                        //   background-color: $clr1;
                         margin: 0;
-                        // font-size: 20px;
-
                     }
-
-                    // .MuiButtonBase-root {
-                        // color: $clr3;
-                    // }
 
                 }
             }
@@ -255,7 +231,6 @@
 
 
         .reviwes {
-            // margin: 46px 0px 46px 0px;
             border-bottom: 1px solid $clr6 ;
             padding-block: 40px;
 
@@ -284,15 +259,11 @@
                         align-items: center;
                         gap: 12px;
 
-                        // justify-content: space-between;
                         progress {
                             accent-color: $clr3;
                             height: 9px;
                             width: 120px;
-                            // border: none;
-                            // background-color: $clr5;
                             transition: 0.4s ease-in;
-                            // -webkit-appearance: none;
                         }
                     }
 
@@ -344,11 +315,6 @@
         }
 
         .about-host {
-            // display: grid;
-            // grid-template-columns: 1fr 1fr;
-            // gap: 20px;
-            // // border-bottom: 1px solid $clr6 ;
-            // padding-bottom: 40px;
             display: flex;
             flex-direction: column;
             gap: 24px;
@@ -389,7 +355,6 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 20px;
-                // border-bottom: 1px solid $clr6 ;
                 padding-bottom: 40px;
 
                 >div {

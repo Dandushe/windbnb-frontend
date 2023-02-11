@@ -1,8 +1,10 @@
 import { useState } from "react"
-import Dropzone from "react-dropzone"
 import { useDispatch, useSelector } from "react-redux"
+//JS
 import { uploadImg } from "../services/upload-service"
 import { update } from "../store/user.action"
+//ASSETS
+import Dropzone from "react-dropzone"
 
 
 export const UserProfile = () => {
@@ -32,9 +34,6 @@ export const UserProfile = () => {
     return (
         <section className="user-profile-main-wrapper">
             <div className="side-card">
-                {/* <div className="img-container ratio-square">
-                    <img src={userToEdit.userImg || 'https://res.cloudinary.com/dwnu4ghut/image/upload/v1664096494/windbnb/user_pic.png'} alt="user" />
-                </div> */}
                 <div className="user-info">
                     <Dropzone onDrop={onUploadImg}>
                         {({ getRootProps, getInputProps }) => (

@@ -1,6 +1,5 @@
 .trip-list{
     display: grid;
-    // grid-template-columns: repeat(auto-fill,minmax(290px,1fr));
     grid-template-columns: repeat(auto-fill,minmax(200px,auto));
     gap: 20px;
 }

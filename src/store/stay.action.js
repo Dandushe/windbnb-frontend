@@ -1,10 +1,22 @@
 import { stayService } from "../services/stay.service"
 
+
 export function loadStays() {
     return async (dispatch, getState) => {
         const { filterBy } = getState().stayModule
         try {
             const stays = await stayService.query(filterBy)
+            dispatch({ type: 'SET_STAYS', stays })
+        } catch (err) {
+            console.error('STAYS ACTION faild load:', err)
+        }
+    }
+}
+
+export function loadUserStays(userId) {
+    return async (dispatch) => {
+        try {
+            const stays = await stayService.query({ hostId: userId })
             dispatch({ type: 'SET_STAYS', stays })
         } catch (err) {
             console.error('STAYS ACTION faild load:', err)
@@ -18,16 +30,6 @@ export function setFilter(filterBy) {
             dispatch({ type: 'SET_FILTER', filterBy })
         } catch (err) {
             console.log('filter catch', err)
-        }
-    }
-}
-
-export function modalType(modalType) {
-    return async (dispatch) => {
-        try {
-            dispatch({ type: 'SET_MODAL_TYPE', modalType })
-        } catch (err) {
-            console.log('faild to set modal type', err)
         }
     }
 }
@@ -70,3 +72,12 @@ export function removeStay(stayId) {
     }
 }
 
+export function modalType(modalType) {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: 'SET_MODAL_TYPE', modalType })
+        } catch (err) {
+            console.log('faild to set modal type', err)
+        }
+    }
+}

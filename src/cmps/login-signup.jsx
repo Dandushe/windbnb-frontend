@@ -1,33 +1,29 @@
-import { useRef } from "react"
-import { useEffect, useState } from "react"
+import { useRef, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+//JS
 import { modalType } from "../store/stay.action"
 import { login, signup } from "../store/user.action"
 
 
 export const LoginSignup = () => {
 
-    const currModalType = useSelector(state => state.stayModule.currModalType)
-    const [credentials, setCredentials] = useState({
+    const dispatch = useDispatch()
+    const inputRef = useRef()
+    
+    const defaultCredentials = {
         fullname: '',
         username: '',
         password: '',
-    })
-    const dispatch = useDispatch()
+    }
 
-    const inputRef = useRef()
+    const currModalType = useSelector(state => state.stayModule.currModalType)
+    const [credentials, setCredentials] = useState({...defaultCredentials})
 
     useEffect(() => {
-        if (inputRef.current)
-            inputRef.current.focus()
+        if (inputRef.current) inputRef.current.focus()
     }, [currModalType])
 
-    const clearState = () => {
-        const defaultCredentials = {
-            fullname: '',
-            username: '',
-            password: '',
-        }
+    const clearForm = () => {
         setCredentials({ ...defaultCredentials })
     }
 
@@ -36,10 +32,9 @@ export const LoginSignup = () => {
         try {
             dispatch(login(credentials))
             dispatch(modalType(''))
-            clearState()
+            clearForm()
         } catch (err) {
             console.log('faild to login', err);
-
         }
     }
 
@@ -49,7 +44,7 @@ export const LoginSignup = () => {
         try {
             dispatch(signup(credentials))
             dispatch(modalType(''))
-            clearState()
+            clearForm()
         } catch (err) {
             console.log('faild to sign-up', err);
         }
@@ -88,7 +83,6 @@ export const LoginSignup = () => {
                         placeholder="Enter password"
                         autoComplete="off" />
                     <button>Log-in</button>
-                    {/* <button type='button' onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button> */}
                     <span onClick={() => onSelectModalType('signup')}>Don't have an account yet?</span>
                 </form>
             </div>}
@@ -119,7 +113,6 @@ export const LoginSignup = () => {
                         autoComplete="off" />
                     <button>Sign-up</button>
                     <span onClick={() => onSelectModalType('login')}>Log in</span>
-                    {/* <button type='button' onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button> */}
                 </form>
             </div>}
         </section>

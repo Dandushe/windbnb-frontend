@@ -10,13 +10,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            // width: 220px;
             width: 100%;
             border: 1px solid $clr6;
             border-radius: 10px;
             padding: 10px;
 
-            // gap: 40px;
             p {
                 font-weight: 600;
                 font-size: rem(14px);
@@ -34,7 +32,6 @@
                 }
 
                 .percentage {
-                    // font-size: rem(14px);
                     color: #0BDA51;
 
                     &::before {
@@ -56,8 +53,6 @@
 
     table {
         width: 100%;
-        // border-bottom: 1px solid $clr6;
-        // border: 1px solid $clr6;
         color: $clr3;
         border-collapse: collapse;
 
@@ -73,8 +68,6 @@
                 transition: background-color 0.3s ease-in-out;
             }
 
-            // border: 1px solid $clr6;
-            // font-weight: 600;
             .approved {
                 color: #0BDA51;
             }
@@ -93,7 +86,6 @@
         td {
             text-align: start;
             padding: 10px;
-            // border-bottom: 1px solid $clr4;
         }
     }
 
@@ -118,7 +110,6 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                // gap: 10px;
                 width: 320px;
                 height: 100px;
                 padding: 7px 15px 7px 15px;

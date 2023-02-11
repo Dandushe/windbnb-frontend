@@ -1,25 +1,25 @@
 import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { saveUserListing } from "../store/user.action"
-import AddIcon from '@mui/icons-material/Add';
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux"
+//JS
+import { loadUserStays } from "../store/stay.action";
+//CMPS
 import { BrandBtn } from "./brand-btn";
+//ASSETS
+import AddIcon from '@mui/icons-material/Add';
 
 
-export const Listing = () => {
-    const user = useSelector(state => state.userModule.user)
-    const listings = useSelector(state => state.userModule.listings)
+export const Listings = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const user = useSelector(state => state.userModule.user)
+    const listings = useSelector(state => state.stayModule.stays)
+
     useEffect(() => {
-        loadListings()
+        dispatch(loadUserStays(user._id))
     }, [])
 
-    const loadListings = async () => {
-        // 632c617e1e03fec448f71ace
-        dispatch(saveUserListing({ hostId: user._id }))
-    }
-    // Georgina
     if (!listings) return <div>Loading...</div>
     return (
         <section className="listing-main-wrapper">
@@ -59,11 +59,6 @@ export const Listing = () => {
                     <p>Join us. We`ll help you every step of the way.</p>
                     <BrandBtn text={'Let`s go!'} cb={() => navigate('/host')} />
                 </div>
-                {/* <section className="video-wrapper"> */}
-                    {/* <video id="hostVideo" autoPlay controls >
-                        <source src="https://a0.muscache.com/v/9a/7a/9a7ad4a1-cfab-5f7d-96e6-fda8abceabe7/9a7ad4a1cfab5f7d96e6fda8abceabe7_4000k_1.mp4" type="" />
-                    </video> */}
-                {/* </section> */}
                 <div className="img-container">
                     <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664650429/banner2.jpg" alt="banner" />
                 </div>

@@ -1,31 +1,28 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { addReservation } from '../store/reservation.action';
-import { BasicDatePicker } from "./date-picker";
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
+//JS
 import { formatNumber, utilService } from "../services/util.service";
-import { iconService } from "../services/icon.service"
-import StarIcon from '@mui/icons-material/Star';
-import { BrandBtn } from "./brand-btn";
+import { addReservation } from '../store/reservation.action';
 import { modalType } from "../store/stay.action";
+//ASSETS
+import ArrowDown from '@mui/icons-material/KeyboardArrowDownOutlined';
+import ArrowUp from '@mui/icons-material/KeyboardArrowUpOutlined';
+import StarIcon from '@mui/icons-material/Star';
+import { BasicDatePicker } from "./date-picker";
+import { BrandBtn } from "./brand-btn";
 
 
 export const StayReservation = ({ stay }) => {
 
+    const dispatch = useDispatch()
 
     const user = useSelector(state => state.userModule.user)
     const filterBy = useSelector(state => state.stayModule.filterBy)
     const currModalType = useSelector(state => state.stayModule.currModalType)
-    const [isModalOpen, setIsModalOpen] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [reservation, setReservation] = useState({ ...filterBy })
-    const dispatch = useDispatch()
-    const ArrowDown = KeyboardArrowDownOutlinedIcon
-    const ArrowUp = KeyboardArrowUpOutlinedIcon
 
     const getDaysCount = () => {
-
         let daysDiffInMill = new Date(reservation.checkOut) - new Date(reservation.checkIn)
         let daysCount = daysDiffInMill / (1000 * 60 * 60 * 24)
         return daysCount
@@ -35,7 +32,6 @@ export const StayReservation = ({ stay }) => {
         const date = new Date(ev.$d)
         const value = utilService.formatDate(date)
         if (!reservation.checkIn && !reservation.checkOut) {
-            console.log('HI');
             setReservation(prevReservation => ({ ...prevReservation, checkIn: value, checkOut: value }))
             return
         }
@@ -74,7 +70,6 @@ export const StayReservation = ({ stay }) => {
     }
 
     const toggleModal = () => {
-        // setIsModalOpen(prevIsModalDisplay => !prevIsModalDisplay)
         const type = currModalType === 'confirm-reservation' ? '' : 'confirm-reservation'
         dispatch(modalType(type))
     }
@@ -203,7 +198,6 @@ export const StayReservation = ({ stay }) => {
                                 </div>
 
                             </div>
-                            {/* <button className="btn btn-reserve" onClick={onReserve}>Reserve</button> */}
                             <BrandBtn text={'Reserve'} cb={onReserve} />
                             <span>You won't be charged yet</span>
                         </form>
@@ -228,14 +222,9 @@ export const StayReservation = ({ stay }) => {
                         <div className="total-con">
                             <span>Total</span>
                             <span className="total-price">{formatNumber((stay.price * getDaysCount()) + serviceFee + stay.cleaningFee)}</span>
-                            {/* <button className="btn " onClick={onReserve}>Reserve</button> */}
                         </div>
                     </div>
-
                 </div>
-
-
-
             </section>
 
             {currModalType === 'confirm-reservation' && <div className="confirmation-modal-wrapper">
@@ -252,7 +241,6 @@ export const StayReservation = ({ stay }) => {
                 <div className="wind-cover-con">
                     <span>Your booking is protected by</span>
                     <span className="wind-cover">windCover</span>
-
                 </div>
 
                 <div className="your-trip-details-wrapper">
@@ -260,7 +248,6 @@ export const StayReservation = ({ stay }) => {
                     <div className="trip-dates-wrapper">
                         <div className="dates-con">
                             <h4>Dates</h4>
-                            {/* <span>Oct 26 - 31</span> */}
                             <span>{new Date(reservation.checkIn).toLocaleString('en-US', { month: 'short', day: 'numeric' })}-{new Date(reservation.checkOut).getDate()}</span>
                         </div>
                         <span className="edit-dates">Edit</span>
@@ -290,7 +277,6 @@ export const StayReservation = ({ stay }) => {
                         <span>Total</span>
                         <span className="total-price">{formatNumber(stay.price * getDaysCount())}</span>
                     </div>
-                    {/* <button className="btn" onClick={toggleModal}>confirm</button> */}
                     <BrandBtn text='Confirm' cb={toggleModal} />
                 </div>
             </div>}

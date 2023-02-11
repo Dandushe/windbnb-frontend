@@ -1,15 +1,9 @@
-import { utilService } from "../services/util.service";
-
-const fiveDays = 5 * 24 * 60 * 60 * 1000
-
 const INITIAL_STATE = {
     stays: [],
     filterBy: {
         txt: '',
         checkIn: null,
         checkOut: null,
-        // checkIn: utilService.formatDate(Date.now()),
-        // checkOut: utilService.formatDate(Date.now() + fiveDays),
         guestsNum: {
             adults: 1,
             children: 0,
@@ -43,7 +37,6 @@ export function stayReducer(state = INITIAL_STATE, action) {
             stays = state.stays.map(currStay => (currStay._id === action.stay._id) ? action.stay : currStay)
             return { ...state, stays: stays }
         default:
-            // console.log('DEFAULT-STAY!!!');
             return state
     }
 }

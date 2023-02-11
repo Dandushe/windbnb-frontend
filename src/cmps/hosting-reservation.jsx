@@ -1,15 +1,17 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom";
+//JS
 import { loadReservations } from "../store/reservation.action"
+import { formatNumber } from "../services/util.service";
+//ASSETS
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import StarIcon from '@mui/icons-material/Star';
-import { formatNumber } from "../services/util.service";
-import { BrandBtn } from "./brand-btn";
-import { useNavigate } from "react-router-dom";
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+
 
 export const HostingReservation = () => {
     const user = useSelector(state => state.userModule.user)
@@ -21,12 +23,7 @@ export const HostingReservation = () => {
         dispatch(loadReservations({ hostId: user._id }))
     }, [])
 
-    // month.toLocaleString('en-GB', { month: 'short' })
-    // day.toLocaleString('en-GB',)
     const statusClass = 'approved'
-    // 'declined'
-    // 'approved'
-    // 'pending'
 
     const prevButton = {
         prevBtnIcn: <Tooltip title="go back" onClick={() => navigate('/')}>
@@ -38,14 +35,13 @@ export const HostingReservation = () => {
     if (!reservations) return <div>Loading...</div>
     return (
         <section className="hosting-reservation-main-wrapper">
-           {!reservations&&  <div className="stats-warpper">
+            {!reservations && <div className="stats-warpper">
                 <div className="income-con">
                     <div className="container">
                         <p>This month income</p>
                         <div >
-                            {/* <span className="total">$8,230 </span> */}
                             <span className="total">
-                               ${reservations.reduce((acc, reservation) => {
+                                ${reservations.reduce((acc, reservation) => {
                                     return formatNumber(acc + reservation.totalPrice)
                                 }, 0)}
                             </span>
@@ -76,9 +72,9 @@ export const HostingReservation = () => {
                 </div>
             </div>}
             {prevButton.prevBtnIcn}
-             <h1>Reservations</h1>
+            <h1>Reservations</h1>
 
-           {!reservations&&  <table>
+            {!reservations && <table>
                 <thead>
                     <tr>
                         <th>Status</th>
@@ -95,9 +91,7 @@ export const HostingReservation = () => {
                     {reservations.map(reservation => <tr key={reservation._id}>
                         <td className={statusClass}>Approved</td>
                         <td>{reservation.guestsNum}</td>
-                        {/* <td>{reservation.checkIn.toLocaleString('en-US')}</td> */}
                         <td>{new Date(reservation.checkIn).toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
-                        {/* <td>{reservation.checkOut}</td> */}
                         <td>{new Date(reservation.checkOut).toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
                         <td>{new Date(reservation.createdAt).toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
                         <td>{reservation.stay.name}</td>
@@ -108,29 +102,10 @@ export const HostingReservation = () => {
                 </tbody>
             </table>}
 
-            
+
             <section>
                 <h3>You have no reservations yet...</h3>
             </section>
-
-            {/* <section className="hosting-banner-wrapper">
-                <div className="banner-title">Find out what you could earn as a Host</div>
-                <div className="stats-hosting-con">
-                    <div className="avg-income">
-                        <p>Hosts in your area earn an average of*</p>
-                        <h1>14,209<span>/ month</span></h1>
-                    </div>
-                    <div>
-                        <p>They earn</p>
-                        <h1>677<span>/ night</span></h1>
-                    </div>
-                    <div>
-                        <p>They're booked</p>
-                        <h1>21<span> nights / month</span></h1>
-                    </div>
-                </div>
-                <BrandBtn text={'Let`s go!'} cb={() => navigate('/host')} />
-            </section> */}
         </section>
     )
 }

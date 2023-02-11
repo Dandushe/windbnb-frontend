@@ -1,6 +1,5 @@
 import { httpService } from './http.service.js'
 
-// const STORAGE_KEY = 'userDB'
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
 export const authService = {
     login,
@@ -34,7 +33,5 @@ function getLoggedinUser() {
 }
 
 async function update(user) {
-    console.log('update');
-    user = await httpService.put(`user/${user._id}`, user)
-    return user
+    return await httpService.put(`user/${user._id}`, user)
 }

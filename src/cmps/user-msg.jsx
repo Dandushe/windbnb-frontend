@@ -13,7 +13,6 @@ export const UserMsg = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const alertData = useSelector(state => state.userModule.alertData)
-  // const alertData = { type: 'success', txt: 'new reservation' }
   const timeoutIdRef = useRef()
 
   useEffect(() => {

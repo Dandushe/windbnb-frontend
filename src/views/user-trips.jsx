@@ -1,29 +1,22 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+//JS
+import { loadReservations } from "../store/reservation.action"
+//CMPS
 import { TripsList } from "../cmps/user/trip-list"
 import { BrandBtn } from "../cmps/brand-btn";
-
-import { TripPreview } from "../cmps/user/trip-preview"
-import { loadReservations } from "../store/reservation.action"
-import { loadTrips, saveUserTrips } from "../store/user.action"
 
 
 export const UserTrips = () => {
     const user = useSelector(state => state.userModule.user)
-    const trips = useSelector(state => state.userModule.trips)
-    // ObjectId("632c617e1e03fec448f71ace")
+    const trips = useSelector(state => state.reservationModule.reservations)
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
     useEffect(() => {
-        loadUserTrips()
+        dispatch(loadReservations({ buyerId: user._id }))
     }, [])
-
-    const loadUserTrips = async () => {
-        // 632c617e1e03fec448f71ace
-        dispatch(saveUserTrips({ buyerId: user._id }))
-
-    }
 
     return (
         <section className="trips-page">
@@ -42,7 +35,6 @@ export const UserTrips = () => {
                     <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664009033/windbnb/family.jpg" alt="family" />
                 </div>
             </div>}
-            {/* <TripPreview/> */}
 
         </section>
     )

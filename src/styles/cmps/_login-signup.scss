@@ -12,7 +12,6 @@
     align-items: center;
     justify-content: center;
 
-    // padding: 40px 20px 40px 20px;
     .login-wrapper {
         display: flex;
         flex-direction: column;
@@ -60,17 +59,8 @@
             &::placeholder {
                 color: $clr4;
                 font-size: rem(17px);
-                // text-align: center;
-                // padding-inline-start:5px;
-                // top: 0px;
-                // position: absolute;
-
-
             }
-
-
         }
-
 
         button {
             font-size: rem(18px);

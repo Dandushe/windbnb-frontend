@@ -7,15 +7,12 @@ import Box from '@mui/material/Box';
 
 
 const AirbnbSlider = styled(Slider)(({ theme }) => ({
-    // color: '#3a8589',
     color: '#b0b0b0',
     height: 3,
     padding: '13px 0',
     '& .MuiSlider-thumb': {
         height: 30,
         width: 30,
-        // height: 27,
-        // width: 27,
         backgroundColor: '#fff',
         border: '1px solid currentColor',
         '&:hover': {
@@ -30,7 +27,6 @@ const AirbnbSlider = styled(Slider)(({ theme }) => ({
         },
     },
     '& .MuiSlider-track': {
-        // height: 8,
         height: 4,
 
     },
@@ -58,7 +54,7 @@ AirbnbThumbComponent.propTypes = {
     children: PropTypes.node,
 };
 
-export default function CustomizedSlider({minPrice,maxPrice,handleChange}) {
+export default function CustomizedSlider({ minPrice, maxPrice, handleChange }) {
 
     return (
         <Box sx={{ width: 450 }}>
@@ -66,18 +62,12 @@ export default function CustomizedSlider({minPrice,maxPrice,handleChange}) {
             <Typography gutterBottom></Typography>
             <AirbnbSlider
                 components={{ Thumb: AirbnbThumbComponent }}
-                // getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
-                // getAriaValueText={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
-                // valueLabelFormat={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
-                // defaultValue={[minPrice, maxPrice]}
                 defaultValue={[minPrice, maxPrice]}
-                value={[minPrice,maxPrice]}
-                // defaultValue={min, max}
+                value={[minPrice, maxPrice]}
                 valueLabelDisplay="auto"
                 min={40}
                 max={1000}
                 onChange={handleChange}
-                // valueLabelDisplay="on"
             />
         </Box>
     );

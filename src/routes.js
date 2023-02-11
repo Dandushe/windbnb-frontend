@@ -1,6 +1,6 @@
 
 import { HostingReservation } from './cmps/hosting-reservation.jsx'
-import { Listing } from './cmps/listing.jsx'
+import { Listings } from './cmps/listings.jsx'
 import { BecomeHost } from './views/become-host.jsx'
 import { ExplorePage } from './views/explore-page.jsx'
 import { StayDetails } from './views/stay-details.jsx'
@@ -17,26 +17,25 @@ const routes = [
         component: <BecomeHost />,
     },
     {
+        path: '/stay/:id',
+        component: <StayDetails />,
+    },
+    {
         path: '/dashboard/listing',
-        component: <Listing />,
+        component: <Listings />,
     },
     {
         path: '/dashboard/reservation',
         component: <HostingReservation />,
     },
     {
-        path: '/user/profile',
-        component: <UserProfile />,
-    },
-    {
         path: '/dashboard/trips',
         component: <UserTrips />,
     },
     {
-        path: '/stay/:id',
-        component: <StayDetails />,
+        path: '/user/profile',
+        component: <UserProfile />,
     }
-
 ]
 
 export default routes

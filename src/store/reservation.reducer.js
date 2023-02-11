@@ -1,6 +1,3 @@
-
-
-
 const INITIAL_STATE = {
     reservations: [],
     reservation: null,
@@ -21,7 +18,6 @@ export function reservationReducer(state = INITIAL_STATE, action) {
             reservations = state.reservations.map(currReservation => (currReservation._id === action.reservation._id) ? action.reservation : currReservation)
             return { ...state, reservations: reservations }
         default:
-            // console.log('DEFAULT-RESERVATION!!!');
             return state
     }
 }

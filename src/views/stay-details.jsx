@@ -41,7 +41,7 @@ export const StayDetails = () => {
     }
 
     const onOpenLocation = async (address) => {
-        window.open(`https://www.google.com/maps/place/${address}`,'_blank')
+        window.open(`https://www.google.com/maps/place/${address}`, '_blank')
     }
 
 
@@ -63,7 +63,7 @@ export const StayDetails = () => {
                                 <span>New</span>}
                         </div>
                         <span>{stay.reviews.length} reviews •</span>
-                        <span className="stay-address" onClick={()=>onOpenLocation(stay.address.street)}>{stay.address.street}</span>
+                        <span className="stay-address" onClick={() => onOpenLocation(stay.address.street)}>{stay.address.street}</span>
                     </div>
                     <div className="links-con">
                         <div>
@@ -134,7 +134,7 @@ export const StayDetails = () => {
                         </div>
 
                         <div className="info-place-desc">
-                            <LongText text={stay.description ? stay.description : defaultDesc} limit={170} />
+                            <LongText text={stay.description || defaultDesc} limit={170} />
                         </div>
 
                         <div className="amenities">
@@ -242,20 +242,6 @@ export const StayDetails = () => {
                         </div>
                     </div>
                 </section>
-
-                {/* <section className="policy-info">
-                        <h2>Things to know</h2>
-                        <div className="house-rules">
-                            <h4>House rules</h4>
-                        </div>
-                        <div className="Health & safety">
-                            <h4>Health & safety</h4>
-                        </div>
-                        <div className="Cancellation policy">
-                            <h4>Cancellation policy</h4>
-                        </div>
-                    </section> */}
-
             </section>
         </section>
     )

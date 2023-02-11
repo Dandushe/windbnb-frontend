@@ -1,5 +1,5 @@
-import { modalType } from "../store/stay.action"
 import { useDispatch, useSelector } from 'react-redux';
+import { modalType } from "../store/stay.action"
 
 export const Screen = () => {
   const dispatch = useDispatch()

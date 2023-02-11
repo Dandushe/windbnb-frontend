@@ -1,4 +1,3 @@
-import { Checkbox, FormControlLabel, FormGroup } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { loadStays, modalType, setFilter } from "../store/stay.action"
@@ -6,6 +5,7 @@ import { ReactComponent as Adjustment } from "../assets/svgs/adjustment.svg";
 import { Carousel } from "./carousel"
 import CustomizedSlider from "./slider"
 import Slider from "react-slick"
+import { Checkbox } from "@mui/material"
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -68,11 +68,11 @@ export const ExploreFilter = () => {
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, category: value }))
     }
 
-    const settings = {
-        speed: 500,
-        slidesToShow: 10,
-        slidesToScroll: 3
-    };
+    // const settings = {
+    //     speed: 500,
+    //     slidesToShow: 10,
+    //     slidesToScroll: 3
+    // };
 
     return (
         <div className="explore-filter-wrapper">
@@ -84,50 +84,50 @@ export const ExploreFilter = () => {
 
             <div className="category-filterbar-wrapper">
                 {/* <Slider {...settings}> */}
-                    <div className={`category-preview ${(filterBy.category === 'Amazing views') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Amazing views')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568190/windbnb/views.png" alt="view" />
-                        Amazing views</div>
-                    <div className={`category-preview ${(filterBy.category === 'Lake') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Lake')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568378/windbnb/lake.png" alt="lake" />
-                        Lakes</div>
-                    <div className={`category-preview ${(filterBy.category === 'Amazing pools') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Amazing pools')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568136/windbnb/pool.png" alt="pool" />
-                        Amazing pools</div>
-                    <div className={`category-preview ${(filterBy.category === 'Islands') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Islands')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568088/windbnb/island.png" alt="island" />
-                        Islands</div>
-                    <div className={`category-preview ${(filterBy.category === 'Mansions') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Mansions')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568017/windbnb/mansions.png" alt="mansions" />
-                        Mansions</div>
-                    <div className={`category-preview ${(filterBy.category === 'Arctic') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Arctic')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664566778/windbnb/arctic.png" alt="arctic" />
-                        Arctic</div>
-                    <div className={`category-preview ${(filterBy.category === 'OMG!') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'OMG!')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664566733/windbnb/omg.png" alt="omg" />
-                        OMG!</div>
-                    <div className={`category-preview ${(filterBy.category === 'Beach') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Beach')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664567712/windbnb/beach.png" alt="beach" />
-                        Beach</div>
-                    <div className={`category-preview ${(filterBy.category === 'Cabins') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Cabins')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664566509/windbnb/cabin.png" alt="cabin" />
-                        Cabins
-                    </div>
-                    <div className={`category-preview ${(filterBy.category === 'Bed & breakfast') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Bed & breakfast')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568592/windbnb/bnb.png" alt="bnb" />
-                        Bed & breakfast
-                    </div>
-                    <div className={`category-preview ${(filterBy.category === 'Campers') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Campers')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568772/windbnb/camp.png" alt="capm" />
-                        Campers
-                    </div>
-                    <div className={`category-preview ${(filterBy.category === 'Desert') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Desert')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568883/windbnb/desert.png" alt="Desert" />
-                        Desert
-                    </div>
-                    <div className={`category-preview ${(filterBy.category === 'Creative spaces') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Creative spaces')}>
-                        <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664569019/windbnb/creative.png" alt="creative" />
-                        Creative spaces
-                    </div>
+                <div className={`category-preview ${(filterBy.category === 'Amazing views') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Amazing views')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568190/windbnb/views.png" alt="view" />
+                    Amazing views</div>
+                <div className={`category-preview ${(filterBy.category === 'Lake') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Lake')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568378/windbnb/lake.png" alt="lake" />
+                    Lakes</div>
+                <div className={`category-preview ${(filterBy.category === 'Amazing pools') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Amazing pools')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568136/windbnb/pool.png" alt="pool" />
+                    Amazing pools</div>
+                <div className={`category-preview ${(filterBy.category === 'Islands') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Islands')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568088/windbnb/island.png" alt="island" />
+                    Islands</div>
+                <div className={`category-preview ${(filterBy.category === 'Mansions') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Mansions')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568017/windbnb/mansions.png" alt="mansions" />
+                    Mansions</div>
+                <div className={`category-preview ${(filterBy.category === 'Arctic') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Arctic')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664566778/windbnb/arctic.png" alt="arctic" />
+                    Arctic</div>
+                <div className={`category-preview ${(filterBy.category === 'OMG!') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'OMG!')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664566733/windbnb/omg.png" alt="omg" />
+                    OMG!</div>
+                <div className={`category-preview ${(filterBy.category === 'Beach') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Beach')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664567712/windbnb/beach.png" alt="beach" />
+                    Beach</div>
+                <div className={`category-preview ${(filterBy.category === 'Cabins') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Cabins')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664566509/windbnb/cabin.png" alt="cabin" />
+                    Cabins
+                </div>
+                <div className={`category-preview ${(filterBy.category === 'Bed & breakfast') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Bed & breakfast')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568592/windbnb/bnb.png" alt="bnb" />
+                    Bed & breakfast
+                </div>
+                <div className={`category-preview ${(filterBy.category === 'Campers') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Campers')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568772/windbnb/camp.png" alt="capm" />
+                    Campers
+                </div>
+                <div className={`category-preview ${(filterBy.category === 'Desert') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Desert')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664568883/windbnb/desert.png" alt="Desert" />
+                    Desert
+                </div>
+                <div className={`category-preview ${(filterBy.category === 'Creative spaces') ? 'active' : ''}`} onClick={() => onSelectValue('category', 'Creative spaces')}>
+                    <img src="https://res.cloudinary.com/dwnu4ghut/image/upload/v1664569019/windbnb/creative.png" alt="creative" />
+                    Creative spaces
+                </div>
                 {/* </Slider> */}
             </div>
 
